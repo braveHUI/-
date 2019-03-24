@@ -1,0 +1,264 @@
+﻿.communicaall{
+     background-color:rgba(229,229,229,95);
+     height:680px;
+}
+.weizhdsdw{
+    margin-top:8%;
+}
+.communica_mes{
+    height:580px;
+    background-color:white;
+    border:1px solid #cfcfcf;
+    
+}
+.sixing_mes{
+   background-color:#414a73;
+   height:60px;
+}
+.sixin423-left-title{
+    padding-top: 18px;
+padding-bottom: 15px;
+background: #414a73;
+
+}
+.tupianmes{
+     background-image:url(/Images/forum/sixin-box_e97e9a2.png);
+    margin-left: 33%;
+margin-right: 5px;
+width: 21px;
+height: 16px;
+background-repeat:no-repeat;
+display: inline-block;
+vertical-align: middle;
+zoom: 1;
+*display: inline;
+color: #fff;
+}
+.sixin423-left-title i{
+   
+}
+.sixin423-left-title span{
+    display: inline-block;
+vertical-align: middle;
+zoom: 1;
+*display: inline;
+color: #fff;
+}
+.sixin423-switch{
+    padding-top: 12px;
+border-bottom: 1px solid #1f233a;
+zoom: 1;
+position: relative;
+background-color:#282d45;
+}
+.sixin423-switch a{
+    display: block;
+width: 50%;
+height: 100%;
+float: left;
+*display: inline;
+padding-bottom: 8px;
+height: 23px;
+
+outline: 0;
+background-color:#282d45;
+}
+.sixin423-switc i{
+    position: absolute;
+left: 89px;
+top: 13px;
+width: 0;
+height: 20px;
+border-right: 1px dotted #1f233a;
+}
+.sixin423-switch-msg{
+    background-image:url(/Images/forum/sixin-msg-01_140328b.png);
+    background-position: center top;
+background-repeat: no-repeat;
+}
+.sixin423-switch-friend{
+    background-image:url(/Images/forum/sixin-msg-02_0d9e698.png);
+    background-position: center top;
+background-repeat: no-repeat;
+}
+.onaction{
+    border-bottom:3px solid #d75144;
+}
+.sixin423-users-row {
+    height: 50px;
+    border-bottom: 1px dotted #1f233a;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 4px;
+    position: relative;
+    zoom: 1;
+    cursor: pointer;
+   
+}
+.sixin423-users-row:hover{
+      background: #414a73;
+    height:50px;
+
+}
+.sixin423-users-row-active{
+    background: #414a73;
+    height:50px;
+}
+.sixin423-users-row img {
+    display: inline-block;
+    vertical-align: middle;
+    zoom: 1;
+    *display: inline;
+    color: #fff;
+    width: 28px;
+height: 28px;
+border-radius: 50%;
+margin-left: 27%;
+margin-right: 4px;
+}
+.sixin423-users-row span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+vertical-align: middle;
+zoom: 1;
+*display: inline;
+color: #fff;
+}
+.sixin423-users-row span a{
+    color:white;
+    text-decoration:none;
+    outline:none;
+}
+.all_mesagg_ren{
+    background-color:#1f233a;
+    height:480px;
+    overflow:hidden;
+   
+    top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+}
+.commun_ren{
+     background-color:#1f233a;
+}
+.mesage_sixin{
+     border:1px solid #cfcfcf;
+     margin-top:5%;
+     height:530px;
+}
+.sixing_pople{
+    height:45px;
+    text-align:center;
+    line-height:45px;
+    background-color:#1f233a;
+    color:white;
+}
+.lian_content{
+    height:350px;
+   
+}
+.fasong_kuang{
+    
+    margin-top:2%;
+    position:absolute;
+    left:90%;
+
+}
+.fasong_kuang input{
+    background-color:rgb(57, 139, 252);
+    color:white;
+    border:none;
+    width:60px;
+    height:30px;
+    line-height:30px;
+}
+.message_kuang{
+    width:88%;
+    margin-left:6%;
+}
+.lian_content{
+    overflow:scroll;
+    overflow-x:hidden;
+}
+.yonghu_content{
+   text-align:right;
+   margin-right:3%;
+   margin-top:1%;
+}
+.yonghu_content img{
+    width:35px;
+    height:35px;
+}
+.content_time{
+    margin-right:39%;
+     margin-bottom:3%;
+}
+.user_conteng{
+    border:2px solid #1f233a;
+    border-radius:20px;
+    padding:15px;
+    margin-right:8px;
+}
+.mesaage_user_conhjtent{
+    
+   margin-left:8%;
+   margin-top:1%;
+}
+.mesaage_user_conhjtent img{
+     width:35px;
+    height:35px;
+}
+.sixin_content_time{
+    margin-left:39%;
+    margin-bottom:3%;
+}
+.sixin_user_contekjkng{
+     border:2px solid #1f233a;
+    border-radius:20px;
+    padding:15px;
+    margin-left:8px;
+}
+.all_zaixian{
+    display:none;
+}
+.danqian_user{
+      text-align:right;
+   margin-right:3%;
+   margin-top:1%;
+   padding-right:7%;
+}
+.danqian_user img{
+    width:35px;
+    height:35px;
+}
+.danqian_user_time{
+    margin-right:39%;
+     margin-bottom:3%;
+}
+.danqian_user_content{
+    border:2px solid #1f233a;
+    border-radius:20px;
+    padding:15px;
+    margin-right:8px;
+}
+.content_user_all{
+    margin-left:8%;
+   margin-top:1%;
+}
+.content_user_all img{
+     width:35px;
+    height:35px;
+}
+.content_user_time{
+      margin-left:39%;
+    margin-bottom:3%;
+}
+.content_user_content{
+      border:2px solid #1f233a;
+    border-radius:20px;
+    padding:15px;
+    margin-left:8px;
+}

@@ -1,0 +1,60 @@
+﻿@model Models.Post
+@{
+    ViewBag.Title = "Post";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+@Styles.Render("~/Content/css/jquery.sinaEmotion.css")
+@Styles.Render("~/Content/Fourm.css")
+<script src="~/ueditor/ueditor.config.js"></script>
+<script src="~/ueditor/ueditor.all.js"></script>
+<script type="text/javascript">
+    var editorOption = {
+        initialFrameWidth: 784,
+        initialFrameHeight: 400
+    };
+    var editor = new baidu.editor.ui.Editor(editorOption);
+    editor.render('PostContent');
+</script>
+<div class="container post">
+    <div class="row Detail-essay-weizhi">
+        当前位置>>虎贲>>网上谈兵>>帖子发表
+    </div>
+    @using (Html.BeginForm("AddPost", "Essay", FormMethod.Post))
+    {
+     
+        <div class="row publish-forum">
+            <div class="col-xs-4 col-sm-3  col-md-3 publish-forum-name">
+                <label>帖子名</label>
+            </div>
+            <div class="col-xs-8 col-sm-9  col-md-9 ">
+                <input type="text" name="post_nume" id="post_nume" placeholder="请输入帖子名" />
+
+            </div>
+        </div>
+        <div class="row publish-forum">
+            <div class="col-xs-4 col-sm-3  col-md-3 publish-forum-name">
+                @Html.LabelFor(model => model.PostContent, "文章内容", htmlAttributes: new { })
+            </div>
+            <div class="col-xs-8 col-sm-9  col-md-9 ">
+                @Html.TextAreaFor(model => model.PostContent, "PostContent")
+                @Html.ValidationMessageFor(model => model.PostContent, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row Essay-fabiao">
+            <input type="submit" value="发表" />
+        </div>
+    }
+   
+</div>
+@*<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery.sinaEmotion.js"></script>*@
+@*<script type="text/javascript">
+
+    $('#face').SinaEmotion($('.emotion'));
+
+    // 测试本地解析
+    function out() {
+        var inputText = $('.emotion').val();
+        $('#out').html(AnalyticEmotion(inputText));
+    }
+</script>*@

@@ -1,0 +1,150 @@
+﻿@model ViewModels.ForumPost
+@using Models
+@{
+    ViewBag.Title = "SelectPostReply";
+    Layout = null;
+}
+
+<div>
+    @foreach (ReplyPost p in Model.Replypost)
+    {
+        <div class="row sdvedsdnensmnccr">
+            <div class="col-xs-4 col-sm-3 col-md-3 videocommend-img-reply">
+                <img src="@p.Users.UserImage" />
+            </div>
+            <div class="col-xs-8 col-sm-9 col-md-9 videocommend-content_reply">
+                <div class="row">
+                    <div class="col-xs-5 col-sm-5 col-md-5">
+                        @if (Session["User_id"] != null)
+                        {
+                            if (Session["UserName"].ToString() == @p.Users.UserName && Session["UserName"].ToString() == @p.CommentUsername)
+                            {
+                                <span>我回复</span>
+                            }
+                            else
+                            {
+                                if (Session["UserName"].ToString() == @p.Users.UserName)
+                                {
+                                    <span>我回复 @p.CommentUsername</span>
+                                }
+                                else if (Session["UserName"].ToString() == @p.CommentUsername)
+                                {
+                                    <span>@p.Users.UserName 回复我</span>
+                                }
+                                else
+                                {
+                                    <span>@p.Users.UserName 回复 @p.CommentUsername</span>
+                                }
+                            }
+
+                        }
+                        else
+                        {
+                            <span>@p.Users.UserName 回复 @p.CommentUsername</span>
+                        }
+                    </div>
+                    <div class="col-xs-7 col-sm-7 col-md-7 videoreplay-tag">
+                       <span  class="dsdeshijian">
+                           <label>@p.ReplyTime.ToString("yyyy-MM--dd hh:mm")</label>
+                         
+
+
+                   
+                      </span>
+                        
+
+                        <span class="huifu_duihuifu">回复</span>
+
+                    </div>
+                </div>
+               
+
+
+
+                <div class="row contezhuanhuan" style="color:black;font-weight:800;margin-left:3%; ">
+                    @Html.Raw(p.Content)
+                </div>
+                <div class="row reply_commed_huifu">
+                    <div class="row">
+                        <textarea class="huifu_postdsd_sdjsdw" data-emojiable="true" placeholder="回复 @p.Users.UserName："></textarea>
+                     
+                        <input type="hidden" value="@p.CommentPost_id" class="hufu_commid_reply" />
+                        <input type="hidden" value="@p.Users.UserName" class="hufu_ccommuserid_reply" />
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-4 col-md-4 reply-comment-biaoqreply">
+                         
+                        </div>
+                        <div class="col-xs-8 col-sm-8 col-md-8 post_replyanniu_reply">
+                            @if (Session["UserName"] != null)
+                            {
+                                <input type="button" name="content_reply" class="content_replyvideo_reply" value="回复" />
+                            }
+                            else
+                            {
+                                <input type="button" class="woyadengruaheahe" value="回复" />
+                            }
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <hr style="border:1px dashed  #666666" />
+    }
+</div>
+
+@*表情*@
+<script>
+    $(function () {
+        // Initializes and creates emoji set from sprite sheet
+        window.emojiPicker = new EmojiPicker({
+            emojiable_selector: '[data-emojiable=true]',
+            assetsPath: '/Images/img/',
+            popupButtonClasses: 'fa fa-smile-o'
+        });
+
+        window.emojiPicker.discover();
+    });
+
+</script>
+<script>
+   
+    //回复框隐藏
+    $('.huifu_duihuifu').click(function () {
+        $(this).closest(".videocommend-content_reply").children(".reply_commed_huifu").slideToggle();
+    })
+    //获取回复内容
+    $('.content_replyvideo_reply').click(function () {
+         
+        var replayreply = $(this).closest(".reply_commed_huifu").children(':eq(0)').children(".huifu_postdsd_sdjsdw");
+        var reply_conten = $(this).closest(".reply_commed_huifu").children(':eq(0)').children(".huifu_postdsd_sdjsdw").val();
+
+        var commvideo_id = $(this).closest(".reply_commed_huifu").children(':eq(0)').children(".hufu_commid_reply").val();
+
+        var user_name = $(this).closest(".reply_commed_huifu").children(':eq(0)').children(".hufu_ccommuserid_reply").val();
+        
+     
+        if (reply_conten != null) {
+
+            $.ajax({
+                type: "post",
+                url: "/Forum/AddPostReply",
+                data: { content: reply_conten, id: commvideo_id, buser: user_name },
+                success: function (data) {
+                    if (data == "ok") {
+                        replayreply.val("");
+                        location.reload();
+                        alert("回复成功！")
+                    }
+
+
+
+                }
+            })
+        }
+        else {
+            alert("内容不能为空！")
+        }
+    })
+</script>

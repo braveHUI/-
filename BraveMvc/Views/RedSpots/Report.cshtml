@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "Report";
+}
+
+<div class="hh22" style="font-size: 14px;
+font-family: Microsoft YaHei;
+color: #000;
+text-align: center;">
+    <div class="list_1">
+        <ul>
+            <li>举报类型：</li>
+            <li><span><input name="inform_type" value="污言秽语" checked="checked" type="radio"><i>污言秽语</i></span></li>
+            <li><span><input name="inform_type" value="违法违规言论" type="radio"><i>违法违规言论</i></span></li>
+            <li><span><input name="inform_type" value="广告欺诈" type="radio"><i>广告欺诈</i></span></li>
+            <li><span><input name="inform_type" value="刷屏" type="radio"><i>刷屏</i></span></li>
+            <li><span><input name="inform_type" value="其它" type="radio"><i>其它</i></span></li>
+        </ul>
+    </div>
+    <div class="list_2">
+        <ul>
+            <li>补充说明：</li>
+            <li><textarea name="inform_desc" id="content"></textarea></li>
+        </ul>
+    </div>
+    <div class="btnList">
+        <span class="errorText" id="errorText"></span>
+        <div class="btnWarp">
+            <input class="submit1" value="提交" id="subDom" type="button">
+            <span class="quxiao" id="quxiao">取消</span>
+        </div>
+    </div>
+</div>
+

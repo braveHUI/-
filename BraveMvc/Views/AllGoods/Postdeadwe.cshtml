@@ -1,0 +1,56 @@
+﻿@model PagedList.IPagedList<Models.ForumSection>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Postdeadwe";
+    Layout = null;
+
+}
+
+<div class="row">
+    @foreach (var p in Model)
+    {
+
+
+        
+            <div class="col-xs-6 col-sm-4 col-md-4">
+               <div class="kuan_ssdw">
+                   <a href="@Url.Action("JunBa","Forum", new { id = @p.ForumSection_id})">
+                       <div class="row">
+                           <div class="col-xs-6 col-sm-6 col-md-6 tupian_postba">
+                               <img src="@p.FsectionImg" />
+                           </div>
+                           <div class="col-xs-6 col-sm-6 col-md-6 posetba_dec">
+                               <div class="row">
+                                   <span>@p.ForumSectionName </span>
+                               </div>
+                               <div class="row">
+                                   <span>@Html.Raw((p.FSectionDes.Length > 20 ? p.FSectionDes.Substring(0, 18) : p.FSectionDes)) </span>
+                               </div>
+                           </div>
+                       </div>
+
+                   </a>
+                  
+                 
+               </div>
+            </div>
+           
+        
+      
+    }
+</div>
+<div class="paging">
+    @Html.PagedListPager(Model, page => Url.Action("Postdeadwe", "AllGoods", new { page, currentFilter = ViewBag.CurrentFilter }),
+    PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+                 new AjaxOptions
+                 {
+                     HttpMethod = "GET",
+                     InsertionMode = InsertionMode.Replace,
+                     UpdateTargetId = "dkskdjeljlaksjde32"
+
+                 }
+))
+</div>
+
+
+

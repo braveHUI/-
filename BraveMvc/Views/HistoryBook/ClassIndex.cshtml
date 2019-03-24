@@ -1,0 +1,22 @@
+﻿@model ViewModels.historybk
+@{
+    ViewBag.Title = "ClassIndex";
+}
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.media.js"></script>
+<link href="~/Content/History.css" rel="stylesheet" />
+<div class="container">
+  <div class="row">
+      <div class="col-lg-10 bookclass">
+          <h1>分类结果</h1>
+          @foreach (var item in Model.FindClassBook)
+          {
+              <div class="col-lg-3 bookclassshow">
+                  <img src="@item.Book_img"/>
+                  <p><a href="@item.Book_route">《@item.BookName》</a></p>
+              </div>
+          }
+      </div>
+
+  </div>
+</div>

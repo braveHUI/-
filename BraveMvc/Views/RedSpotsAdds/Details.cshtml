@@ -1,0 +1,82 @@
+﻿@model Models.RedSpots
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RedSpots</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RedSpotsName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RedSpotsName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RedSpotsDes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RedSpotsDes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RedSpotsClick)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RedSpotsClick)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RedImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RedImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RedAbstract)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RedAbstract)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RedArea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RedArea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RedSection.RedSectionName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RedSection.RedSectionName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RedSpots_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

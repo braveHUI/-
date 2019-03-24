@@ -1,0 +1,126 @@
+﻿@model Models.Forum
+    
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+@Styles.Render("~/Content/Fourm.css")
+<script src="~/ueditor/ueditor.config.js"></script>
+<script src="~/ueditor/ueditor.all.js"></script>
+<script type="text/javascript">
+    var editorOption = {
+        initialFrameWidth: 784,
+        initialFrameHeight: 400
+    };
+    var editor = new baidu.editor.ui.Editor(editorOption);
+    editor.render('ForumContent');
+</script>
+
+<div class="container">
+    <div class="row Detail-essay-weizhi">
+        当前位置>>虎贲>>网上谈兵>>文章发表
+    </div>
+   
+    @using (Html.BeginForm("AddEssay", "Essay", FormMethod.Post, new { id="tijiao", enctype = "multipart/form-data" }))
+    {
+        <div class="row publish-forum">
+            <div class="col-xs-4 col-sm-3  col-md-3 publish-forum-name">
+                @Html.LabelFor(model => model.ForumSection_id, "类型", htmlAttributes: new { })
+            </div>
+            <div class="col-xs-8 col-sm-9  col-md-9">
+                @Html.DropDownList("ForumSession_id", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ForumSection_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row publish-forum">
+            <div class="col-xs-4 col-sm-3  col-md-3 publish-forum-name">
+                @Html.LabelFor(model => model.ForumName, "文章名", htmlAttributes: new { })
+            </div>
+            <div class="col-xs-8 col-sm-9  col-md-9 ">
+                <input type="text" name="forum_nume" id="forum_nume" placeholder="请输入文章名" />
+                @Html.ValidationMessageFor(model => model.ForumName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row publish-forum">
+            <div class="col-xs-4 col-sm-3  col-md-3 publish-forum-name">
+                @Html.LabelFor(model => model.ForumImage, "图片", htmlAttributes: new { })
+            </div>
+            <div class="col-xs-4 col-sm-5  col-md-5">
+
+                @Html.TextBoxFor(model => model.ForumImage, new { @class = "textouy", placeholder = "上传图片", id = "copyFile" })
+
+            </div>
+            <div class="col-xs-4 col-sm-4  col-md-4">
+                <input type="file" name="file" class="uploadFile" onchange="document.getElementById('copyFile').value = this.value" />
+
+            </div>
+
+        </div>
+        <div class="row publish-forum">
+            <div class="col-xs-4 col-sm-3  col-md-3 publish-forum-name">
+                @Html.LabelFor(model => model.ForumDec, "文章描述", htmlAttributes: new { })
+            </div>
+            <div class="col-xs-8 col-sm-9  col-md-9 ">
+                <input type="text" name="forum_dec" id="forum_dec" placeholder="简单描述下你发表文章的内容吧"/>
+                @Html.ValidationMessageFor(model => model.ForumDec, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row publish-forum">
+            <div class="col-xs-4 col-sm-3  col-md-3 publish-forum-name">
+                @Html.LabelFor(model => model.ForumContent, "文章内容", htmlAttributes: new { })
+            </div>
+            <div class="col-xs-8 col-sm-9  col-md-9 ">
+                @Html.TextAreaFor(model => model.ForumContent, "ForumContent")
+                @Html.ValidationMessageFor(model => model.ForumContent, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row Essay-fabiao">
+            <input type="submit" value="发表" />
+        </div>
+    }
+    
+
+</div>
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#tijiao").validate({
+            rules: {
+                forum_nume: {
+                    required: true,
+                    minlength: 2,
+                    maxlength: 50
+                },
+
+                forum_dec: {
+                    required: true,
+                    minlength: 2,
+                    maxlength: 100
+                },
+
+
+            },
+            messages: {
+                forum_nume: {
+                    required: "请输入文章名",
+                    minlength: '用户名不能小于2个字符',
+                    maxlength: '用户名不能超过50个字符'
+                },
+
+                forum_dec: {
+                    required: "请输入文章描述",
+                    minlength: '密码不能小于2个字符',
+                    maxlength: '密码不能超过100个字符'
+                },
+
+            }
+        });
+       
+         
+       
+    })
+</script>

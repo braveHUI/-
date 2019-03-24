@@ -1,0 +1,243 @@
+﻿@using Models
+@model ViewModels.Brave
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="tp-banner-container container">
+    <!--全屏滚动-->
+    <div class="banner">
+        <ul>
+            <li style="background-image: url('../../img/img/sunset.jpg');">
+                <div class="inner">
+                    <h1>想旅游？给你不一样的军事风光.</h1>
+                    <p>来虎贲，给你想要的</p>
+
+                    <a class="btn" href="#download">查看</a>
+                </div>
+            </li>
+
+            <li style="background-image: url('../../img/img/wood.jpg');">
+                <div class="inner">
+                    <h1>嘻游记</h1>
+                    <p>感受战争历史，戏游故地</p>
+
+                    <a class="btn" href="#download">查看</a>
+                </div>
+            </li>
+
+            <li style="background-image: url('../../img/img/subway.jpg');">
+                <div class="inner">
+                    <h1>重走丝绸之路</h1>
+                    <p>盛世丝路 尽在虎贲</p>
+
+                    <a href="#" target="_blank" class="btn">查看</a>
+                </div>
+            </li>
+
+            <li style="background-image:url('../../img/img/shop.jpg')">
+                <div class="inner">
+                    <h1>暑假来了  全家齐出游</h1>
+                    <p>就选虎贲</p>
+
+                    <a class="btn" href="#download">查看</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<!--end 全屏滚动-->
+<div class="page-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="flat-wrapper">
+                <div class="breadcrumbs">
+                    <h2 class="trail-browse">你现在在:</h2>
+                    <ul class="trail-items">
+                        <li class="trail-item"><a href="@Url.Action("index","Brave")">虎贲网</a></li>
+                        <li class="trail-item">红色景点</li>
+                        <li>优选景点</li>
+                    </ul>
+                </div><!-- /.breadcrumbs -->
+                <div class="sidebar-wrap">
+                    <div class="search d7">
+                        <div class="block-title form1">
+                           @using (Ajax.BeginForm("Redid", "RedSpots", new AjaxOptions() { UpdateTargetId="gengduo3",  HttpMethod = "Get" }))
+                           {
+                           
+                            
+                                @Html.TextBox("search" ) 
+                                    <input type="submit" value="搜索" style="width:auto"/>
+                            }
+                            @*<input type="text" placeholder="搜索从这里开始...">
+                            <button type="submit"></button>*@
+                        </div>
+                    </div>
+
+
+
+
+
+
+                </div><!-- /.sidebar-wrap -->
+            </div><!-- /.flat-wrapper -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.page-breadcrumbs -->
+
+
+
+<div class="flat-row flat-general sidebar-right " style="padding-top:40px;">
+    <div class="container">
+        <div class="row">
+            <div class="general" style="border-bottom: 1px solid #fff;
+
+    background: #fff;">
+                <div class="general-slider about-slider">
+                    <div class="conMain">
+                        <div class="module">
+                            <h3 class="title"><span><i>景点</i> - 筛选</span><a href="/RedSpots/index" class="resetSelect">重置筛选条件</a></h3><div class="select">
+                                <!-- 大分类 -->
+                                <ul>
+                                    <li>地区：</li>
+                                     <li>   @Ajax.ActionLink("不限", "Redid", "RedSpots", new { }, new AjaxOptions()
+                                       {
+                                           UpdateTargetId = "gengduo3",
+                                           HttpMethod = "Get"
+
+                                       })</li>
+                                  
+                                    @foreach(var a in Model.RedSection1)
+                                    { 
+                                    <li>
+                                        @Ajax.ActionLink( a.RedSectionName, "Redid", "RedSpots", new { sectionid =a.RedSection_id }, new AjaxOptions()
+                                      { 
+                                          UpdateTargetId = "gengduo3",
+                                          HttpMethod = "Get"
+
+                                      })
+                                    </li>
+                                    }
+                                   
+
+
+                                    <span class="more" style="display: block;">
+                                        <a href="javascript:;" class="down">更多</a>
+                                    </span>
+                                </ul>
+                                <!-- 原产国 -->
+
+
+
+                            </div>
+                        </div>
+                    </div><!-- /.about-slider -->
+
+
+
+
+                </div><!-- /.general -->
+            </div><!-- /.general -->
+
+
+            <div class="general-sidebars ">
+                <div class="sidebar-wrap bianbian ">
+
+                    <div class="block-title">
+                        <img src="~/img/taikong3.jpg">
+                    </div>
+
+
+
+
+
+
+
+                </div><!-- /.sidebar-wrap -->
+            </div><!-- /.general-sidebars -->
+        </div><!-- /.row -->
+
+
+
+    </div><!-- /.container -->
+</div><!-- /.blog -->
+
+
+
+
+<section class="wrap wrap_gray" id="gengduo3">
+    @{Html.RenderAction("Redid", "RedSpots");}
+    @*<div class="container">
+        <div class="row">
+            <div class="col-sm-12 projects">
+
+                <div class="projects__row">
+                    @foreach(var a in Model.spots1)
+                    {
+                    <div class="special special_small">
+                        <img src="@a.RedImage" style="height:311px ;width:285px" height="311" width="285" alt="image" class="special__img">
+                        <div class="special__box">
+                            <h5 class="special__category yel_line">位于 @a.RedArea
+                            </h5>
+                            <a href="#" class="special__link">@a.RedSpotsName</a>
+                            <p class="special__desc">@a.Location</p>
+                        </div>
+                    </div>
+                    }
+                    
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+       
+    </div>*@
+</section>
+
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+<script src="~/js/jquery.unobtrusive-ajax.js"></script>
+
+<script src="~/js/jquery-latest.min.js"></script>
+<script src="~/js/unslider.min.js"></script>
+<script type="text/javascript">
+            if(window.chrome) {
+                $('.banner li').css('background-size', '100% 100%');
+            }
+
+            $('.banner').unslider({
+                arrows: true,
+                fluid: true,
+                dots: true
+            });
+            //轮播参数
+            //  Find any element starting with a # in the URL
+            //  And listen to any click events it fires
+
+
+
+</script>
+<script type="text/javascript">
+        var _recommend=$('.select .more a');//获取span a
+        _recommend.click(function(e){
+var _r=$(this).parent().parent('ul');//获取该span父类ul
+            if($(this).hasClass("down")){//判断是否含有DOwn
+              $(this).removeClass('down');
+               _r.stop(true,false).animate({height:"100px"},"slow");
+             $(this).addClass('up');
+               $(this).text("收起");//值变为收起
+
+            }else{
+                $(this).addClass('down');
+                 $(this).removeClass('up')
+                $(this).text("更多");
+                  _r.stop(true,false).animate({height:"60px"},"slow");
+
+            }
+        });
+</script>

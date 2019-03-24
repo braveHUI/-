@@ -1,0 +1,25 @@
+﻿@model ViewModels.Historys
+@{
+    ViewBag.Title = "HistoryDetail";
+}
+<link href="~/Content/History.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 historydetail"> 
+            <h2>@Model.HistoryDetail.HistoryTopic</h2>
+            <hr />
+            @Html.Raw(@Model.HistoryDetail.HistoryContent)
+        </div>
+        <div class="col-lg-4 historydetailright">
+           <div class="col-lg-12 historydetailrighthead" ><h1 >推荐阅读</h1></div> 
+            @foreach (var item in Model.FindClassHistory)
+            {
+                  <div>
+                      <img  src="@item.HistoryPicture"/>
+                      <p><a href="@Url.Action("HistoryDetail",new{ id=item.History_id,classid=item.HistoryClassify_id})">@item.HistoryTopic</a></p>
+                  </div>
+            }
+        </div>
+    </div>
+</div>

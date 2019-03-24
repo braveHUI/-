@@ -1,0 +1,30 @@
+﻿@model ViewModels.Historys
+@{
+    ViewBag.Title = "FindClassHistory";
+}
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/History.css" rel="stylesheet" />
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 col-md-12 classhead">  
+            <ul class="nav nav-pills">
+                <li role="presentation" class="active"><a href="#">历史分类</a></li>  
+                @foreach (var item in Model.FindClassName)
+                {
+                <li role="presentation"><a href="#">@item.HistoryTime</a></li>
+                }
+            </ul>   
+            <ul class="claul">
+            @foreach (var item in Model.FindClassHistory)
+            {
+
+                <li>
+                    <a href="@Url.Action("HistoryDetail",new { id=item.History_id,classid=item.HistoryClassify_id})">@item.HistoryTopic</a>
+                    <p>@item.HistoryTime</p>
+                </li>
+            }
+           </ul>        
+        </div>
+    </div>
+</div>

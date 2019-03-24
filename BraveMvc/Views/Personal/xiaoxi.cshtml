@@ -1,0 +1,342 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>xiaoxi</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="css/safe/css.css" />
+    <link rel="stylesheet" href="css/safe/common.min.css" />
+    <link rel="stylesheet" href="css/safe/ms-style.min.css" />
+    <link rel="stylesheet" href="css/safe/personal_member.min.css" />
+    <link rel="stylesheet" href="css/safe/Snaddress.min.css" />
+    <link rel="stylesheet" href="css/sui.css" />
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/sui.js"></script>
+    <style>
+        progress {
+            width: 300px;
+            border: 1px solid #ffffff;
+            background-color: #e6e6e6;
+            color: #0064B4;
+            /*IE10*/
+        }
+
+            progress::-moz-progress-bar {
+                background: #FFFFFF;
+            }
+
+            progress::-webkit-progress-bar {
+                background: #ccc;
+            }
+
+            progress::-webkit-progress-value {
+                background: #FF7700;
+            }
+
+        .fenye {
+            border: 1px #ccc solid;
+            padding: 2px;
+            width: 20px;
+            margin-left: 10px;
+        }
+
+        .sui-table th, .sui-table td {
+            padding: 16px 8px;
+            line-height: 18px;
+            text-align: center;
+            vertical-align: middle;
+            border-top: 1px solid #e6e6e6;
+        }
+
+        .sui-nav.nav-tabs > .active > a {
+            font-weight: bold;
+            border: 1px #fff solid;
+            background-color: #fff;
+            border-bottom-color: transparent;
+            cursor: default;
+            font-weight: bold;
+            color: #F2873B;
+        }
+
+        .sui-nav.nav-tabs > li > a {
+            color: #333333;
+            line-height: 18px;
+            -webkit-border-radius: 3px 3px 0 0;
+            -moz-border-radius: 3px 3px 0 0;
+            border-radius: 3px 3px 0 0;
+            border: 1px #fff solid;
+            border-bottom: 1px #fff solid;
+            height: 30px;
+            width: 110px;
+            text-align: center;
+            padding-top: 10px;
+            font-size: 14px;
+        }
+
+        .sui-nav.nav-tabs {
+            border-bottom: 1px solid #CECECE;
+            padding-left: 5px;
+        }
+
+            .sui-nav.nav-tabs > .active > a:hover {
+                font-weight: bold;
+                cursor: default;
+                font-weight: bold;
+                color: #F37B1D;
+            }
+
+            .sui-nav.nav-tabs > li {
+                margin-bottom: -1px;
+                background-color: #fff;
+                border-bottom: 1px #ccc solid;
+            }
+
+            .sui-nav.nav-tabs > .active {
+                border-bottom: 0;
+            }
+
+            .sui-nav.nav-tabs > li + li {
+                margin-left: -3px;
+            }
+
+        a {
+            color: #000000;
+        }
+
+        .fengye {
+            padding: 10px;
+            border: 1px #ccc solid;
+        }
+    </style>
+</head>
+<body>
+    <div id="pen1">
+        <div id="ms-center" class="personal-member">
+            <div class="cont">
+                <div class="cont-side">
+                    <div class="side-neck" style="margin-top: 20px;">
+                        <i></i>
+                    </div>
+                    <div class="ms-side" style="margin-top: 20px;">
+                        <article class="side-menu side-menu-off">
+                            <dl class="side-menu-tree" style="padding-left: 30px;">
+                                <dt><img src="/img/左侧/我的购物车.png" style="margin-right: 10px;margin-left: -20px;" />我的购物车</dt>
+                                <dt><img src="/img/左侧/file.png" style="margin-right: 10px;margin-left: -20px;" />订单管理</dt>
+                                <dd>
+                                    <a>我的订单</a>
+
+                                </dd>
+                                <dd>
+                                    <a>我的收藏</a>
+
+                                </dd>
+                                <dd>
+                                    <a>我的评价</a>
+
+                                </dd>
+                                <dd>
+                                    <a>我的足迹</a>
+
+                                </dd>
+                                <dd>
+                                    <a>我的拍卖</a>
+
+                                </dd>
+                                <dd>
+                                    <a>我的优惠券</a>
+
+                                </dd>
+                                <dt><img src="/img/左侧/我的买啦.png" style="margin-right: 10px;margin-left: -20px;" />我的虎贲</dt>
+                                <dd>
+                                    <a>我的推荐</a>
+
+                                </dd>
+                                <dd>
+                                    <a>我的钱包</a>
+
+                                </dd>
+                                <dd>
+                                    <a>我要提现</a>
+
+                                </dd>
+                                <dd>
+                                    <a>我的买豆</a>
+
+                                </dd>
+                                <dd>
+                                    <a>邀请管理</a>
+
+                                </dd>
+                                <dt><img src="img/左侧/v-card-3.png" style="margin-right: 10px;margin-left: -20px;" />售后服务</dt>
+                                <dd>
+                                    <a>退换货</a>
+
+                                </dd>
+                                <dd>
+                                    <a>意见/投诉</a>
+
+                                </dd>
+                            </dl>
+
+                            <a ison="on" id="zhi2" class="switch-side-menu icon-up-side"><i></i></a>
+                        </article>
+                    </div>
+                </div>
+                <div class="cont-main">
+                    <div class="main-wrap mt15" style="border: 0px;">
+                        <h3 style="background-color: #fff;">
+                            <strong>我的消息</strong>
+                        </h3>
+                        <div class="server-wrapper">
+                            <div class="server-tab" style="margin-top: 48px;">
+                                <ul class="sui-nav nav-tabs" style="margin-top: 47px;width: 1000px;margin-left: 30px;">
+                                    <li class="active" style="margin-left: -5px;"><a href="#index" data-toggle="tab">社区</a></li>
+                                    <li><a href="#profile" data-toggle="tab">私信</a></li>
+                                </ul>
+                                <div class="tab-content" style="width: 1000px;margin-top: 0px;border:1px #fff solid; border-top:transparent;margin-left: 30px;">
+                                    <div id="index" class="tab-pane active" style="padding: 40px 30px;">
+                                        <dl style="margin-left: -10px;"><span class="spand"></span>您购买的宝贝有新的动态</dl>
+                                        <dl style="float: right;margin-top: -10px;">X</dl>
+                                        <div style="width: 950px;margin-top: 22px;margin-bottom:10px;border-bottom: 1px #ccc solid;height: 188px;">
+                                            <div style="float: left;">
+                                                <img src="/img/wdxx_01.png" style="min-width: 165px !important;height: 165px;" />
+                                            </div>
+                                            <div style="float: left;margin-left: 20px;">
+                                                <dl>订单号:1789*******2122</dl>
+                                                <dl style="margin-top: 5px;">快递已签收</dl>
+                                                <dl style="margin-top: 5px;">去看看</dl>
+                                                <dl style="margin-top: 83px;font-size: 12px;color: #bcbcbc;">昨天来自 <font style="color: #F2873B;">虎贲物流</font></dl>
+                                            </div>
+
+                                        </div>
+
+                                        <dl style="margin-left: -10px;"><span class="spand"></span>您购买的宝贝有新的动态</dl>
+                                        <dl style="float: right;margin-top: -10px;">X</dl>
+                                        <div style="width: 950px;margin-top: 22px;margin-bottom:10px;border-bottom: 1px #ccc solid;height: 188px;">
+                                            <div style="float: left;">
+                                                <img src="/img/wdxx_01.png" style="min-width: 165px !important;height: 165px;" />
+                                            </div>
+                                            <div style="float: left;margin-left: 20px;">
+                                                <dl>订单号:1789*******2122</dl>
+                                                <dl style="margin-top: 5px;">快递已签收</dl>
+                                                <dl style="margin-top: 5px;">去看看</dl>
+                                                <dl style="margin-top: 83px;font-size: 12px;color: #bcbcbc;">昨天来自 <font style="color: #F2873B;">虎贲物流</font></dl>
+                                            </div>
+
+                                        </div>
+
+                                        <dl style="margin-left: -10px;"><span class="spand"></span>您购买的宝贝有新的动态</dl>
+                                        <dl style="float: right;margin-top: -10px;">X</dl>
+                                        <div style="width: 950px;margin-top: 22px;border-bottom: 1px #ccc solid;height: 188px;">
+                                            <div style="float: left;">
+                                                <img src="img/wdxx_01.png" style="min-width: 165px !important;height: 165px;" />
+                                            </div>
+                                            <div style="float: left;margin-left: 20px;">
+                                                <dl>订单号:1789*******2122</dl>
+                                                <dl style="margin-top: 5px;">快递已签收</dl>
+                                                <dl style="margin-top: 5px;">去看看</dl>
+                                                <dl style="margin-top: 83px;font-size: 12px;color: #bcbcbc;">昨天来自 <font style="color: #F2873B;">虎贲物流</font></dl>
+                                            </div>
+
+                                        </div>
+                                        <div style="width: 900px;margin-top: 30px;text-align: right;">
+                                            <span class="fengye"> 上一页 </span>
+                                            <span class="fengye" style="background-color: #F2873B;color: #fff;">1</span>
+                                            <span class="fengye" style="background-color: #fff;color: #333333;">2</span>
+                                            <span class="fengye" style="background-color: #fff;color: #333333;">3</span>
+                                            <span class="fengye" style="background-color: #fff;color: #333333;">4</span>
+                                            <span class="fengye" style="background-color: #fff;color: #333333;">5</span>
+                                            .....
+                                            <span class="fengye">下一页</span>
+                                        </div>
+
+                                    </div>
+                                    <div id="profile" class="tab-pane" style="padding-top:42px;">
+                                        <input type="button" value="删除所选" style="background-color: #F5F5F5;padding: 3px;border: 1px #ccc solid;font-size: 12px;" />
+                                        <span style="color: #2897fe;float: right;margin-top: 13px;">共3条私信</span>
+                                        <div style="border: 1px #ccc solid;width: 1000px;height: 113px;margin-top: 18px;    display: inline-block;">
+
+                                            <div style="float: left;margin-left:10px;height: 100%;vertical-align: middle ;padding-top: 50px;">
+                                                <input type="checkbox" />
+                                            </div>
+                                            <div style="float: left;padding-top: 21px;margin-left: 17px;">
+                                                <img src="/img/头像.png" />
+                                            </div>
+                                            <div style="float: left;margin-left: 10px;padding-top: 35px;">
+                                                <dl style="font-size: 12px;color: #686868;"><font style="color: #F2873B;">感冒的太阳</font>&nbsp;&nbsp;对您说：&nbsp;&nbsp;感谢你的帮助，我买的东东很好，超级漂亮哦！</dl>
+                                                <dl style="font-size: 12px;color: #686868;">2016-04-03 21:56</dl>
+                                            </div>
+                                            <div style="float: right;padding-top: 50px;">
+                                                <input type="button" value="回复" style="margin-right:20px;width: 46px;height: 20px;color: #F88600;background-color: #fff;border: 1px #F88600 solid;" />
+                                            </div>
+                                        </div>
+
+
+                                        <div style="border: 1px #ccc solid;width: 1000px;height: 113px;margin-top: 34px;    display: inline-block;">
+
+                                            <div style="float: left;height: 100%;padding-top: 50px;margin-left:10px;">
+                                                <input type="checkbox" />
+                                            </div>
+                                            <div style="float: left;padding-top: 21px;margin-left: 17px;">
+                                                <img src="/img/头像.png" />
+                                            </div>
+                                            <div style="float: left;margin-left: 10px;padding-top: 35px;">
+                                                <dl style="font-size: 12px;color: #686868;"><font style="color: #F2873B;">感冒的太阳</font>&nbsp;&nbsp;对您说：&nbsp;&nbsp;感谢你的帮助，我买的东东很好，超级漂亮哦！</dl>
+                                                <dl style="font-size: 12px;color: #686868;">2016-04-03 21:56</dl>
+                                            </div>
+                                            <div style="float: right;padding-top: 50px;">
+                                                <input type="button" value="回复" style="margin-right:20px;width: 46px;height: 20px;color: #F88600;background-color: #fff;border: 1px #F88600 solid;" />
+                                            </div>
+                                        </div>
+
+
+                                        <div style="border: 1px #ccc solid;width: 1000px;height: 113px;margin-top: 34px;    display: inline-block;">
+                                            <div style="margin-left:10px;float: left;height: 100%;vertical-align: middle ;padding-top: 50px;">
+                                                <input type="checkbox" />
+                                            </div>
+                                            <div style="float: left;padding-top: 21px;margin-left: 17px;">
+                                                <img src="/img/头像.png" />
+                                            </div>
+                                            <div style="float: left;margin-left: 10px;padding-top: 35px;">
+                                                <dl style="font-size: 12px;color: #686868;"><font style="color: #F2873B;">感冒的太阳</font>&nbsp;&nbsp;对您说：&nbsp;&nbsp;感谢你的帮助，我买的东东很好，超级漂亮哦！</dl>
+                                                <dl style="font-size: 12px;color: #686868;">2016-04-03 21:56</dl>
+                                            </div>
+                                            <div style="float: right;padding-top: 50px;">
+                                                <input type="button" value="回复" style="margin-right:20px;width: 46px;height: 20px;color: #F88600;background-color: #fff;border: 1px #F88600 solid;" />
+                                            </div>
+                                        </div>
+
+                                        <div style="width: 1000px;margin-top: 30px;text-align: right;">
+                                            <span class="fengye"> << </span><span class="fengye" style="background-color: #f9f7f8;color: #9a9a9a;">&nbsp;1&nbsp;</span><span class="fengye">>></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+                $("#zhi2").click(
+             function () {
+                 $(this).siblings(".side-menu-tree").toggle();
+
+
+             }
+
+             )
+    </script>
+      
+	</body>
+
+</html>

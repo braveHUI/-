@@ -1,0 +1,83 @@
+﻿@model PagedList.IPagedList<Models.Goods>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+    <style type="text/css">
+        .page-list {
+            margin-top: 10px;
+        }
+        .pageje{
+            margin-top:3%;
+        }
+       .paging{
+           text-align:right;
+       }
+    .sdsadas{
+        height:100px;
+    }
+    </style>
+
+ 
+    <div class="row classify-wuping" id="classifywuping">
+
+
+        @foreach (var item in Model)
+        {
+            
+            <div class="col-xs-6 col-sm-4 col-md-4 classify-wuping-list">
+
+                <div class="classify-wuping-img" id="maximg">
+                    <img src="@item.GoodsImage1" />
+                </div>
+
+                <div class="classify-wuping-content">
+                    <h4 style="text-align:center">@item.GoodsName</h4>
+                    <p>
+                        <span style="float:left; margin-left:10px; color:red;font-size:20px">@item.GoodsPrice￥</span>
+                         <div class="jiarugouwucart" style="float:right;height:30px;line-height:30px; width:100px;background-color:red;color:white;margin-right:10px; border-radius:5px; padding-left:20px; cursor:pointer; color:white" >
+                             <a href="@Url.Action("Detail","Malls", new { id = @item.Goods_id,classid=@item.Classify_id })">立即购买</a>
+                         </div>   
+                      
+                           
+                      
+                    </p>
+                </div>
+
+            </div>
+           
+        }
+       
+        <div class="row sdsadas">
+            <div class="col-xs-6 col-sm-6 col-md-6"></div>
+            <div class="col-xs-6 col-sm-6 col-md-6 paging">
+                @Html.PagedListPager(Model, page => Url.Action("Index", "AllGoods", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }),
+    PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+                 new AjaxOptions
+                 {
+                     HttpMethod = "GET",
+                     InsertionMode = InsertionMode.Replace,
+                     UpdateTargetId = "classifywuping"
+
+                 }
+))
+            </div>
+          
+
+
+
+
+
+        </div>
+
+        </div>
+
+
+
+
+
+
+   
+  

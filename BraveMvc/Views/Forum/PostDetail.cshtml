@@ -1,0 +1,475 @@
+﻿@model ViewModels.ForumPost
+@using Models
+@{
+    ViewBag.Title = "PostDetail";
+    Layout = "~/Views/Shared/_LayoutPage3.cshtml";
+}
+@Styles.Render("~/Content/Fourm.css")
+<link href="~/Content/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
+<link href="~/Content/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+
+<link href="~/Content/Face/nanoscroller.css" rel="stylesheet" />
+<link href="~/Content/Face/emoji.css" rel="stylesheet" />
+
+<script src="~/ueditor/ueditor.config.js"></script>
+<script src="~/ueditor/ueditor.all.js"></script>
+<script type="text/javascript">
+    var editorOption = {
+        initialFrameWidth: 500,
+        autoHeightEnabled: true,
+        maximumWords: 1000,
+        initialFrameHeight: 150,
+        toolbars: [['source', 'undo', 'redo',  'link', 'unlink', 'forecolor', 'simpleupload', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'inserttable', 'justifyleft', 'justifyright', 'justifycenter', 'justifyjustify', ]]
+    };
+    var editor = new baidu.editor.ui.Editor(editorOption);
+    editor.render('CommendPostcopne');
+</script>
+
+
+<div class="container-fluid post-beijing">
+    <div class="row"></div>
+    <div class="col-sm-1 col-md-1"></div>
+    <div class="col-xs-12 col-sm-10 col-md-10 detail-post">
+        <div class="row post_geren">
+            <div class="col-sm-1 col-md-1"></div>
+            <div class="col-xs-12 col-sm-10 col-md-10">
+                <div class="louzhubiaoshi"></div>
+                <div class="col-xs-3 col-sm-2 col-md-2 post_user_ing">
+
+                    <img src="@Model.Post5.Users.UserImage" />
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 post_user_name">
+                    <span>@Model.Post5.Users.UserName</span>
+                </div>
+                <div class="col-xs-7 col-sm-6 col-md-6">
+                    <div class="row post_jifesdjsdqw">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <span>级别:@Model.Post5.Users.Rank</span>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <span>积分:@Model.Post5.Users.Integral</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="junba_guanzhu">
+                                <input type="hidden" class="atttenttionid" value="@ViewBag.attenrenid" />
+                                <input type="hidden" class="forumsection_id" value="@Model.Post5.User_id" />
+
+                                @if (Session["User_id"] != null)
+                                {
+                                    <input type="hidden" class="user_benre" value="@Session["User_id"]" />
+                                    if (@ViewBag.atterceshi > 0)
+                                    {
+                                        <img src="~/Images/forum/frs_cancel_02_90791d8.png" class="junba_quxiaoguan" />
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Images/forum/frs_islike_a450e55.png" class="junba_guangzhu_img" />
+                                    }
+                                }
+                                else
+                                {
+                                    <img src="~/Images/forum/frs_islike_a450e55.png" class="woyadengruaheahe fa-share-square" />
+
+                                }
+
+
+                            </div>
+
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            @if (Session["User_id"] != null)
+                            {
+                                <div class="woyaosixing message_this_ren">
+
+                                    <div class="publish-button"></div>
+                                    <div class="sdwqqsd">私信</div>
+
+
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="woyaosixing woyadengruaheahe">
+
+                                    <div class="publish-button"></div>
+                                    <div class="sdwqqsd">私信</div>
+
+
+                                </div>
+                            }
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="col-sm-1 col-md-1"></div>
+        </div>
+
+        <div class="row post_contendsde">
+            <div class="col-sm-1 col-md-1"></div>
+            <div class="col-xs-12 col-sm-8 col-md-8">
+                <div class="row comendep_post">
+                    <div class="col-xs-3 col-sm-3 col-md-3 post_ren">
+                        <div class="post_usering_re">
+                            <img src="@Model.Post5.Users.UserImage " />
+                            <div class="row">楼主</div>
+                            <div class="user_biaoqian">
+                                <span><i class="fa fa-free-code-camp iconde_dsdweq fa-lg"></i> @Model.Post5.Users.Rank</span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xs-9 col-sm-9 col-md-9 dhskhdshdoqwuoqiwejqwe">
+                        @Html.Raw(Model.Post5.PostContent)
+                        <div class="commend_post">
+                            <div class="row huifi_commend"><span class="huifu_post">回复</span></div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-xs-12 col-sm-12 col-md-12 pinglunkuang">
+                                <label id="jiance_comment"></label>
+                                @using (Ajax.BeginForm("AddPostComment", "Forum", new { enctype = "multipart/form-data" }, new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.Replace, UpdateTargetId = "jiance_comment" }))
+                                {
+                                    @Html.TextArea("CommendPostcopne")
+                                    <input type="hidden" name="post_idcomm" id="post_idcomm" value="@Model.Post5.Post_id" />
+
+                                    <div class="row fabiao_cksdsdwq">
+                                        @if (Session["User_id"] != null)
+                                        {
+                                            <input type="submit" class="click_commend" value="发表" />
+                                        }
+                                        else
+                                        {
+                                            <input type="button" class="woyadengruaheahe" value="发表" />
+                                        }
+
+                                    </div>
+                                }
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                @foreach (CommentPost p in Model.Commentpost)
+                {
+                    <div class="row comendep_post">
+                        <div class="col-xs-3 col-sm-3 col-md-3 post_ren">
+                            <div class="post_usering_re">
+                                <img src="@p.Users.UserImage " />
+                                <div class="row">
+                                    @if (@Model.Post5.Users.UserName == @p.Users.UserName)
+                                    {
+                                        <span>楼主</span>
+                                    }
+                                    else
+                                    {
+                                        @p.Users.UserName
+                                    }
+                                </div>
+                                <div class="user_biaoqian">
+                                    <span><i class="fa fa-free-code-camp iconde_dsdweq fa-lg"></i> @p.Users.Rank</span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-xs-9 col-sm-9 col-md-9 dhskhdshdoqwuoqiwejqwe">
+
+                            @Html.Raw(p.Content)
+                            <div class="row commend_post">
+                                <div class="row huifi_commend post_daoti">
+                                    <span class="huifu_replyhuoqu ">
+                                        @Ajax.ActionLink("查看回复", "SelectPostReply", "Essay", new { commpostid = p.CommentPost_id }, new AjaxOptions
+                                       {
+                                           UpdateTargetId = "chakanghghtrrgeng",
+                                           InsertionMode = InsertionMode.Replace,
+                                           HttpMethod = "GET"
+                                       })
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row commend_replywq">
+                                <div class="col-xs-12 col-sm-12 col-md-12 pinglunkuang">
+
+                                    <div class="row">
+                                        <textarea class="huifu_postdsd" data-emojiable="true" placeholder="回复 @p.Users.UserName："></textarea>
+                                        <input type="hidden" name="post_idcomm" class="commdedw_id" id="post_idcomm" value="@p.CommentPost_id" />
+                                        <input type="hidden" name="postcomm_name" class="postcomm_name" value="@p.Users.UserName" />
+                                        <div class="row fabiao_cksdsdwq">
+                                            @if (Session["User_id"] != null)
+                                            {
+                                                <input type="submit" class="click_reply_commend" value="发表" />
+                                            }
+                                            else
+                                            {
+                                                <input type="button" class="woyadengruaheahe" value="发表" />
+                                            }
+
+                                        </div>
+
+                                    </div>
+                                    <div class="row reply_chakan_huifu">
+
+                                    </div>
+
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+
+            </div>
+            <div class="col-sm-3 col-md-3">
+                <div class="row ">
+                    @if (Session["User_id"] != null)
+                    {
+                        <div class="col-xs-12 col-sm-11 col-md-11 post_userinfo">
+                            <p>我在 @Model.Post5.ForumSection.ForumSectionName </p>
+
+                            <div class="row">
+
+                                <div class="col-xs-7 col-sm-7 col-md-7 userinfo_imgh">
+                                    <img src="@Model.Userinfo2.UserImage" />
+                                </div>
+                                <div class="col-xs-5 col-sm-5 col-md-5 userinfo-xinxi">
+                                    <div class="row"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span>@Model.Userinfo2.UserName </span></div>
+                                    <div class="row"><span class="glyphicon glyphicon-education"></span><span>@Model.Userinfo2.Rank </span> </div>
+                                    <div class="row"><span class="glyphicon glyphicon-fire"></span><span>@Model.Userinfo2.Integral </span> </div>
+                                </div>
+                            </div>
+                            <div class="row user_chaungjain ">
+
+
+                            </div>
+                            <div class="row post_wozaigfuanba">
+                                <p>热帖<i class="glyphicon glyphicon-cog"></i></p>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-xs-12 col-sm-11 col-md-11">
+
+                                    <div class="woyao_junba">
+                                        @foreach (Post p in Model.Post7)
+                                        {
+
+                                            <div class="row">
+                                                <div class="reitie_post">
+                                                    <a href="@Url.Action("PostDetail","Forum", new { id =@p.Post_id })">@(p.PostName.Length > 12 ? p.PostName.Substring(0, 11) + ".." : p.PostName)</a>
+                                                </div>
+
+                                            </div>
+                                        }
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-1 col-md-1"></div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="col-sm-1 col-md-1"></div>
+</div>
+<div class="sdjeghasdwewgundo" style="height:100px;"></div>
+@{Html.RenderAction("Index", "Login");}
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/js/nanoscroller.min.js"></script>
+<script src="~/Scripts/js/tether.min.js"></script>
+<script src="~/Scripts/js/config.js"></script>
+<script src="~/Scripts/js/emoji-picker.js"></script>
+<script src="~/Scripts/js/util.js"></script>
+<script src="~/Scripts/js/jquery.emojiarea.js"></script>
+
+@*表情*@
+<script>
+    $(function () {
+        // Initializes and creates emoji set from sprite sheet
+        window.emojiPicker = new EmojiPicker({
+            emojiable_selector: '[data-emojiable=true]',
+            assetsPath: '/Images/img/',
+            popupButtonClasses: 'fa fa-smile-o'
+        });
+
+        window.emojiPicker.discover();
+    });
+
+</script>
+@*评论发表*@
+<script>
+    $(".click_commend").click(function () {
+        setTimeout(function () {
+            var sdedad = $("#jiance_comment").text();
+
+            if (sdedad == "success") {
+
+                location.reload();
+
+                $('html, body').animate({
+                    scrollTop: $(".sdjeghasdwewgundo").offset().top * 10
+                }, 100);
+
+
+            }
+            else if (sdedad == "fail") {
+                alert("请输入评论内容!")
+            }
+        }, 1000);
+
+    })
+    $(".huifu_post").click(function () {
+        $(this).closest(".dhskhdshdoqwuoqiwejqwe").find(".pinglunkuang").slideToggle();
+    })
+
+    //回复获取
+    $(".huifu_replyhuoqu").click(function () {
+        $(this).closest(".commend_post").siblings(".commend_replywq").find(".reply_chakan_huifu").append('<div class="row" id="chakanghghtrrgeng"></div>');
+        $(this).closest(".comendep_post").siblings().find(".reply_chakan_huifu").children().remove();
+        $(this).closest(".dhskhdshdoqwuoqiwejqwe").find(".pinglunkuang").slideToggle();
+    })
+</script>
+@*回复发表*@
+<script>
+    $(".click_reply_commend").click(function () {
+        var repconte = $(this).parent(".fabiao_cksdsdwq").siblings(".huifu_postdsd").val();
+        var cleal = $(this).parent(".fabiao_cksdsdwq").siblings(".huifu_postdsd");
+        var commdid = $(this).parent(".fabiao_cksdsdwq").siblings(".commdedw_id").val();
+        var busername = $(this).parent(".fabiao_cksdsdwq").siblings(".postcomm_name").val();
+
+        if (repconte != null) {
+            $.ajax({
+                type: "post",
+                url: "/Forum/AddPostReply",
+                data: { content: repconte, id: commdid, buser: busername },
+                succcess: function (data) {
+                    if (data == "ok") {
+                        location.reload();
+                        cleal.val("");
+                        alert("回复成功!")
+
+                    }
+                    else {
+                        alert("数据错误！")
+                    }
+                }
+            })
+        }
+        else {
+            alert("评论内容不能为空！")
+        }
+
+    })
+
+</script>
+
+@*关注*@
+<script>
+    $(".junba_guangzhu_img").click(function () {
+        var buersid = $(this).siblings(".forumsection_id").val();
+        var userid = $(this).siblings(".user_benre").val();
+        if (buersid != userid) {
+            if (buersid > 0) {
+                $.ajax({
+                    type: "post",
+                    url: "/Forum/AddAttention",
+                    data: { buserid: buersid },
+                    success: function (data) {
+                        if (data == "success") {
+
+                            alert("关注成功！可以在个人中心查看")
+                            location.reload();
+                        }
+                        else {
+                            alert("你已经关注了")
+                        }
+                    }
+                });
+            }
+            else {
+                alert("数据有误")
+            }
+        }
+        else {
+            alert("不能关注自己")
+        }
+    })
+
+
+    $(".junba_quxiaoguan").click(function () {
+        var attenid = $(this).siblings(".atttenttionid").val();
+        if (attenid > 0) {
+            $.ajax({
+                type: "post",
+                url: "/Forum/DeleteAttention",
+                data: { buserid: attenid },
+                success: function (data) {
+                    if (data == "success") {
+                        alert("取消成功！");
+                        location.reload();
+
+                    }
+                    else {
+                        alert("数据有误!")
+                    }
+                }
+            });
+        }
+        else {
+            alert("数据有误!")
+        }
+    })
+</script>
+
+@*私信*@
+<script>
+    $(".message_this_ren").click(function () {
+        var buersid = $(".forumsection_id").val();
+        var userid = $(".user_benre").val();
+        if (buersid != userid) {
+            if (buersid > 0) {
+                $.ajax({
+                    type: "post",
+                    url: "/Forum/AddAttention",
+                    data: { buserid: buersid },
+                    success: function (data) {
+
+                            location.href = "/Communication/Index";
+
+
+                    }
+                });
+            }
+            else {
+                alert("数据有误")
+            }
+        }
+        else {
+            alert("不能关注自己")
+        }
+    })
+
+</script>
+
+
+

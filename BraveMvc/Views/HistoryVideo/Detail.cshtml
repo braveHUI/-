@@ -1,0 +1,38 @@
+﻿@model ViewModels.historyvd
+@{
+    ViewBag.Title = "Detail";
+}
+<script src="~/jwplayer-7.11.1/jwplayer.js"></script>
+<link href="~/Content/History.css" rel="stylesheet" />
+<script>jwplayer.key = "6IwDqDmiTQKsWuNFfds1jDJE4AueI7VgBbaNjQ==";</script>
+<div class="Videodetail">
+    <div class="playerdiv">
+        <div id="player"></div> 
+        <h4>《@Model.FindVideo.VideoName》</h4>
+        <div class="Tuijian">
+            <h5>相关推荐</h5>
+            <hr />
+            @foreach (var item in Model.FindSameVideo)
+            {
+                <div>
+                    <a href="@Url.Action("Detail",new { id=@item.Video_id,classid=@item.VideoClassify_id})"><img src="@item.Video_img" /></a>
+                </div>
+            }
+
+        </div>   
+    </div>
+</div>
+
+<script type="text/javascript">
+    
+jwplayer("player").setup({
+    "file": "@Model.FindVideo.Video_route",//视频文件路径
+    //"aspectratio": "10:6",//播放器自适应宽高比例
+    "height":"60%",
+  	"width":"100%", //播放器宽度
+	"title": "@Model.FindVideo.VideoName",//标题（可选）
+	"image": "@Model.FindVideo.Video_img",//视频封面（可选）
+	"repeat":"true",//重复播放（留空则不重复播放）
+	"autostart":"true",//自动播放（留空则不启用自动播放）
+});
+</script>

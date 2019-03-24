@@ -1,0 +1,559 @@
+﻿@model ViewModels.ForumEssay
+@using Models
+@{
+    ViewBag.Title = "EssayDetail";
+    Layout = "~/Views/Shared/_LayoutPage3.cshtml";
+}
+@Styles.Render("~/Content/Fourm.css")
+@Styles.Render("~/Content/css/share.css")
+@Styles.Render("~/Content/css/jquery.sinaEmotion.css")
+
+
+<div class="container-fluid essay">
+    @*<div class="row herad_beijing" >
+            <div class="row brave-essay">
+                <img src="@Model.Forum2.ForumImage" />
+            </div>
+
+        </div>*@
+    <div class="row">
+        <div class="col-sm-1 col-md-1"></div>
+        <div class="col-xs-12 col-sm-10 col-md-10 essay-detail">
+            <div class="row detail-neilong">
+                <div class="row essay-name">
+                    <h2>
+                        @Model.Forum2.ForumName
+                    </h2>
+                </div>
+                <div class="row essat-zuozhe">
+                    <div class="col-sm-1 col-md-1"></div>
+                    <div class="col-xs-12 col-sm-10 col-md-10">
+                        <div class="row essat-zuozhe_guna">
+                            <span>作者:@Model.Forum2.Users.UserName</span>
+                            <span>
+                                <input type="hidden" class="detail_userid" value="@Model.Forum2.User_id" />
+                                <i class="glyphicon glyphicon-plus"></i>
+                                @if (Session["User_id"] != null)
+                                {
+
+                                    <input type="button" class="essat_guanzhu" value="关注" />
+                                }
+                                else
+                                {
+                                    <input type="button" class="woyadengruaheahe" value="关注" />
+                                }
+                            </span>
+                            <span class="fabiaoyu">发表于： @Model.Forum2.ForumTime.ToString("yyyy-MM-dd hh:mm:ss")</span>
+                        </div>
+                        <div class="row">
+
+                            <div class="bdsharebuttonbox">
+                                <span>级别：@Model.Forum2.Users.Rank</span>
+                                <span>积分：@Model.Forum2.Users.Integral</span>
+                                <ul class="gb_resItms">
+                                    <li> <a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a> </li>
+                                    <li> <a title="分享到QQ好友" href="#" class="bds_sqq" data-cmd="sqq"></a></li>
+                                    <li> <a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a> </li>
+                                    <li> <a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a> </li>
+                                    <li> <a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a> </li>
+                                    <li> <a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a> </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-1 col-md-1"></div>
+                </div>
+
+                <div class="row essay-content">
+                    <div class="col-sm-1 col-md-1"></div>
+                    <div class="col-xs-12 col-sm-10 col-md-10">
+
+                        @Html.Raw(Model.Forum2.ForumContent)
+                    </div>
+
+
+
+
+                    <div class="col-sm-1 col-md-1"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-8 col-sm-10 col-md-10"></div>
+                <div class="col-xs-4 col-sm-2 col-md-2 essay_collection">
+                    <input type="hidden" class="collection_foumid" value="@Model.Forum2.Forum_id" />
+                    @if (Session["User_id"] != null)
+                    {
+                        if (@ViewBag.collection > 0)
+                        {
+                            <img src="~/Images/forum/shoucanghou.png" />
+                        }
+                        else
+                        {
+                            <img src="~/Images/forum/收藏前.png" class="dianji_collection" />
+                        }
+                    }
+                    else
+                    {
+                        <img src="~/Images/forum/收藏前.png" class="woyadengruaheahe" />
+                    }
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-1 col-md-1"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-1 col-md-1"></div>
+        <div class="col-xs-12 col-sm-10 col-md-10 essay-detail">
+            <div class="row detail-neilong_dall">
+                <div class="row detail-content_pinglun">
+                    <h2>评论区</h2>
+                    <hr style="border:1px solid #808080;width:90%;" />
+                </div>
+                <div class="row">
+                    <div class="col-sm-1 col-md-1"></div>
+                    <div class="col-xs-12 col-sm-10 col-md-10">
+                        <div class="row essay_commend_all">
+                            <div class="col-xs-4 col-sm-3 col-md-2 essay_commdend">
+                                @if (Session["UserName"] != null)
+                                {
+                                    <img src="@Session["Image"]" />
+                                }
+                                else
+                                {
+                                    <img src="~/Images/tc_login_yonghu.jpg" />
+                                }
+
+
+                            </div>
+                            <div class="col-xs-9 col-sm-9 col-md-10 essay_content-content">
+                                <textarea class="emotion" name="video_content" id="video_content"></textarea>
+                                <input type="hidden" name="milivideo_id" id="milivideo_id" value="@Model.Forum2.Forum_id" />
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="row essay_content_fabiao">
+                            <div class="col-sm-3 col-md-2"></div>
+                            <div class="col-xs-12 col-sm-9 col-md-10 video-comment-biaoqing">
+                                <div class="row">
+
+                                    <div class="col-xs-4 col-sm-3 col-md-3 essay-biaoqing">
+                                        <img src="~/Images/postbg21.jpg" id="face" />
+                                    </div>
+                                    <div class="col-xs-8 col-sm-9 col-md-9 esay-fabiao">
+
+                                        @if (Session["UserName"] != null)
+                                        {
+                                            <input type="button" name="content_fabiao" id="content_fabiao" value="发表" />
+                                        }
+                                        else
+                                        {
+                                            <input type="button" class="woyadengruaheahe" value="发表" />
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="col-sm-1 col-md-1"></div>
+
+                </div>
+            </div>
+
+            <label id="shanchupujlu"></label>
+
+            <div class="row detail-neilong_dall">
+                <div class="col-xs-12 col-sm-10 col-md-10">
+                    <hr style="border:1px dashed  #666666" />
+                    <div class="row">
+                        <div class="col-sm-1 col-md-1"></div>
+                        <div class="col-xs-12 col-sm-9 col-md-9 getAllPostComment">
+
+                            @foreach (CommentForum p in Model.commForum1)
+                            {
+                                <div class="row hudesdezsdea">
+                                    <div class="col-xs-4 col-sm-3 col-md-3 videocommend-img">
+                                        <img src="@p.Users.UserImage" />
+                                    </div>
+                                    <div class="col-xs-8 col-sm-9 col-md-9 videocommend-content">
+                                        <div class="row">
+                                            <div class="col-xs-3 col-sm-3 col-md-3">@p.Users.UserName</div>
+                                            <div class="col-xs-9 col-sm-9 col-md-9 videocommend-tag">
+                                                <label class="commmmilitaryvideo">@p.CommentForum_id</label>
+                                                <label>@p.CommentForumParise</label>
+                                                <span class="commvideopaise" id="sdeasdepariseressa">
+                                                    <img src="~/Images/forum/点赞前.png" class="commend_prise_brfore" />
+                                                    <img src="~/Images/forum/点赞后.png" class="commend_prise_after" />
+                                                </span>
+                                                @if (Session["UserName"] != null)
+                                                {
+                                                    if (p.Users.UserName == Session["UserName"].ToString())
+                                                    {
+                                                        @Ajax.ActionLink("删除", "DeleteCommentVideo", "Forum", new { id = p.CommentForum_id }, new AjaxOptions
+                                                   {
+                                                       UpdateTargetId = "shanchupujlu",
+                                                       InsertionMode = InsertionMode.Replace,
+                                                       HttpMethod = "Post"
+                                                   });
+                                                    }
+
+                                                }
+                                                else
+                                                {
+
+                                                }
+                                                <span class="huifu_xianxian">回复</span>
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            @if (Int64.Parse(DateTime.Now.ToString("yyyyMMddhhmm")) - Int64.Parse(p.CommentTime.ToString("yyyyMMddhhmm")) < 60)
+                                            {
+                                                <label> @(Int64.Parse(DateTime.Now.ToString("yyyyMMddhhmm")) - Int64.Parse(p.CommentTime.ToString("yyyyMMddhhmm")))分钟前  </label>
+                                            }
+                                            else
+                                            {
+                                                if (Int64.Parse(DateTime.Now.ToString("yyyyMMddhh")) - Int64.Parse(p.CommentTime.ToString("yyyyMMddhh")) < 24)
+                                                {
+                                                    <label>  @(Int64.Parse(DateTime.Now.ToString("yyyyMMddhh")) - Int64.Parse(p.CommentTime.ToString("yyyyMMddhh")))小时前  </label>
+                                                }
+                                                else if (Int64.Parse(DateTime.Now.ToString("yyyyMMdd")) - Int64.Parse(p.CommentTime.ToString("yyyyMMdd")) < 30)
+                                                {
+                                                    <label>  @(Int64.Parse(DateTime.Now.ToString("yyyyMMdd")) - Int64.Parse(p.CommentTime.ToString("yyyyMMdd")))天前   </label>
+                                                }
+                                                else
+                                                {
+                                                    <label>  @(Int64.Parse(DateTime.Now.ToString("yyyyMM")) - Int64.Parse(p.CommentTime.ToString("yyyyMM")))月前   </label>
+                                                }
+                                            }
+
+                                        </div>
+
+                                        <div class="row contezhuanhuan" style="color:black;font-weight:800;margin-left:3%; ">
+                                            @Html.Raw(p.Content)
+                                        </div>
+                                        <div class="row video-huifu">
+                                            <div class="row">
+                                                <textarea name="comment_replay" class="reply-detailcontent" placeholder="回复 @p.Users.UserName :"></textarea>
+                                                <input type="hidden" value="@p.CommentForum_id" class="hufu_commid" />
+                                                <input type="hidden" value="@p.Users.UserName" class="hufu_ccommuserid" />
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-4 col-sm-4 col-md-4 reply-comment-biaoq">
+                                                    <img src="~/Images/postbg21.jpg" class="replay_face" />
+                                                </div>
+                                                <div class="col-xs-8 col-sm-8 col-md-8 detail-replyanniu">
+                                                    @if (Session["UserName"] != null)
+                                                    {
+                                                        <input type="button" name="content_reply" class="content_replyvideo" value="回复" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="button" class="woyadengruaheahe" value="回复" />
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row reply-detail-commentt">
+
+                                        </div>
+                                        <div class="row reply-detail-reply">
+                                            @Ajax.ActionLink("查看回复", "SelectVideoReply", "Forum", new { commvideoid = p.CommentForum_id }, new AjaxOptions
+                                       {
+                                           UpdateTargetId = "chakangeng",
+                                           InsertionMode = InsertionMode.Replace,
+                                           HttpMethod = "GET"
+                                       })
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="border:1px dashed  #666666" />
+                            }
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-1 col-md-1"></div>
+    </div>
+
+
+
+
+
+    <div class="row sdjeghasdwewgundo" style="height:20px"></div>
+    @{ Html.RenderAction("Index", "Login"); }
+</div>
+
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/jquery.sinaEmotion.js"></script>
+
+@*关注*@
+<script>
+    $(".essat_guanzhu").click(function () {
+        var berid = $(this).siblings(".detail_userid").val();
+        if (berid > 0) {
+            $.ajax({
+                type: "post",
+                url: "/Forum/AddAttention",
+                data: { buserid: berid },
+                success: function (data) {
+                    if (data == "success") {
+                      alert("关注成功！可以在个人中心查看")
+                    }
+                    else {
+                        alert("你已经关注了")
+                    }
+                }
+            });
+        }
+        else {
+            alert("数据有误")
+        }
+
+
+
+    })
+
+
+</script>
+
+@*收藏*@
+<script>
+    $(".dianji_collection").click(function () {
+        var foruid = $(this).siblings().val();
+        if (foruid > 0) {
+            $.ajax({
+                type: "post",
+                url: "/Forum/AddCollection",
+                data: { forumid: foruid },
+                success: function (data) {
+                    if (data == "success") {
+                        alert("收藏成功！可以在个人中心查看")
+                        location.reload();
+                    }
+                    else {
+                        alert("你已经收藏了")
+                    }
+                }
+            });
+        }
+        else {
+            alert("数据有误")
+        }
+
+    })
+</script>
+@*分享*@
+<script type="text/javascript">
+//全局变量，动态的文章ID
+var ShareURL = "";
+//绑定所有分享按钮所在A标签的鼠标移入事件，从而获取动态ID
+$(function () {
+	$(".bdsharebuttonbox a").mouseover(function () {
+		ShareURL = $(this).attr("data-url");
+	});
+});
+
+/*
+* 动态设置百度分享URL的函数,具体参数
+* cmd为分享目标id,此id指的是插件中分析按钮的ID
+*，我们自己的文章ID要通过全局变量获取
+* config为当前设置，返回值为更新后的设置。
+*/
+function SetShareUrl(cmd, config) {
+	if (ShareURL) {
+		config.bdUrl = ShareURL;
+	}
+	return config;
+}
+
+//插件的配置部分，注意要记得设置onBeforeClick事件，主要用于获取动态的文章ID
+window._bd_share_config = {
+	"common": {
+		onBeforeClick: SetShareUrl, "bdSnsKey": {}, "bdText": ""
+		, "bdMini": "2", "bdMiniList": false, "bdPic": "http://assets.jq22.com/plugin/2017-05-24-18-14-49.png", "bdStyle": "0", "bdSize": "24"
+	}, "share": {}
+};
+//插件的JS加载部分
+with (document) 0[(getElementsByTagName('head')[0] || body)
+	.appendChild(createElement('script'))
+	.src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='
+	+ ~(-new Date() / 36e5)];
+</script>
+
+@*表情*@
+<script type="text/javascript">
+    $('#face').SinaEmotion($('.emotion'));
+
+
+    $('.emotion').focusout(function () {
+        var inputText = $('.emotion').val();
+        $('.emotion').val(AnalyticEmotion(inputText));
+    })
+</script>
+
+@*评论发表*@
+<script>
+    $("#content_fabiao").click(function () {
+        var dewdd2 = $(this).closest(".essay_content_fabiao").siblings(".essay_commend_all").find("#video_content");
+        var essaycon = $(this).closest(".essay_content_fabiao").siblings(".essay_commend_all").find("#video_content").val();
+        var forwid = $(this).closest(".essay_content_fabiao").siblings(".essay_commend_all").find("#milivideo_id").val();
+
+        if (essaycon != null) {
+
+            $.ajax({
+                type: "post",
+                url: "/Forum/AddEssayCommend",
+                data: { essaycontent: essaycon, forumid: forwid },
+                success: function (data) {
+                    if (data == "success") {
+                        alert("评论成功！")
+                        dewdd2.val(" ");
+                        location.reload();
+                        $('html, body').animate({
+                            scrollTop: $(".sdjeghasdwewgundo").offset().top * 2
+                        }, 100);
+                    }
+                    else {
+                        alert("评论失败")
+                    }
+                }
+            });
+
+        }
+        else {
+            alert("内容不能为空!")
+        }
+    })
+
+
+    //删除事件
+    $(".videocommend-tag").children('a').click(function () {
+        setTimeout(function () {
+            var shanbc = $("#shanchupujlu").text();
+            if (shanbc == "success") {
+                location.reload();
+            }
+            else {
+
+            }
+        }, 1000);
+    })
+</script>
+
+@*点赞*@
+<script>
+
+    $('.commend_prise_brfore').click(function () {
+
+        var _dfrw = $(this);
+        var _that = $(this).siblings(".commend_prise_after");
+        var sdex=$(this).parent().parent().children(':eq(1)');
+        var pse = $(this).parent().parent().children(':eq(1)').text();
+        var commvideo = $(this).parent().parent().children(':eq(0)').text();
+
+        $.ajax({
+            type: "post",
+            url: "/Forum/UpdateVideoParise",
+            data: { id: commvideo },
+            success: function (data) {
+                if (data == "success") {
+                    pse++;
+
+                    sdex.text(pse);
+                    _dfrw.hide();
+                    _that.show();
+                }
+
+
+
+            }
+        });
+
+
+
+
+
+    })
+    $(".commend_prise_after").click(function () {
+        alert("你已经点赞过了");
+
+    })
+</script>
+
+@*回复*@
+<script>
+    //表情改变
+    $(".replay_face").click(function () {
+        $(this).hide();
+        $(this).parent().append('<img src="/Images/postbg21.jpg" id="replyface" />');
+        $(this).closest(".hudesdezsdea").siblings().find("#replyface").remove();
+        $(this).closest(".hudesdezsdea").siblings().find(".replay_face").show();
+        $('#replyface').SinaEmotion($(this).closest(".video-huifu").children(':eq(0)').children('.reply-detailcontent'));
+    })
+
+
+    //alert($(this).closest(".video-huifu").children(':eq(0)').children());
+    //回复框变焦
+    $('.reply-detailcontent').focusin(function () {
+        $(this).addClass('inputbian');
+    });
+    $('.reply-detailcontent').focusout(function () {
+        $(this).removeClass('inputbian');
+        var inputText = $(this).val();
+        $(this).val(AnalyticEmotion(inputText));
+
+    })
+    //回复框隐藏
+    $('.huifu_xianxian').click(function () {
+        $(this).closest(".videocommend-content").children(".video-huifu").slideToggle();
+    })
+    //获取回复内容
+    $('.content_replyvideo').click(function () {
+        var replaysdsde = $(this).closest(".video-huifu").children(':eq(0)').children(".reply-detailcontent");
+        var replyconten = $(this).closest(".video-huifu").children(':eq(0)').children(".reply-detailcontent").val();
+        var commvideoid = $(this).closest(".video-huifu").children(':eq(0)').children(".hufu_commid").val();
+        var username = $(this).closest(".video-huifu").children(':eq(0)').children(".hufu_ccommuserid").val();
+        if (replyconten != null) {
+            $.ajax({
+                type: "post",
+                url: "/Forum/AddReplyVideo",
+                data: { conntent: replyconten, id: commvideoid, commuser: username },
+                success: function (data) {
+                    if (data == "success") {
+                        replaysdsde.val("");
+                       alert("回复成功！")
+                    }
+
+
+
+                }
+            })
+        }
+        else {
+            alert("内容不能为空！")
+        }
+    })
+
+
+    //获取回复
+    $(".reply-detail-reply").children("a").click(function () {
+        $(this).closest(".videocommend-content").children(".reply-detail-commentt").append('<div class="row" id="chakangeng"></div>');
+        $(this).closest(".hudesdezsdea").siblings().find(".reply-detail-commentt").children().remove();
+        $(this).closest(".videocommend-content").children(".reply-detail-commentt").slideToggle();
+    })
+</script>

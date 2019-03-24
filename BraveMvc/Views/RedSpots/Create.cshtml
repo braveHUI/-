@@ -1,0 +1,110 @@
+﻿@model Models.RedShare
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+<script src="~/ueditor/ueditor.config.js"></script>
+<script src="~/ueditor/ueditor.all.js"></script>
+<script type="text/javascript">
+    var editorOption = {
+        initialFrameWidth: 784,
+        initialFrameHeight: 400
+    };
+    var editor = new baidu.editor.ui.Editor(editorOption);
+    editor.render('RedShareDes');
+</script>
+<div class="page-title parallax parallax2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-title-heading">
+                    <h2>红色景点</h2>
+                </div><!-- /.page-title-heading -->
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.page-title -->
+
+<div class="page-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="flat-wrapper">
+                <div class="breadcrumbs">
+                    <h2 class="trail-browse">你现在在:</h2>
+                    <ul class="trail-items">
+                        <li class="trail-item"><a href="@Url.Action("index","Brave")">虎贲网</a></li>
+                        <li class="trail-item"> <a href="@Url.Action("index","RedSpots")">红色景点</a></li>
+                        <li class="trail-item">优选景点</li>
+                        <li>发布游记</li>
+                    </ul>
+                </div><!-- /.breadcrumbs -->
+            </div><!-- /.flat-wrapper -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.page-breadcrumbs -->
+
+@using (Html.BeginForm("Create","RedSpots",FormMethod.Post,new { id="CreateForm",enctype="multipart/form-data"}))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+      
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("游记标题", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.RedShareName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RedShareName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("图片", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.RedShareImage, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RedShareImage, "", new { @class = "text-danger" })*@
+                <div class="file-box">
+
+                    <input type="file" name="Image1" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("简介", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.RedShareD, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RedShareD, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("游记详情", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.RedShareDes, "RedShareDes")
+                @*@Html.EditorFor(model => model.RedShareDes, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.RedShareDes, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        
+       
+
+       
+      
+
+        
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="立即发布" class="btn btn-default" />
+                @Html.ActionLink("返回景点", "Index")
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    
+</div>

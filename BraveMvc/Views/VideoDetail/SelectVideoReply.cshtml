@@ -1,0 +1,219 @@
+﻿@model ViewModels.ForumVideo
+@using Models
+@{
+    ViewBag.Title = "SelectVideoReply";
+    Layout = null;
+}
+<div>
+    <label id="shanchuhuihui"></label>
+    @foreach (ReplyMilitaryVideo p in Model.ReplyMiliVideo)
+    {
+        <div class="row sdvedsdnensmnccr">
+            <div class="col-xs-4 col-sm-3 col-md-3 videocommend-img-reply">
+                <img src="@p.Users.UserImage" />
+            </div>
+            <div class="col-xs-8 col-sm-9 col-md-9 videocommend-content_reply">
+                <div class="row">
+                    <div class="col-xs-5 col-sm-5 col-md-5">
+                    @if (Session["User_id"] != null)
+                    {
+                        if(Session["UserName"].ToString() == @p.Users.UserName)
+                        {
+                            <span>我回复 @p.CommentMilitaryVideoUserName</span> 
+                        }
+                        else if (Session["UserName"].ToString() == @p.CommentMilitaryVideoUserName)
+                        {
+                            <span>@p.Users.UserName 回复我</span>
+                        }
+                        else
+                        {
+                            <span>@p.Users.UserName 回复 @p.CommentMilitaryVideoUserName</span>
+                        }
+                    }
+                    else
+                    {
+                        <span>@p.Users.UserName 回复 @p.CommentMilitaryVideoUserName</span>
+                    }
+                    </div>
+                    <div class="col-xs-7 col-sm-7 col-md-7 videoreplay-tag">
+                        <label class="replymilitaryvideo" style="display:none">@p.ReplyMilitaryVideo_id</label>
+                        <label>@p.RepVideoPaiseTotal</label>
+                        <span class="replyvideopaise"><i class="glyphicon glyphicon-thumbs-up"></i></span>
+                        @if (Session["UserName"] != null)
+                        {
+                            if (p.Users.UserName == Session["UserName"].ToString())
+                            {
+                                @Ajax.ActionLink("删除", "DeleteReplyVideo", "VideoDetail", new { id = p.ReplyMilitaryVideo_id }, new AjaxOptions
+                                           {
+                                               UpdateTargetId = "shanchuhuihui",
+                                               InsertionMode = InsertionMode.Replace,
+                                               HttpMethod = "Post"
+                                           });
+                            }
+
+                        }
+                        else
+                        {
+
+                        }
+                        <span class="huifu_duihuifu">回复</span>
+
+                    </div>
+                </div>
+                <div class="row">
+                    @if (Int64.Parse(DateTime.Now.ToString("yyyyMMddhhmm")) - Int64.Parse(p.ReplyMilitaryVideoTime.ToString("yyyyMMddhhmm")) < 60)
+                    {
+                        <label> @(Int64.Parse(DateTime.Now.ToString("yyyyMMddhhmm")) - Int64.Parse(p.ReplyMilitaryVideoTime.ToString("yyyyMMddhhmm")))分钟前  </label>
+                    }
+                    else
+                    {
+                        if (Int64.Parse(DateTime.Now.ToString("yyyyMMddhh")) - Int64.Parse(p.ReplyMilitaryVideoTime.ToString("yyyyMMddhh")) < 24)
+                        {
+                            <label>  @(Int64.Parse(DateTime.Now.ToString("yyyyMMddhh")) - Int64.Parse(p.ReplyMilitaryVideoTime.ToString("yyyyMMddhh")))小时前  </label>
+                        }
+                        else if (Int64.Parse(DateTime.Now.ToString("yyyyMMdd")) - Int64.Parse(p.ReplyMilitaryVideoTime.ToString("yyyyMMdd")) < 30)
+                        {
+                            <label>  @(Int64.Parse(DateTime.Now.ToString("yyyyMMdd")) - Int64.Parse(p.ReplyMilitaryVideoTime.ToString("yyyyMMdd")))天前   </label>
+                        }
+                        else
+                        {
+                            <label>  @(Int64.Parse(DateTime.Now.ToString("yyyyMM")) - Int64.Parse(p.ReplyMilitaryVideoTime.ToString("yyyyMM")))月前   </label>
+                        }
+                    }
+
+                </div>
+
+
+
+                <div class="row contezhuanhuan" style="color:black;font-weight:800;margin-left:3%; ">
+                    @Html.Raw(p.Content)
+                </div>
+                <div class="row reply_commed_huifu">
+                    <div class="row">
+                        <textarea name="comment_replay" class="reply-detailcontentreply" placeholder="回复 @p.Users.UserName :"></textarea>
+                        <input type="hidden" value="@p.CommentMilitaryVideo_id" class="hufu_commid_reply" />
+                        <input type="hidden" value="@p.Users.UserName" class="hufu_ccommuserid_reply" />
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-4 col-md-4 reply-comment-biaoqreply">
+                            <img src="~/Images/postbg21.jpg" class="replay_face_reply" />
+                        </div>
+                        <div class="col-xs-8 col-sm-8 col-md-8 detail_replyanniu_reply">
+                            @if (Session["UserName"] != null)
+                            {
+                                <input type="button" name="content_reply" class="content_replyvideo_reply" value="回复" />
+                            }
+                            else
+                            {
+                                <input type="button" class="woyadengruaheahe" value="回复" />
+                            }
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+        <hr style="border:1px dashed  #666666" />
+    }
+</div>
+
+
+@*回复对回复*@
+<script>
+    //回复点赞
+
+    $(".replyvideopaise").click(function () {
+        
+        var _that = $(this).children();
+        var sdex = $(this).parent().children(':eq(1)');
+        var pse = $(this).parent().children(':eq(1)').text();
+        var commvideo = $(this).parent().children(':eq(0)').text();
+
+        $.ajax({
+            type: "post",
+            url: "/VideoDetail/UpdateReplyVideoParise",
+            data: { id: commvideo },
+            success: function (data) {
+                if (data == "success") {
+                    pse++;
+                    _that.addClass('prasebian');
+                    sdex.text(pse);
+                }
+
+
+
+            }
+        });
+
+    })
+
+    //回复删除事件
+    $(".videoreplay-tag").children('a').click(function () {
+        setTimeout(function () {
+            var shanbc = $("#shanchuhuihui").text();
+            if (shanbc == "success") {
+                location.reload();
+            }
+            else {
+
+            }
+        }, 1000);
+    })
+    //表情改变
+    $(".replay_face_reply").click(function () {
+        $(this).hide();
+        $(this).parent().append('<img src="/Images/postbg21.jpg" id="replyface_reply" />');
+        $(this).closest(".sdvedsdnensmnccr").siblings().find("#replyface_reply").remove();
+        $(this).closest(".sdvedsdnensmnccr").siblings().find(".replay_face_reply").show();
+        $('#replyface_reply').SinaEmotion($(this).closest(".reply_commed_huifu").children(':eq(0)').children('.reply-detailcontentreply'));
+    })
+
+
+    //alert($(this).closest(".video-huifu").children(':eq(0)').children());
+    //回复框变焦
+    $('.reply-detailcontentreply').focusin(function () {
+        $(this).addClass('inputbian');
+    });
+    $('.reply-detailcontentreply').focusout(function () {
+        $(this).removeClass('inputbian');
+        var inputText = $(this).val();
+        $(this).val(AnalyticEmotion(inputText));
+
+    })
+    //回复框隐藏
+    $('.huifu_duihuifu').click(function () {
+        $(this).closest(".videocommend-content_reply").children(".reply_commed_huifu").slideToggle();
+    })
+    //获取回复内容
+    $('.content_replyvideo_reply').click(function () {
+       
+        var replayreply = $(this).closest(".reply_commed_huifu").children(':eq(0)').children(".reply-detailcontentreply");
+        var reply_conten = $(this).closest(".reply_commed_huifu").children(':eq(0)').children(".reply-detailcontentreply").val();
+       
+        var commvideo_id = $(this).closest(".reply_commed_huifu").children(':eq(0)').children(".hufu_commid_reply").val();
+       
+        var user_name = $(this).closest(".reply_commed_huifu").children(':eq(0)').children(".hufu_ccommuserid_reply").val();
+      
+        if (reply_conten != null) {
+          
+            $.ajax({
+                type: "post",
+                url: "/VideoDetail/AddReplyVideo",
+                data: { conntent: reply_conten, id: commvideo_id, commuser: user_name },
+                success: function (data) {
+                    if (data == "success") {
+                        replayreply.val("");
+                        location.reload();
+                        alert("回复成功！")
+                    }
+
+
+
+                }
+            })
+        }
+        else {
+            alert("内容不能为空！")
+        }
+    })
+</script>

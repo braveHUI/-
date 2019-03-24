@@ -1,0 +1,120 @@
+﻿@model Models.Arms
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Arms</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ArmsName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArmsName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArmsPicture)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArmsPicture)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArmsVideo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArmsVideo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArmsDes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArmsDes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArmsTechnical)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArmsTechnical)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BigSection_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BigSection_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BigSection2_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BigSection2_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BigSection3_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BigSection3_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Manu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Manu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ctime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ctime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArmsSection.ArmsSectionName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArmsSection.ArmsSectionName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

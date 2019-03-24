@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Models.RedSpots>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RedSpotsName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RedSpotsDes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RedSpotsClick)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RedImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RedAbstract)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RedArea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RedSection.RedSectionName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RedSpotsName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RedSpotsDes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RedSpotsClick)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RedImage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RedAbstract)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RedArea)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RedSection.RedSectionName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RedSpots_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RedSpots_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RedSpots_id })
+        </td>
+    </tr>
+}
+
+</table>

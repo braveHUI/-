@@ -1,0 +1,171 @@
+﻿@model ViewModels.MallsCart
+@using Models
+@{
+    ViewBag.Title = "SelectOrder";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+@Styles.Render("~/Content/Carts.css")
+
+<div class="container">
+    <div class="row oreder-address ">
+        <div class="col- xs-4 col-sm-5 col-md-5" style="margin-top:7%; color:#808080;font-size:large">当前位置>>虎贲>>铸剑为犁>>订单</div>
+        <div class="col-xs-8 col-sm-7 col-md-7 orders-img">
+
+        </div>
+
+    </div>
+    <div class="row order-message">
+        确认订单信息
+    </div>
+    <div class="row order-title">
+        <div class="col-xs-4 col-sm-4 col-md-4">商品信息</div>
+        <div class="col-xs-2 col-sm-2 col-md-2">单价</div>
+        <div class="col-xs-2 col-sm-2 col-md-2">数量</div>
+        <div class="col-xs-2 col-sm-2 col-md-2">优惠</div>
+        <div class="col-xs-2 col-sm-2 col-md-2">小计</div>
+    </div>
+    <div class="row order-goods">
+       @foreach (Order p in Model.Order1)
+        {
+        <div class="row order-goods-cart">
+            <div class="row">
+                <div class="col-xs-2 col-sm-2 col-md-2 dsdjeasdvdke">
+                    <img src="@p.Goods.GoodsImage1" />
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2" style="color:black">
+                    @p.Goods.GoodsName
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2" style="color:red">
+                    ￥@p.Price
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2" style="color:black">
+                    @p.Amount
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2">无优惠</div>
+                <div class="col-xs-2 col-sm-2 col-md-2" style="color:red">
+                    <input type="hidden" id="order_gods_total" value="@p.TotalMoney" />
+                    <input type="hidden" id="order_goods_id" value="@p.Order_id" />
+                    ￥@p.TotalMoney
+                </div>
+            </div>
+
+        </div>
+       }
+          
+
+
+
+        
+    </div>
+
+  
+        <div class="row">
+            <div class="col-sm-1 col-md-1"></div>
+            <div class="col-xs-12 col-sm-6 col-md-6 oreder-message">
+                给买家留言<input type="text" name="order-messagessss" id="order-messagessss" placeholder="选填：对本次交易的说明" value="" />
+            </div>
+            <div class="col-xs-12 col-sm-5 col-md-5 order-goods-address">
+                <div class="row">
+                    实付款:<span style="color:red; font-size:x-large"class="taodeq_fukaun"></span>
+                </div>
+                <div class="row">
+                    寄送至:<span style="color:#808080;font-size:16px">@Model.Address4.AddressDe</span>
+                </div>
+                <div class="row">
+                    收货人：<Span style="color:#808080;font-size:16px">@Model.Address4.AddressName@Model.Address4.Addressphone</Span>
+                </div>
+            </div>
+        </div>
+        <div class="row order-caozuo">
+            <div class="col-sm-6 col-md-6"></div>
+            <div class="col-xs-6 col-sm-3 col-md-3">
+        
+            <a class="delect_order">取消订单</a> </div>
+            <div class="col-xs-6 col-sm-3 col-md-3">
+                <input type="button" id="tijiao_order"  value="提交订单" />
+            </div>
+        </div>
+    
+
+</div>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var tota = $("#order_gods_total").val();
+        $(".taodeq_fukaun").text("￥"+tota);
+
+    })
+</script>
+<script>
+    $(".delect_order").bind('click', function () {
+
+        var orderisd = $("#order_goods_id").val();
+        if (orderisd > 0) {
+            $.ajax({
+                type: "post",
+                url: "/Order/Deleteorder",
+                data: { orderid: orderisd },
+                success: function (data) {
+                    if (data == "ok") {
+                        window.history.go(-2);
+                    }
+                    else {
+                        alert("服务器繁忙，请稍后点击")
+                    }
+
+                }
+            });
+        }
+        else {
+            alert("数据有误")
+        }
+        
+    })
+
+    $("#tijiao_order").bind('click', function () {
+        var orderisd = $("#order_goods_id").val();
+        var messa = $("#order-messagessss").val();
+        if (orderisd > 0) {
+            $.ajax({
+                type: "post",
+                url: "/Order/updateOrder",
+                data: { orderid: orderisd, messsage: messa },
+                success: function (data) {
+                    if (data == "ok") {
+                        alert("订单提交成功！")
+                        window.location.href = "/Malls/Index";
+                    }
+                    else {
+                        alert("服务器繁忙，请稍后点击")
+                    }
+
+                }
+            });
+        }
+        else {
+            alert("数据有误")
+        }
+    })
+
+
+</script>
+<script>
+    var dsfdsf = $(".oreder-message");
+    dsfdsf.children().focusin(function () {
+        $(this).css({
+            'border':'1px solid red',
+            'height':'50px',
+
+        })
+
+    })
+    dsfdsf.children().focusout(function () {
+        $(this).css({
+            'border': '1px solid #000000',
+            'height': '35px',
+
+        })
+    })
+
+</script>

@@ -1,0 +1,43 @@
+﻿@model ViewModels.historyvd
+@{
+    ViewBag.Title = "Index";
+}
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<link href="~/Content/History.css" rel="stylesheet" />
+<div class="col-lg-11 Videoindex">
+    <div class="col-lg-12 col-md-12 videodaohang" >
+        <ul class="nav nav-pills">
+            <li role="presentation" class="active"><a href="#">电影分类</a></li>
+            <li role="presentation"><a href="@Url.Action("Classify", new { classid = 1 })">中国</a></li>
+            <li role="presentation"><a href="@Url.Action("Classify", new { classid = 2 })">美国</a></li>
+        </ul>
+        @using (Ajax.BeginForm("Search", "HistoryVideo", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "dfdferwerer" }))
+        {
+
+                <div class="form-group">
+                    <input type="text"  class="form-control form-group-sm" id="search_internal_input" name="search_internal_input" placeholder="看你想看的">
+                </div>
+                <input class="btn btn-default" type="submit" value="搜索" />                                          
+        }
+        
+    </div>
+    <div class="col-lg-12" id="dsdsdsdaa"></div>
+    <div class="col-lg-12" id="dfdferwerer"></div>
+    <div class="col-lg-12 videolist">
+        @foreach (var item in Model.FindAllVideo)
+        {
+        <div class="col-lg-4 videoli">
+        <a href="@Url.Action("Detail", new { id = @item.Video_id, classid = @item.VideoClassify_id })"><img src="@item.Video_img" /></a> 
+        <a href="@Url.Action("Detail", new { id = @item.Video_id, classid = @item.VideoClassify_id })">《@item.VideoName》</a>
+        <p>导演：@item.Director</p>
+        <p>演员：@item.Actor</p>
+        <p>国家：@item.VideoCountry</p>
+        <p>上映时间：@item.VideoTime</p>
+        </div>
+        }
+      
+    </div>
+</div>

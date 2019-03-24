@@ -1,0 +1,221 @@
+﻿@using Models
+@model ViewModels.Brave
+@{
+    ViewBag.Title = "ShareDetails";
+}
+
+
+ <!-- Page title -->
+<div class="page-title parallax parallax2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-title-heading">
+                    <h2>红色景点-景点游记</h2>
+                </div><!-- /.page-title-heading -->
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.page-title -->
+
+<div class="page-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="flat-wrapper">
+                <div class="breadcrumbs">
+                    <h2 class="trail-browse">你现在在:</h2>
+                    <ul class="trail-items">
+                        <li class="trail-item"><a href="@Url.Action("index","Brave")">虎贲网</a></li>
+                        <li class="trail-item"><a href="@Url.Action("index","RedSpots")">红色景点</a></li>
+                        <li class="trail-item">优选景点</li>
+                        <li class="trail-item">游记查看</li>
+                        <li>@ViewBag.name11</li>
+                    </ul>
+                </div><!-- /.breadcrumbs -->
+
+
+
+                <div class="blog-top clearfix">
+                    <div class="author-info">
+
+                        <div class="info-right">
+                            <div class="title clearfix">
+                                <h2 style="margin:0;">@Model.redsharede.RedShareName</h2>
+                            </div>
+
+                            <p>
+                                <a href="#">
+                                    <img src="@Model.redsharede.Users.UserImage">
+                                </a><em><a href="#" target="_blank">@Model.redsharede.Users.UserName</a></em> <span>发表于：@Model.redsharede.RedShareTime</span>|
+                                <span>更新于：2016-12-15</span> | <span>浏览数：审核中</span>
+                            </p>
+                        </div>
+                        <div class="mod-pub-notes">
+                            <p class="youji">
+                               
+                                @if (Session["User_id"] != null)
+                                {
+                                    @Ajax.ActionLink("+发布游记", "Create", "RedSpots", new { id = @Model.redsharede.RedSpots_id }, new AjaxOptions()
+                               {
+                                   HttpMethod = "Post"
+                               })
+                                }
+                                else
+                                {
+                                    <a href="#" class="woyadengruaheahe1">+发布游记</a>
+                                }
+                            </p>
+                            @*<a href="Arms.html" class="youji">+发布游记</a>*@
+
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- /.flat-wrapper -->
+
+
+
+
+
+
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.page-breadcrumbs -->
+
+
+
+<div class="flat-row flat-general sidebar-right pad-bottom75px">
+    <div class="container">
+        <div class="row">
+            <div class="general">
+
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="flat-tabs">
+                            <ul class="menu-tabs">
+                                <li class="active"><a href="#">游记详情</a></li>
+
+                            </ul>
+                            <div class="content-tab">
+                                <div class="content-inner">
+                                    <p style="padding:50px 50px; text-indent:2em;">
+
+                                       @Model.redsharede.RedShareDes
+                                    </p>
+                                <p style="text-align: center; border-bottom:2px dashed black">~~~THE END~~~</p>
+                                </div><!-- /.content-inner -->
+
+
+
+                            </div><!-- /.content-tab -->
+                        </div><!-- /.flat-tabs -->
+                    </div><!-- /.col-md-6 -->
+
+
+                </div><!-- /.row -->
+                <!-- /loadComment -->
+                @*<div class="loadComment">
+                    <div id="HQ_5365386dfd0a">
+                        <div id="huanqiu-tieInner" data-newtienum="1">
+                            <div id="huanqiu-tiePost" class="posting-panel-inner">
+                                <div class="tit-inner">
+                                    <span class="participate"><var>3</var>&nbsp;人参与，<var>1</var>&nbsp;条跟帖</span> <strong>网友跟帖</strong> <a href="#" target="_blank">请遵守《用户条款及隐私协议》</a>
+                                </div>
+                                <div class="post-textarea-inner clearfix">
+                                    <div class="avatar">
+                                        <img class="my-avatar no-login" src="https://himg2.huanqiu.cn/images/avatar.png">
+                                    </div>
+                                    <div class="post-textarea">
+                                        <div class="post-textarea-inner">
+                                            <textarea onkeyup="TIE.chackTextarea(this,500)" onblur="TIE.clearChackTextarea()" autocomplete="off" name="postTextarea" id="tieTextareaMax" class="tie-textarea-box"></textarea>
+                                            <div class="tips">
+                                                理性思考&nbsp;文明跟帖
+                                            </div>
+                                        </div>
+                                        <div class="operating-inner clearfix">
+                                            <div class="login"><a class="user-login" href="javascript:void(0);">登录虎贲网</a><span class="sx"> | </span><span>社交账号登录：</span><span class="social-login"><a href="javascript:void(0);" class="qq-login"></a><a href="javascript:void(0);" class="weibo-login"></a></span></div>
+                                            <div class="logined"></div>
+                                            <a href="javascript:void(0);" data-type="disabled" class="release-tie disabled">发表</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <iframe style="display:none;" id="HQ_dataPedal" name="HQ_dataPedal" src="http://commentn.huanqiu.com/assets/HQ_dataPedal.v2.html"></iframe>
+                    </div>
+
+
+                </div>*@ <!-- /loadComment -->
+
+            </div><!-- /.general -->
+
+            <div class="general-sidebars" style="-moz-box-shadow: 0px 2px 2px #ccc;
+-webkit-box-shadow: 0px 2px 2px #ccc;
+box-shadow: 0px 2px 2px #ccc;border: 1px solid #999;">
+                <div class="sidebar-wrap">
+                    <div class="sidebar">
+
+
+
+
+
+                        <div class="block-title">
+                            <h2 class="block-title__h2"> 热门景点排行</h2>
+                        </div>
+                        <div class="wrap-redaction  wrap-redaction_white">
+                            <div class="content" id="newscontent">
+
+                                <div class="ranks-tab" id="ranks-tab">
+                                    <ul>
+
+
+                                        @foreach (var b in Model.spots1)
+                                        {
+
+                                            <li>
+                                                <a href="@Url.Action("Details","RedSpots", new { id = b.RedSpots_id})">
+                                                    <div class="imghidden">
+                                                        <img src="@b.RedImage">
+                                                    </div>
+                                                    <b></b>
+                                                    <i>@b.RedSpots_id</i>
+                                                    <span>@b.RedSpotsName</span>
+                                                    <p>@b.RedSection.RedSectionName</p>
+                                                </a>
+                                            </li>
+                                        }
+                                       
+                                    </ul>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+
+
+
+                    </div><!-- /.sidebar -->
+                </div><!-- /.sidebar-wrap -->
+            </div><!-- /.general-sidebars -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.blog -->
+<script type="text/javascript">
+ $(".woyadengruaheahe1").click(
+         function () {
+
+             alert("对不起，请先登录！")
+         })
+
+
+</script>
+

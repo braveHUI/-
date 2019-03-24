@@ -1,0 +1,34 @@
+﻿@model PagedList.IPagedList<Models.HistoryBook>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+<link href="~/Content/History.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+@foreach (var item in Model)
+{
+
+    <div class="col-lg-4 bookstyle">
+        <a href="@item.Book_route">
+            <img src="@item.Book_img" />
+        </a>
+        <p><a href="@item.Book_route">《@item.BookName 》</a></p>
+    </div>
+}
+<div class="row page-list" style="margin-bottom:1%;">
+    <div class="col-xs-4 col-sm-6 col-md-6"></div>
+
+    <div class="col-xs-6 col-sm-4 col-md-4">
+        @Html.PagedListPager(Model, page => Url.Action("Index", "AllBooks", new { page }),
+    PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+        new AjaxOptions
+        {
+            HttpMethod = "Get",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "pagelist"
+        }))
+    </div>
+</div>

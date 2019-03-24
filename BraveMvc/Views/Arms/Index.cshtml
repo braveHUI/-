@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Models.Arms>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ArmsName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ArmsPicture)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ArmsVideo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ArmsDes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ArmsTechnical)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BigSection_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BigSection2_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BigSection3_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Manu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ctime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ArmsSection.ArmsSectionName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ArmsName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ArmsPicture)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ArmsVideo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ArmsDes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ArmsTechnical)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BigSection_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BigSection2_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BigSection3_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Manu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ctime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ArmsSection.ArmsSectionName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Arms_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Arms_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Arms_id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,119 @@
+﻿@model ViewModels.ForumVideo
+@using Models
+@{
+    ViewBag.Title = "ClassifyVideo";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+
+}
+
+
+@Styles.Render("~/Content/Fourm.css")
+@*@Styles.Render("~/Content/forumvideo/style.css")
+@Styles.Render("~/Content/forumvideo/reset.min.css")*@
+
+<div class="container-fluid" id="conteall">
+    
+    <div class="row video-content">
+        <div class="col-xs-12 col-sm-3 col-md-2 video-menu">
+            <div class="row video-title">
+                <span class="col-xs-6 col-sm-4 col-md-4"><i class="glyphicon glyphicon-home" aria-hidden="true"></i> </span>
+                <a href="@Url.Content("~/Forum/Index")">首页</a>
+            </div>
+            <div class="row video-title-diffec active_diffyion">
+                @Ajax.ActionLink("全部视屏", "MiliVideo", "AllGoods",  new AjaxOptions() {
+             
+                        UpdateTargetId = "videoallbu",
+              InsertionMode = InsertionMode.Replace,
+              HttpMethod = "GET"
+          })
+
+
+            </div>
+            @foreach(ForumSection p in Model.Forsection)
+            {
+                <div class="row video-title-diffec">
+               @Ajax.ActionLink(p.ForumSectionName, "MiliVideo", "AllGoods" ,new {forumsectionid=@p.ForumSectionName },new AjaxOptions() {
+                        UpdateTargetId = "videoallbu",
+              InsertionMode = InsertionMode.Replace,
+              HttpMethod = "GET"
+          })
+                </div>
+            }
+            @foreach (ForumSection p in Model.Forsection1)
+                {
+                <div class="row video-title-diffec">
+                    @Ajax.ActionLink(p.ForumSectionName, "MiliVideo", "AllGoods", new { forumsectionid = @p.ForumSectionName }, new AjaxOptions()
+                {
+                    UpdateTargetId = "videoallbu",
+              InsertionMode = InsertionMode.Replace,
+              HttpMethod = "GET"
+          })
+                </div>
+            }
+
+
+
+        </div>
+        <div class="col-sm-3 col-md-2"></div>
+        <div class="col-xs-12 col-sm-9 col-md-10" id="videoallbu">
+            @{Html.RenderAction("MiliVideo", "AllGoods");}
+         </div>
+
+        </div>
+   
+
+</div>
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script>
+    $('.video-title-diffec').children('a').click(function () {
+        $(this).parent().addClass('active_diffyion');
+        $(this).addClass('active_diffyion a');
+        $(this).parent().siblings().removeClass('active_diffyion');
+        $(this).parent().siblings().children("a").removeClass('active_diffyion a');
+    })
+</script>
+
+
+
+
+
+
+@*<script>
+    var vdiew = $(".video-menu").offset();
+    var allco = $("#videoallbu").offset();
+    $(document).ready(function() {
+        var _top = vdiew.top;
+        var _dsdtop = allco.top
+        if (_top - _dsdtop>20) {
+                $(".video-menu").css({
+                    'top':'20%'
+                })
+            }
+            else {
+                $(".video-menu").css({
+                    'top': '33%'
+                })
+            }
+        
+    })
+</script>*@
+
+
+  
+
+  @*<script src="~/Scripts/jquery-3.1.1.js"></script>
+<script src="~/Scripts/Froum/index.js"></script>
+<script type="text/javascript">
+    jwplayer("player").setup({
+        "file": "/Forumvideo/百战经典/新中国八大军兵种首任司令员揭秘(二) 肖劲光 170408_标清.mp4",//视频文件路径
+	"aspectratio": "1:1",//播放器自适应比例
+    "height": "320",//播放器高度
+	"type":"mp4",//播放文件类型（可选）
+	"title": "测试标题",//标题（可选）
+	"description": "测试视频描述",//描述（可选）
+	"image": "/Images/001国产航母.jpg",//视频封面（可选）
+	"repeat":"true",//重复播放（留空则不重复播放）
+	"autostart":"true",//自动播放（留空则不启用自动播放）
+});
+</script>*@

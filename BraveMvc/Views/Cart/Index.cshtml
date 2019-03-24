@@ -1,0 +1,409 @@
+﻿@model ViewModels.MallsCart
+@using Models
+@{
+ 
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+
+}
+
+@Styles.Render("~/Content/Carts.css")
+@Styles.Render("~/Content/bootstrap.css")
+
+
+<div class="container">
+    <div class="row Cart-gouwu">
+        <div class="col-xs-4 col-sm-5 col-md-5"></div>
+        <div class="col-xs-4 col-sm-2 col-md-1">购物车</div>
+        <div class="col-xs-4 col-sm-5 col-md-6"></div>
+    </div>
+    <div class="row Cart-title">
+        <div class="col-xs-4 col-sm-4 col-md-4">商品信息</div>
+        <div class="col-xs-2 col-sm-2 col-md-2">单价</div>
+        <div class="col-xs-2 col-sm-2 col-md-2">数量</div>
+        <div class="col-xs-2 col-sm-2 col-md-2">总金额</div>
+        <div class="col-xs-2 col-sm-2 col-md-2">编辑</div>
+    </div>
+    
+        <div class="row Cart-allgoods" id="cart">
+            @{Html.RenderAction("SelectCarts", "Cart");}
+           
+            <input type="hidden" id="all_total" name="all-total" value="0" />
+        </div>
+        <div class="row Cart-AllTotal">
+            <div class="col-xs-2 col-sm-2 col-md-2 Cart-allcheeck">
+                <input type="checkbox" style="margin-top:13%;" id="checkAll" />全选
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2"  style="margin-top:1.5%;">
+             <span class="goods_shanchu">删除</span>
+
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2">
+
+
+
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2">
+                共<label id="sdjasw2"></label>件商品
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2">
+                合计：￥<label id="allPrice"></label>
+                
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2 Catr-account">
+                <a class="cart-jeisuan" id="cart_jiesuan">结算</a>
+                
+            </div>
+
+        </div>
+   
+  
+    <div id="larg-img">
+        <img src="" />
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+
+@Scripts.Render("~/bundles/jqueryval")
+
+@*<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
+@*填写数量*@
+<script>
+    $(".text_box").change(function () {
+        var cartsdid = $(this).siblings(".cart-id").val();
+        var fuzhi = $(this);
+        var numde = $(this).val();
+        var messagede = $(this).siblings(".tishi_message");
+        var totalnum = $(this).siblings(".goods_kucun").val();
+        var prce =$(this).parent(".Cart-goods-num").siblings(".jisuanparice").children(".price").text();
+        var totalpric = $(this).parent(".Cart-goods-num").siblings(".dsdhesadepicesf").children(".total_price");
+      
+        if (numde > 0) {
+          
+            if (parseInt(numde) < parseInt(totalnum)) {
+                messagede.text("");
+             
+                $.ajax({
+                    type: "post",
+                    url: "/Cart/updatecart",
+                    data: { id: cartsdid, num: numde },
+                    success: function (data) {
+
+                        if (data == "success") {
+                            totalpric.text((prce * numde).toFixed(2));
+                        }
+
+
+
+                    }
+                });
+            }
+            else {
+                fuzhi.val(totalnum);
+                numde = totalnum;
+                $.ajax({
+                    type: "post",
+                    url: "/Cart/updatecart",
+                    data: { id: cartsdid, num: numde },
+                    success: function (data) {
+
+                        if (data == "success") {
+                            totalpric.text((prce * numde).toFixed(2));
+                        }
+
+
+
+                    }
+                });
+                messagede.text("你填写的数量超过了库存" + totalnum);
+            }
+        }
+        else {
+            fuzhi.val(1);
+            numde = 1;
+            $.ajax({
+                type: "post",
+                url: "/Cart/updatecart",
+                data: { id: cartsdid, num: numde },
+                success: function (data) {
+
+                    if (data == "success") {
+                        totalpric.text((prce * numde).toFixed(2));
+                    }
+
+
+
+                }
+            });
+            messagede.text("数量至少为1");
+        }
+    })
+
+</script>
+@*图片放大*@
+<script>
+    var minimg = $(".Cart-goods-img");
+    var largkuan = $("#larg-img");
+    var largimg = $("#larg-img img");
+    minimg.hover(function () {
+        largkuan.show();
+        var imgsrcc = $(this).children('img').attr('src');
+        largimg.attr('src', imgsrcc);
+        childoffset = $(this).children('img').offset()
+        var _left = childoffset.left + 120;
+        var _top = childoffset.top * 0.4;
+
+        largimg.css({
+            'top': _top + 'px',
+            'left': _left + 'px'
+        })
+    },
+    function () {
+        largkuan.hide();
+    }
+    );
+</script>
+@*数量甲减*@
+<script>
+    $(function(){ 
+        $(".add").click(function(){ 
+            var t=$(this).parent().find('input[class*=text_box]'); 
+            var cartid = $(this).siblings(".cart-id").val();
+            var goodsnum = $(this).siblings(".goods_kucun").val();
+            var message = $(this).siblings(".tishi_message");
+            var prce = $(this).parent(".Cart-goods-num").siblings(".jisuanparice").children(".price").text();
+            var totalpric = $(this).parent(".Cart-goods-num").siblings(".dsdhesadepicesf").children(".total_price");
+            if (parseInt(t.val()) < parseInt(goodsnum)) {
+                t.val(parseInt(t.val()) + 1)
+                message.text("");
+               
+                $.ajax({
+                    type: "post",
+                    url: "/Cart/updatecart",
+                    data: { id:cartid, num: t.val() },
+                    success: function (data) {
+                       
+                        if (data == "success") {
+                            totalpric.text((prce * t.val()).toFixed(2));
+                        }
+
+
+
+                    }
+                });
+            }
+            else {
+                message.text("不能超过库存");
+            }
+            
+           
+        }) 
+        $(".min").click(function(){ 
+            var t = $(this).parent().find('input[class*=text_box]');
+            var cartid = $(this).siblings(".cart-id").val();
+            var message = $(this).siblings(".tishi_message");
+            var prce = $(this).parent(".Cart-goods-num").siblings(".jisuanparice").children(".price").text();
+            var totalpric = $(this).parent(".Cart-goods-num").siblings(".dsdhesadepicesf").children(".total_price");
+            t.val(parseInt(t.val())-1) 
+            if(parseInt(t.val())>=1){ 
+                message.text("");
+                $.ajax({
+                    type: "post",
+                    url: "/Cart/updatecart",
+                    data: { id: cartid, num:t.val() },
+                    success: function (data) {
+                        if (data == "success") {
+                            totalpric.text((prce * t.val()).toFixed(2));
+                        }
+
+
+
+                    }
+                });
+               
+            }
+            else {
+                t.val(1);
+                message.text("数量至少为1");
+            }
+            //setTotal();
+        }) 
+        //function setTotal() {
+        //    var mm = 0.00;
+        //    $("input[type='checkbox'][name='checked_goods']").each(function () {
+
+
+        //        mm+= $(".total_price").text();
+
+        //    })
+          
+          
+          
+        //} 
+        //setTotal();
+    })
+</script>
+@*删除*@
+<script>
+    $(".shangchu_goods").click(function () {
+        var carid = $(this).siblings(".goods_cartid").val();
+        if (carid > 0) {
+            $.ajax({
+                type: "post",
+                url: "/Cart/delete",
+                data: { id: carid },
+                success: function (data) {
+                    if (data == "success") {
+                        location.reload();
+                    }
+                }
+            });
+        }
+    })
+</script>
+<script>
+    $(document).ready(function () {
+        getAllPrice();
+        $("#checkAll").click(function () {
+            if (this.checked == true) {
+                $('[type=checkbox]').prop('checked', true);
+                $('[type=checkbox]').val("true");
+            } else {
+                $('[type=checkbox]').prop('checked', false);
+                $('[type=checkbox]').val("");
+            }
+            getAllPrice();
+        })
+        //var flat=true;
+        $(".son").click(function () {
+            //总的checkbox的个数
+            
+         
+            
+            if (this.checked == true) {
+                $(this).val("true");
+            }
+            else {
+                $(this).val("");
+            }
+           
+            var len = $(".son").length;
+            //已选中的checkbox的个数
+            var checkedLen = $("input[type='checkbox'][name='checked_goods']:checked").length;
+            if (len == checkedLen) {
+                $('#checkAll').prop('checked', true);
+               
+               
+            } else {
+                $('#checkAll').prop('checked', false);
+              
+            }
+           
+            getAllPrice()
+        })
+
+
+    });
+    function getAllPrice() {
+        var ss = 0.00;
+        var aa = 0;
+       
+        $("input[type='checkbox'][name='checked_goods']").each(function () {
+            if (this.checked == true) {
+                var mmu = 'total_price';
+                ss += parseInt($(this).closest('.Cart-goods').children(":eq(3)").children('.' + mmu).text());
+                    aa++               
+            }
+        })
+        $("#allPrice").text(ss.toFixed(2));
+        $("#sdjasw2").text(aa);
+        $("#all_total").val(ss);
+
+    }
+
+</script>
+@*结算*@
+<script>
+    $("#cart_jiesuan").click(function () {
+        var totalprice = $("#allPrice").text();
+      
+        if (totalprice > 0) {
+            $("input[type='checkbox'][name='checked_goods']").each(function () {
+                if (this.checked == true) {
+                    var cartsid = $(this).siblings(".sdedwgoods_carud").val();
+                    if (cartsid > 0) {
+                        $.ajax({
+                            type: "post",
+                            url: "/Cart/updatetotal",
+                            data: { id: cartsid },
+                            success: function (data) {
+                                if (data == "success") {
+                                    location.href = "/Cart/Address";
+                                }
+                            }
+                        });
+                    }
+                   
+                }
+            })
+           
+        }
+        else {
+
+            alert("请选择商品！")
+        }
+
+    })
+</script>
+@*级联删除*@
+<script>
+    $(".goods_shanchu").click(function () {
+        $("input[type='checkbox'][name='checked_goods']").each(function () {
+            if (this.checked == true) {
+                var cartsid = $(this).siblings(".sdedwgoods_carud").val();
+                if (cartsid > 0) {
+                    $.ajax({
+                        type: "post",
+                        url: "/Cart/delete",
+                        data: { id: cartsid },
+                        success: function (data) {
+                            if (data == "success") {
+                                location.reload();
+                            }
+                        }
+                    });
+                }
+
+            }
+        })
+       
+    })
+</script>
+
+@*<script src="~/Scripts/vue.min.js"></script>
+<script>
+    var im = new Vue({
+        el: "#cart",
+        data: {
+
+        },
+        filters: {
+
+        },
+        mounted: function () {
+            this.$nextTick(function () {
+
+            });
+        },
+        methods: {
+
+        }
+    });
+    Vue.filter({
+
+
+
+    })
+
+    
+</script>*@
+

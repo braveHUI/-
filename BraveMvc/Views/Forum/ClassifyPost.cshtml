@@ -1,0 +1,191 @@
+﻿@model ViewModels.ForumPost
+@using Models
+@{
+    ViewBag.Title = "ClassifyPost";
+    Layout = "~/Views/Shared/_LayoutPage3.cshtml";
+}
+@Styles.Render("~/Content/Fourm.css")
+
+<style type="text/css">
+   .changeBox_a1{position:relative;height:397px;width:732px;overflow:hidden;margin:30px auto;}
+.changeBox_imgs{position:relative;height:354px;width:732px;overflow:hidden;clear:both;}
+.changeBox_imgs_list{position:absolute;width:9999px;}
+.changeBox_imgs_list li{float:left;height:354px;width:732px;}
+/* ul_change */
+.ul_change,.ul_change .arrow_bar{background:url(/Images/forum/bannerTag.gif) no-repeat;}
+.ul_change{position:relative;width:1000px;height:43px;left:0px;bottom:0px;background-position:0 0;}
+.ul_change .arrow_bar{position:absolute;width:181px;height:34px;background-position:-3px -46px;color:#565253;z-index:8;top:3px;left:3px;cursor:pointer;}
+.ul_change li{display:block;_display:inline-block;float:left;position:relative;width:181px;height:40px;line-height:40px;padding-top:3px;z-index:9;margin:0 84px 0 3px;text-align:center;color:#8F8F8F;font-size:14px;font-weight:bolder;font-family:'微软雅黑','宋体';cursor:pointer;}
+
+
+</style>
+<div class="container-fluid contain-post">
+    <div class="row video-weizhi">
+      
+    </div>
+    <div class="row">
+        <div class="col-sm-1 col-md-1"></div>
+        <div class="col-xs-12 col-sm-9 col-md-9">
+            <div class="row">
+               <div class="col-xs-4 col-sm-3 col-md-3">
+                   <div class="row">
+
+                       <div class="col-xs-12 col-sm-11 col-md-11 post_userinfo">
+                           <p>我在论坛</p>
+
+                           <div class="row">
+
+                               <div class="col-xs-7 col-sm-7 col-md-7 userinfo_imgh">
+                                   <img src="@Model.Userinfo.UserImage" />
+                               </div>
+                               <div class="col-xs-5 col-sm-5 col-md-5 userinfo-xinxi">
+                                   <div class="row"><span class="glyphicon glyphicon-user"  aria-hidden="true"></span><span>@Model.Userinfo.UserName </span></div>
+                                   <div class="row"><span class="glyphicon glyphicon-education"></span><span>@Model.Userinfo.Rank </span> </div>
+                                   <div class="row"><span class="glyphicon glyphicon-fire"></span><span>@Model.Userinfo.Integral </span> </div>
+                               </div>
+                           </div>
+                           <div class="row user_chaungjain ">
+                                <div class="chungjiangba">
+                                    <input type="hidden" class="huo_jifejns" value="@Model.Userinfo.Integral" />
+                                    <a>创建军吧</a>
+                                </div>
+                              
+                           </div>
+                           <div class="row post_wozaigfuanba">
+                               <p>爱逛的军吧<i class="glyphicon glyphicon-cog"></i></p>
+                           </div>
+                           <div class="row">
+                              
+                               <div class="row all_attentionp">
+                                   @foreach (AttentionPost p in Model.AttentionPost1)
+                                   {
+                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                        <div class="woyao_junba_atten"><a href="@Url.Action("JunBa","Forum", new { id = @p.ForumSection_id})">@p.ForumSection.ForumSectionName</a> </div>
+                                    </div>
+                                   }
+                                
+                               </div>
+                               
+                           </div>
+                       </div>
+                       <div class="col-sm-1 col-md-1"></div>
+
+                   </div>
+               </div>
+               <div class="col-xs-8 col-sm-9 col-md-9 post-content">
+                    <div id="change_1" class="changeBox_a1">
+                        <div class="changeBox_imgs">
+                            <ul class="changeBox_imgs_list">
+                                <li><a href="#" target="_blank"><img width="732" height="354" alt="户外摄影" src="~/Images/forum/baner1.jpg" /></a></li>
+                                <li><a href="#" target="_blank"><img width="732" height="354" alt="户外摄影" src="~/Images/forum/baner2.jpg" /></a></li>
+                                <li><a href="#" target="_blank"><img width="732" height="354" alt="户外摄影" src="~/Images/forum/baner3.jpg" /></a></li>
+                            </ul>
+                        </div>
+                        <ul class="ul_change">
+                            <li id="changeBox_arrow_bar" class="arrow_bar"></li>
+                            <li class="tagLi3" idx="1">八国联军聚齐一半 美日英法西太军演剑指中国</li>
+                            <li class="tagLi2" idx="2">第二次世界战十大战沉巨舰的最后时刻</li>
+                            <li class="tagLi1" idx="3">台湾被99式坦克逼急了</li>
+                        </ul>
+                    </div>
+                </div>
+              
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3 col-md-3"></div>
+                <div class="col-xs-12 col-sm-9 col-md-9" id="dkskdjeljlaksjde32">
+                    @{Html.RenderAction("Postdeadwe", "AllGoods");}
+                </div>
+                
+
+            </div>
+          
+
+        </div>
+        <div class="col-sm-2 col-md-2"></div>
+    </div>
+    <div class="gototop js-top">
+        <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+@*创建军吧*@
+<script>
+    $(".chungjiangba").click(function () {
+        var jifen = $(this).children(".huo_jifejns").val();
+        if (jifen >= 800) {
+            location.href = "/Cart/Address";
+        }
+        else {
+            alert("你的等级不够")
+        }
+    })
+</script>
+@*图片滚动*@
+<script type="text/javascript">
+function BannerImages(){
+
+	var b = $("#changeBox_arrow_bar"),
+		c = $("ul.ul_change li:not(.arrw_bar)"),
+		e = $("ul.changeBox_imgs_list"),
+		d = true,
+		f = 1;
+
+	var a = function(){
+
+		var j = (732 * f - 732),j = j == 0 ? 0 : -j,i = 500;
+
+		e.animate({ left: j + "px" }, i)
+	};
+
+	e.find("img").hover(function(){
+		clearInterval(h)
+	},function(){
+		g()
+	});
+
+	c.click(function(){
+		var j = $(this), i = j.position().left + 3;
+		f = j.attr("idx");
+		a();
+		b.animate({ left: i + "px" },500,function(){
+			d = true
+		})
+	}).mouseover(function(){
+		if(!d){
+			return
+		}
+		clearInterval(h);
+		d = false;
+		$(this).click()
+	}).mouseout(function(){
+		if(!d){
+			return
+		}
+		g()
+	});
+
+	var h = null;
+
+	var g = function(){
+		h = setInterval(function(){
+			f++;
+			if (f > 3){
+				f = 1
+			}
+			c.eq(f).click()
+		}, 4000)
+	};
+
+	g()
+
+};
+
+$(document).ready(function(){
+	BannerImages();//Banner滑动效果
+});
+</script>

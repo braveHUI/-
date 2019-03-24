@@ -1,0 +1,36 @@
+﻿@using Models
+@model ViewModels.Brave
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SelectReply</title>
+</head>
+<body>
+    
+    @foreach (ReplyRedSpots m in Model.Repred1)
+    {
+        <div class="operating-inner clearfix">
+            <div class="login">
+                <img src="@m.Users.UserImage" style="height:30px;width:30px" />
+
+
+                <span >@m.Users.UserName</span>
+                <span>发表于</span>
+                <span>@m.ReplyTime</span>
+                <p style="padding: 6px 0;
+color: #2b2b2b;
+line-height: 24px;
+font-size: 1.5em;
+word-break: break-all;
+word-wrap: break-word;">@m.Content</p>
+            </div>
+        </div>
+    }
+</body>
+</html>

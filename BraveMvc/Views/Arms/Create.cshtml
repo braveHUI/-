@@ -1,0 +1,216 @@
+﻿@model Models.Arms
+
+@{
+    ViewBag.Title = "Create";
+   
+}
+<script src="~/ueditor/ueditor.config.js"></script>
+<script src="~/ueditor/ueditor.all.js"></script>
+<script type="text/javascript">
+    var editorOption = {
+        initialFrameWidth: 784,
+        initialFrameHeight: 400
+    };
+    var editor = new baidu.editor.ui.Editor(editorOption);
+    editor.render('ArmsDes');
+</script>
+
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Arms</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.ArmsName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ArmsName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ArmsName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ArmsPicture, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ArmsPicture, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ArmsPicture, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ArmsVideo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ArmsVideo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ArmsVideo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ArmsDes, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.ArmsDes, "ArmsDes")
+                @*@Html.EditorFor(model => model.ArmsDes, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.ArmsDes, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ArmsSection_id, "ArmsSection_id", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ArmsSection_id", null, htmlAttributes: new { @class = "form-control", id = "Section_id" })
+                @Html.ValidationMessageFor(model => model.ArmsSection_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ArmsTechnical, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ArmsTechnical, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ArmsTechnical, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BigSection_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.DropDownList("BigSection_ids", ViewBag.Gender as IEnumerable<SelectListItem>, new { @class = "form-control" })*@
+                @*@Html.EditorFor(model => model.BigSection_id, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.BigSection_id, "", new { @class = "text-danger" })
+                <select id="BigSection_id" name="BigSection_id"></select>
+            </div>
+        </div>
+
+       @*<div class="form-group">
+            @Html.LabelFor(model => model.BigSection2_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("BigSection2_id", ViewBag.Gender as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                @Html.EditorFor(model => model.BigSection2_id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BigSection2_id, "", new { @class = "text-danger" })
+                <select id="BigSection_id"></select>
+            </div>
+        </div>*@
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.BigSection3_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("BigSection3_id", ViewBag.Gender as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                 @Html.DropDownList("BigSection_id", ViewBag.Gender as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.BigSection3_id, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BigSection2_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.DropDownList("BigSection_ids", ViewBag.Gender as IEnumerable<SelectListItem>, new { @class = "form-control" })*@
+                @*@Html.EditorFor(model => model.BigSection_id, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.BigSection_id, "", new { @class = "text-danger" })
+                <select id="BigSection2_id" name="BigSection2_id"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.BigSection2_id, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.DropDownList("BigSection_ids", ViewBag.Gender as IEnumerable<SelectListItem>, new { @class = "form-control" })*@
+                @*@Html.EditorFor(model => model.BigSection_id, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.BigSection_id, "", new { @class = "text-danger" })
+                <select id="BigSection3_id" name="BigSection3_id"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Manu, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Manu, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Manu, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Stime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Stime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Stime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ctime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Ctime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Ctime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+<script type="text/javascript">
+ $(document).ready(function () {
+     $("#Section_id").change(function () {
+  //获取总分类的ID
+         var provinceID = $("#Section_id").val();
+         
+  //获取三个小分类
+         var myCity = $("#BigSection_id");
+         var myCity1 = $("#BigSection2_id");
+         var myCity2 = $("#BigSection3_id");
+  //加入测试代码
+
+
+  $.ajax({
+      url: "/Arms/GETAFilter/" + provinceID,
+  type: "post",
+  dataType: "json",
+  contentType: "application/json",
+  success: function (result) {
+   var myHTML = "";
+   myCity.html("");//赋值之前先清空
+   $.each(result, function (i, data) {
+       myHTML += "<option value=" + data.AFilterSection_id + ">" + data.AFilterSectionName + "</option>";
+
+   });
+   myCity.append(myHTML);
+   
+   var myHTML1 = "";
+   myCity1.html("");//赋值之前先清空
+   $.each(result, function (i, data) {
+       myHTML1 += "<option value=" + data.AFilterSection_id + ">" + data.AFilterSectionName + "</option>";
+
+   });
+   myCity1.append(myHTML1);
+
+   var myHTML2 = "";
+   myCity2.html("");//赋值之前先清空
+   $.each(result, function (i, data) {
+       myHTML2 += "<option value=" + data.AFilterSection_id + ">" + data.AFilterSectionName + "</option>";
+
+   });
+   myCity2.append(myHTML2);
+  },
+
+
+  error: function (result) {
+   alert(result.responseText);
+  }
+
+  });
+
+
+ })
+
+ })
+</script> 

@@ -1,0 +1,122 @@
+﻿@model PagedList.IPagedList<Models.MilitaryVideo>
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "MiliVideo";
+    Layout = null;
+}
+
+
+
+<style type="text/css">
+    .video-img{
+        height:400px;
+        width:100%;
+        overflow:hidden;
+   
+    }
+    .video-img-pu{
+        overflow:hidden;
+    }
+    .video-img-pu img{
+        height:300px;
+        width:100%;
+    }
+     .video-img-pu img:hover{
+         transform:scale(1.3,1.3);
+     }
+    .video-img p{
+        width:100%;
+        text-align:center;
+        color:black;
+        text-decoration:none;
+            
+    }
+    .bofang_anniu{
+        width:50px;
+        height:50px;
+        z-index:99;
+        top:0%;
+        position:absolute;
+        border-radius:60px;
+      display:none;
+        
+       
+    }
+     .bofang_anniu img{
+         width:100%;
+         height:100%;
+        position:absolute;
+        
+     }
+     .dsdhbofanganniu{
+       margin-top:30%;
+       margin-left:35%
+     }
+    
+</style>
+
+
+    <div class="row">
+        @foreach (var o in Model)
+        {
+
+            <div class="col-xs-4 col-sm-4 col-md-4">
+                <a href="@Url.Action("Detail","VideoDetail", new { id = o.MilitaryVideo_id,seectionid=o.ForumSection_id})">
+                    <div class="video-img">
+                        <div class="video-img-pu">
+                            <img src="@o.MilitaryVideoImg" />
+                          </div>
+                        <div class="bofang_anniu">
+                            <img src="~/Images/forum/timgbg1.png"/>
+                        </div>
+                        <p>@o.MilitaryVideoName</p>
+                    </div>
+                   
+                </a>
+                
+            </div>
+            
+        }
+
+    </div>
+   
+    
+
+<div class="paging">
+    @Html.PagedListPager(Model, page => Url.Action("MiliVideo", "AllGoods", new { page, currentFilter = ViewBag.CurrentFilter }),
+    PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(
+                 new AjaxOptions
+                 {
+                     HttpMethod = "GET",
+                     InsertionMode = InsertionMode.Replace,
+                     UpdateTargetId = "videoallbu"
+
+                 }
+))
+</div>
+
+<script type="text/javascript">
+    $(".video-img-pu").hover(function () {
+     
+        $(this).siblings('.bofang_anniu').show(500).addClass('dsdhbofanganniu')
+
+
+    },
+    function () {
+        $(this).siblings('.bofang_anniu').hide(500).removeClass('dsdhbofanganniu')
+
+
+
+
+
+    })
+
+</script>
+
+ 
+
+
+
+
+

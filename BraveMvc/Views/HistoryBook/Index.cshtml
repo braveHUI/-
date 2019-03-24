@@ -1,0 +1,25 @@
+﻿@model ViewModels.historybk
+@{
+    ViewBag.Title = "Index";
+}
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script type="text/javascript" src="jquery.metadata.js"></script>
+<link href="~/Content/History.css" rel="stylesheet" />
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 bookhead">
+            <ul>
+                <li class="col-lg-4 bookhead1">书籍分类</li>
+                <li class="col-lg-2"><a href="@Url.Action("ClassIndex", new { classid = 1 })">军事战略</a></li>
+                <li class="col-lg-2"><a href="@Url.Action("ClassIndex", new { classid = 2 })">战争艺术</a></li>
+                <li class="col-lg-2"><a href="@Url.Action("ClassIndex", new { classid = 3 })">军事历史</a></li>
+                <li class="col-lg-2"><a href="@Url.Action("ClassIndex", new { classid = 4 })">风流人物</a></li>
+            </ul>
+        </div>
+        <div class="col-md-12 bookdiv" id="pagelist">          
+            @{Html.RenderAction("Index", "AllBooks");}
+        </div>
+    </div>
+</div>
+

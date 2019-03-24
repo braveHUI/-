@@ -1,0 +1,114 @@
+﻿@model Models.Arms
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Arms</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ArmsName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArmsName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArmsPicture)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArmsPicture)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArmsVideo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArmsVideo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArmsDes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArmsDes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArmsTechnical)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArmsTechnical)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BigSection_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BigSection_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BigSection2_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BigSection2_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BigSection3_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BigSection3_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Manu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Manu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ctime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ctime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArmsSection.ArmsSectionName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArmsSection.ArmsSectionName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Arms_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

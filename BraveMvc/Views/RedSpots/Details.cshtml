@@ -1,0 +1,561 @@
+﻿@using Models
+@model ViewModels.Brave
+@{
+    ViewBag.Title = "Details";
+}
+<style type="text/css">
+    #huanqiu-tiePost .post-textarea-inner .post-textarea .write-box { opacity: 1 !important; filter: alpha(opacity=100) !important; }
+   
+</style>
+
+<!-- Page title -->
+<div class="page-title parallax parallax2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-title-heading">
+                    <h2>红色景点</h2>
+                </div><!-- /.page-title-heading -->
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.page-title -->
+
+<div class="page-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="flat-wrapper">
+                <div class="breadcrumbs">
+                    <h2 class="trail-browse">你现在在:</h2>
+                    <ul class="trail-items">
+                        <li class="trail-item"><a href="@Url.Action("index","Brave")">虎贲网</a></li>
+                        <li class="trail-item"><a href="@Url.Action("index","RedSpots")">红色景点</a></li>
+                        <li class="trail-item">优选景点</li>
+                        <li>@Model.redde1.RedSpotsName</li>
+                    </ul>
+                </div><!-- /.breadcrumbs -->
+            </div><!-- /.flat-wrapper -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.page-breadcrumbs -->
+
+
+
+
+
+
+<div class="flat-row flat-general sidebar-right pad-bottom75px">
+    <div class="container">
+        <div class="row">
+            <div class="general">
+
+
+                <div class="general-slider about-slider maxPic " style="position: relative;">
+
+
+                    <a class="" href="img/about/1.jpg"><img src="@Model.redde1.RedImage" alt="images"></a>
+                    <span class="name" style="display :block; position: absolute;"><i class="tank"></i>@Model.redde1.RedSpotsName</span>
+                    <span class="country" style="display: block; position :absolute;">
+                        <b>@Model.redde1.RedSection.RedSectionName</b>
+                    </span>
+
+
+
+                </div><!-- /.about-slider -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="flat-tabs">
+                            <ul class="menu-tabs">
+                                <li class="active"><a href="#">景点详情</a></li>
+                                <li><a href="#">网友游记</a></li>
+                                <p class="youji">
+                                   
+                                    @if (Session["User_id"] != null)
+                                    {
+                                        <a href="@Url.Action("Create", "RedSpots", new { id = @Model.redde1.RedSpots_id })">+发布游记</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="#" class="woyadengruaheahe1">+发布游记</a>
+                                    }
+                                        @*@Ajax.ActionLink("+发布游记", "Create", "RedSpots", new { id = @Model.redde1.RedSpots_id }, new AjaxOptions()
+                               {
+                                   HttpMethod = "Post"
+                               })*@
+</p>
+
+
+
+                                    @*<a href="@Url" >+发布游记</a>*@
+</ul>
+                            <div class="content-tab">
+                                <div class="content-inner">
+                                    <p style="padding:50px 50px; text-indent:2em;">
+
+                                        @Model.redde1.RedSpotsDes
+                                    </p>
+                                </div><!-- /.content-inner -->
+
+                                <div class="content-inner">
+                                    <ul class="panel-group" id="faq">
+                                       
+                                           @foreach (var a in Model.redshare1)
+                                            {
+                                        <li class="panel panel-default  ">
+                                            <div class="panel-heading">
+                                                <h4 class="panel-title">
+                                                    <a href="#faq-1">
+                                                        @a.RedShareTime| @a.RedShareName
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div class="panel-collapse collapse  ">
+                                                <div class="faq-1-img">
+                                                    <a href="#">
+                                                        <img src="@a.Users.UserImage">
+                                                    </a>
+                                                    <p><a href="#">@a.Users.UserName</a></p>
+
+                                                </div>
+                                                <div class="panel-body">
+
+                                                    <p>
+                                                       @a.RedShareD
+                                                        <a href="@Url.Action("ShareDetails","RedSpots", new { id = a.RedShare_id})">查看全文</a>
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                        </li>
+                                        }
+                                      
+
+                                    </ul>
+                                </div><!-- /.content-inner -->
+                            </div><!-- /.content-tab -->
+                        </div><!-- /.flat-tabs -->
+                    </div><!-- /.col-md-6 -->
+
+
+                </div><!-- /.row -->
+                <!-- /loadComment -->
+                <div class="loadComment">
+                    <div id="HQ_5365386dfd0a">
+                        <div id="huanqiu-tieInner" data-newtienum="1">
+                            <div id="huanqiu-tiePost" class="posting-panel-inner">
+                                <div class="tit-inner">
+                                    <span class="participate"><var>3</var>&nbsp;人参与，<var>@ViewBag.count1</var>&nbsp;条跟帖</span> <strong>网友跟帖</strong> <a href="#" target="_blank">请遵守《用户条款及隐私协议》</a>
+                                </div>
+                                <div class="post-textarea-inner clearfix">
+                                    <div class="avatar">
+                                        @if (Session["User_id"] != null)
+                                        {
+                                            <img src="@Session["Image"]" />
+
+                                        }
+                                        else
+                                        {
+                                            <img src="~/img/yonghutouxiang.png" />
+                                        }
+                                    </div>
+                                    <div class="post-textarea">
+                                        <label id="la111"></label>
+                                          @using (Ajax.BeginForm("addComment", "RedSpots",new AjaxOptions {
+                                              UpdateTargetId= "la111",
+                                              InsertionMode=InsertionMode.Replace,
+                                              HttpMethod="Post"
+
+
+                                          }))
+                                          {
+                                        <div class="post-textarea-inner">
+                                            <input type="text" name="detail-RedSpots-comment" style="height:200px;width:100%" id="detail-RedSpots-comment" />
+                                            <input type="hidden" value="@Model.redde1.RedSpots_id" name="RedSpotsName" id="RedSpotsName_id"/>
+                                            <div class="tips">
+                                                理性思考&nbsp;文明跟帖
+                                            </div>
+                                        </div>
+                                        <div class="operating-inner clearfix">
+                                            <div class="login"><a class="user-login" href="javascript:void(0);">登录虎贲网</a><span class="sx"> | </span><span>社交账号登录：</span><span class="social-login"><a href="javascript:void(0);" class="qq-login"></a><a href="javascript:void(0);" class="weibo-login"></a></span></div>
+                                            <div class="logined"></div>
+                                            
+                                            @if (Session["User_id"] != null)
+                                            {
+                                                <input type="submit" id="fabiao1"  value="发表" class="release-tie disabled"/>
+                                                @*<a href="javascript:document.getElementById('addComment').submit()" class="release-tie disabled">发表</a>*@
+                                            }
+                                            else
+                                            {
+                                                <a href="javascript:void(0);" data-type="disabled" class="release-tie disabled">发表</a>
+                                            }
+                                            @*<a href="javascript:void(0);" data-type="disabled" class="release-tie disabled">发表</a>*@
+                                        </div>
+                     }
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+
+
+                            <div class="" id="huanqiu-tieList">
+                                <div class="tie-inner-box new-tie-inner" data-newtiepage="1">
+                                <div class="title"><strong>最新跟贴</strong></div>
+                                <ul class="tie-list">
+                            @foreach (CommentRedSpots o in Model.Commred1)
+                                    {
+                                    <li class="tie-box m-need-avatar "  data-pid="" data-cid="584572c1c16c7d1a058b45fe" data-id="584572c1c16c7d1a058b45fe" data-reply="0">
+                                    <div class="user-avatar">
+                                    <img src="@o.Users.UserImage" class="user-avatar-img" data-uid="56717a86bb90295e108b45d1">
+                                    </div>
+                                    <div class="user-content">
+                                    <div class="tie-header">
+                                        <div class="post-time">@o.CommentTime</div>
+                                        <div class="user-info">
+                                        <a class="user-name" href="javascript:void(0);" data-uid="56717a86bb90295e108b45d1">@o.Users.UserName</a>
+                                        <span class="ip-location">中国网友</span>
+                                        </div>
+                                        </div>
+                                    <div class="tie-content">@o.Content</div>
+                                    <div class="tie-footer">
+                                       
+                                        <span class="operating">
+                                        <a href="javascript:void(0);" class="tie-support">
+                                            <var class="red">0</var>
+                                           
+                                            </a>
+                                            
+                                    @if (Session["User_id"] != null)
+                                   {
+                                       <input type="button"  class="but11" id="but11" value="回复" />
+                                        @*<a style="float:right;color:#778877;cursor:pointer;text-decoration:none" class="woyadengruaheahe tie-reply do1"  id="reply-moren">回复&nbsp;</a>*@
+                                         }
+                                    else
+                                 {
+                                       <a style="float:right;color:#778877;cursor:pointer;text-decoration:none" class="woyadengruaheahe1"  >回复</a>
+                                      }
+                                        <a href="@Url.Action("Report","RedSpots")" target="_blank" class="tie-report" title="举报">
+                                            </a>
+                                        </span>
+                                        </div>
+                                        <div class="row ggg" >
+                                            @Ajax.ActionLink("查看回复", "SelectReply", "RedSpots", new { id = o.CommentRedSpots_id }, new AjaxOptions
+                                       {
+                                           UpdateTargetId = "operating-inner2",
+                                           InsertionMode = InsertionMode.Replace,
+                                           HttpMethod = "GET"
+                                       })
+                                        </div>
+
+
+
+
+                                        <div class="posting-panel-inner add-panel " id="huanqiu-tiePost"  style="display:none" >
+                                            <div class="post-textarea-inner">
+                                            <div class="post-textarea">
+                                 @using (Ajax.BeginForm("Reply", "RedSpots", new AjaxOptions() { UpdateTargetId = "operating-inner2", HttpMethod = "Post" }))
+                                   {
+                                                <div class="post-textarea-inner">
+                                                  
+                                                    <input type="hidden" name="commendid" value="@o.CommentRedSpots_id"  class="commendid"/>
+                                                <textarea placeholder="回复：@o.Users.UserName" name="replayRedSpots"  style="height:60px;width:100%" class="tie-textarea-box huifu2"></textarea>
+                                                </div>
+                                           
+                                                <div class="operating-inner clearfix">
+                                                <div class="login">
+                                                    <a class="user-login" href="javascript:void(0);">登录</a>
+                                                    <span class="sx"> | </span>
+                                                    <a href="" target="_blank">注册</a>
+                                                    </div><div class="logined"></div>
+                                                    <input type="submit" class="huifu1" value="回复" />
+                                                @*<a href="javascript:void(0);" data-type="disabled" class="release-tie disabled reply-tips">发表</a>*@
+                                                </div>
+                                 }
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="operating-inner1" style="display:none">  </div>
+
+
+                                       
+                                    </div>
+                                    </li>
+               }
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                       
+                    </div>
+
+
+                </div> <!-- /loadComment -->
+            <div id="hhhh" ></div>
+
+            </div><!-- /.general -->
+
+            <div class="general-sidebars" style="-moz-box-shadow: 0px 2px 2px #ccc;
+-webkit-box-shadow: 0px 2px 2px #ccc;
+box-shadow: 0px 2px 2px #ccc;border: 1px solid #999;">
+                <div class="sidebar-wrap">
+                    <div class="sidebar">
+
+                        <div class="side" style="margin-bottom:80px; ">
+                            <div class="dataInfo" style="border:0;">
+
+                                <h4 style="margin:0; margin-bottom:10px;border-bottom:1px solid #32bfc0;">门票及开放时间</h4>
+                                <p>
+
+                                    景点门票：<br />
+
+                                    景区联票100元（包含11个小景点）。<br />
+
+                                    优惠政策：
+                                    <br />
+                                    1、身高1.2-1.5米儿童、60周岁以上老人、全日制学生凭相关证件门票半价；<br />
+
+                                    2、1.2米以下儿童、70周岁以上老人凭相关证件免票。<br />
+
+                                    开放时间：<br />
+                                    冬季（11月1日-次年2月28日）8:00-16:30，夏季（3月1日-10月31日）8:00-17:00<br />
+                                </p>
+                            </div>
+                        </div>
+
+
+
+                        <div class="block-title">
+                            <h2 class="block-title__h2"> 热门景点排行</h2>
+                        </div>
+                        <div class="wrap-redaction  wrap-redaction_white">
+                            <div class="content" id="newscontent">
+
+                                <div class="ranks-tab" id="ranks-tab">
+                                    <ul>
+                                        @foreach(var b in Model.spots1)
+                                        {
+
+                                        <li>
+                                            <a href="@Url.Action("Details","RedSpots", new { id = b.RedSpots_id})">
+                                                <div class="imghidden">
+                                                    <img src="@b.RedImage">
+                                                </div>
+                                                <b></b>
+                                                <i>@b.RedSpots_id</i>
+                                                <span>@b.RedSpotsName</span>
+                                                <p>@b.RedSection.RedSectionName</p>
+                                            </a>
+                                        </li>
+                                        }
+                                       
+                                    </ul>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+
+
+
+                    </div><!-- /.sidebar -->
+                </div><!-- /.sidebar-wrap -->
+            </div><!-- /.general-sidebars -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.blog -->
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+<script src="~/js/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script type="text/javascript">
+           
+    var $tieTextareaMax = TIE.$(TIE.dom + " #tieTextareaMax")[0];
+    $tieTextareaMax.onfocus = function () {
+        TIE.addClass(this, "write-box");
+    };
+    $tieTextareaMax.onblur = function () {
+        if (this.value === "") {
+            TIE.removeClass(this, "write-box");
+        }
+    };
+    TIE.bind($tieTextareaMax, "keyup", function (event) {
+        var evt = (event) ? event : ((window.event) ? window.event : "");
+        var code = evt.keyCode ? evt.keyCode : evt.which;
+        if (code == 13 && event.ctrlKey) {
+            $tieTextareaMax.parentNode.parentNode.children[1].children[2].click();
+        }
+    });
+
+
+</script>
+<script>
+    $(".tie-support").click(
+        function(){
+            $(this).addClass("support-disabled");
+          
+
+            var dsde= $(this).children(".red");
+            var p=$(this).children(".red").text();
+            p++;
+          
+            dsde.text(p);
+            dsde.removeClass("red");
+           
+
+
+           
+        
+        }
+
+        )
+</script>
+<script type="text/javascript">
+    $("#fabiao1").click(function () {
+        var dewdd2 = $("#detail-RedSpots-comment");
+        var essaycon = $("#detail-RedSpots-comment").val();
+
+        var forwid = $("#RedSpotsName_id").val();
+
+        if (essaycon != null) {
+            
+            $.ajax({
+                type: "post",
+                url: "/RedSpots/addComment",
+                data: { essaycontent: essaycon, forumid: forwid },
+                success: function (data) {
+                    if (data == "cg") {
+                        alert("评论成功！")
+                        dewdd2.val(" ");
+                        location.reload();
+                        $('html, body').animate({
+                            scrollTop: $(".sdjeghasdwewgundo").offset().top * 2
+                        }, 100);
+                    }
+                    else {
+                        alert("评论失败")
+                    }
+                }
+            });
+
+        }
+        else {
+            alert("内容不能为空!")
+        }
+    })
+    </script>
+<script type="text/javascript">
+    $(".huifu1").click(function () {
+        var dewdd2 = $(this).parent().siblings('.post-textarea-inner').children(".huifu2");
+        var essaycon = $(this).parent().siblings('.post-textarea-inner').children(".huifu2").val();
+        
+        var forwid = $(this).parent().siblings('.post-textarea-inner').children(".commendid").val();
+
+        if (essaycon != null) {
+
+            $.ajax({
+                type: "post",
+                url: "/RedSpots/Reply",
+                data: { essaycontent: essaycon, forumid: forwid },
+                success: function (data) {
+                    if (data == "cg") {
+                        alert("回复成功！")
+                        dewdd2.val(" ");
+                      
+                       
+                    }
+                    else {
+                        alert("回复失败")
+                    }
+                }
+            });
+
+        }
+        else {
+            alert("内容不能为空!")
+        }
+    })
+    </script>
+
+    @*//$("#fabiao1").click(
+
+
+    //    function () {
+    //        setTimeout(
+
+
+    //            function () {
+    //                var plHidden = $("#la111").text();
+
+    //                if (plHidden == "cg") {
+    //                    location.reload();
+
+    //                    $('html, body').animate({
+    //                        scrollTop: document.body.scrollHeight
+    //                        //$("#hhhh").offset().top*2
+    //                    }, 200);
+
+    //                    $("#detail-RedSpots-comment").val("");
+
+    //                }
+
+    //                else {
+    //                    alert("请填写内容!")
+    //                }
+    //            }, 1000);
+
+
+    //    }
+
+    //);*@
+  <script type="text/javascript">
+ $(".woyadengruaheahe1").click(
+         function () {
+
+             alert("对不起，请先登录！")
+         })
+
+
+
+    </script>
+  
+<script type="text/javascript">
+   
+    $(document).ready(function (e) {
+        $(".but11").click(function (e) {
+           
+          
+            $(this).parent().parent().siblings('.add-panel').toggle();
+          
+                //$(this).parent().parent().parent().parent('.tie-box').siblings().removeClass("xianshi");
+           
+        });
+    });
+//$(document).ready(function(e) {
+//    $(".but11").click(function (e) {
+//        if ($("#huanqiu-tiePost").hasClass("do1")) {
+//            // 执行隐藏
+//            $("#huanqiu-tiePost").hide().removeClass("do1");
+//            // 其他
+//        }else{
+//            // 显示
+//            $(".abc").show().addClass("do1");
+//        }
+//    });
+//});
+
+</script>
+<script type="text/javascript">
+    $(".ggg").children("a").click(function () {
+        $(this).closest(".user-content").children(".operating-inner1").append(' <div id="operating-inner2"> </div>');
+        $(this).closest(".tie-box").siblings().find(".operating-inner1").children().remove();
+        $(this).closest(".user-content").children(".operating-inner1").slideToggle();
+    })
+
+</script>  

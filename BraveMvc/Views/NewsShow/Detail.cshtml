@@ -1,0 +1,403 @@
+﻿@model ViewModels.Cnpagelist
+@using Models
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Content/forumvideo/style.css")
+@Styles.Render("~/Content/forumvideo/min.css")
+@Styles.Render("~/Content/Fourm.css")
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<link href="~/Content/NewsDetail.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+@*搜索ajax*@
+
+<script>  
+    //删除事件
+    $(".videocommend-tag").children('a').click(function () {
+        setTimeout(function () {
+            var shanbc = $("#shanchupujlu").text();
+            if (shanbc == "success") {
+                location.reload();
+            }
+            else {
+
+            }
+        }, 1000);
+    })
+
+</script>
+ 
+
+@*回复*@
+<script>
+    //评论提交
+    
+
+
+    //alert($(this).closest(".video-huifu").children(':eq(0)').children());
+    //回复框变焦
+    $('.reply-detailcontent').focusin(function () {
+        $(this).addClass('inputbian');
+    });
+    $('.reply-detailcontent').focusout(function () {
+        $(this).removeClass('inputbian');
+        var inputText = $(this).val();
+        $(this).val(AnalyticEmotion(inputText));
+
+    })
+    //回复框隐藏
+    $('.huifu_xianxian').click(function () {
+        $(this).closest(".videocommend-content").children(".video-huifu").slideToggle();
+    })
+    //获取回复内容
+    $('.content_replyvideo').click(function () {
+        var replaysdsde = $(this).closest(".video-huifu").children(':eq(0)').children(".reply-detailcontent");
+        var replyconten = $(this).closest(".video-huifu").children(':eq(0)').children(".reply-detailcontent").val();
+        var commvideoid = $(this).closest(".video-huifu").children(':eq(0)').children(".hufu_commid").val();
+        var username = $(this).closest(".video-huifu").children(':eq(0)').children(".hufu_ccommuserid").val();
+        if (replyconten != null) {
+            $.ajax({
+                type: "post",
+                url: "/NewsShow/AddReplyNews",
+                data: { conntent: replyconten, id: commvideoid, commuser: username },
+                success: function (data) {
+                    if (data == "success") {
+                        replaysdsde.val("");
+                       alert("回复成功！")
+                    }
+
+
+
+                }
+            })
+        }
+        else {
+            alert("内容不能为空！")
+        }
+    })
+
+
+    //获取回复
+    $(".reply-detail-reply").children("a").click(function () {
+        $(this).closest(".videocommend-content").children(".reply-detail-commentt").append('<div class="row" id="chakangeng"></div>');
+        $(this).closest(".hudesdezsdea").siblings().find(".reply-detail-commentt").children().remove();
+        $(this).closest(".videocommend-content").children(".reply-detail-commentt").slideToggle();
+    })
+</script>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Detail</title>
+</head>
+<body>
+    <div class="bigbox">
+        <div class="content">
+            <div class="detail-title"><h1>@Html.Raw(Model.FindDetailNews.NewsTitle)</h1></div>
+            <div class="detail-daohang">
+                <span>@Model.FindDetailNews.SubmtDate</span> <span>@Model.FindDetailNews.Author</span>               
+            </div>
+            <hr/>
+            <p>@Html.Raw(@Model.FindDetailNews.NewsContent)</p>
+            <div class="row">
+                <div class="col-xs-12 col-sm-10 col-md-10">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-3 col-md-3">
+                            <h4>网友评论</h4>
+
+                        </div>
+                        <div class="col-xs-6 col-sm-9 col-md-9"><h6 style="text-align:right">共有 @ViewBag.coutcommend 条评论</h6></div>
+                    </div>
+
+                    <hr style="border:1px solid #808080" />
+                    <label id="videocomm"></label>
+                   
+                        <div class="row sjdjawdjqwq2">
+                            <div class="col-xs-4 col-sm-3 col-md-2 detail-video-img">
+                                @if (Session["UserName"] != null)
+                                {
+                                    <img src="@Session["Image"]" />
+                                }
+                                else
+                                {
+                                    <img src="~/Images/tc_login_yonghu.jpg" />
+                                }
+                            </div>
+                            <div class="col-xs-8 col-sm-7 col-md-6 detail-video-content">
+                                <textarea class="emotion" name="video_content" id="video_content"></textarea>
+                                <input type="hidden" name="milivideo_id" id="milivideo_id" value="@Model.FindDetailNews.News_id" />                         
+
+                            </div>
+                        </div>
+                        <div class="row dealsjdjwwq">
+                            <div class="col-sm-3 col-md-2"></div>
+                            <div class="col-xs-12 col-sm-7 col-md-6 video-comment-biaoqing">
+                                <div class="row">
+
+                                   
+                                    <div class="col-xs-8 col-sm-9 col-md-9 video-fabiao">
+
+                                        @if (Session["UserName"] != null)
+                                        {
+                                            <input type="submit" name="content_fabiao" id="content_fabiao" value="发表" />
+                                        }
+                                        else
+                                        {
+                                            <input type="button" class="woyadengruaheahe" value="发表" />
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+               
+
+                </div>
+
+            </div>
+            <label id="shanchupujlu"></label>
+            <div class="row">
+                <div class="col-xs-12 col-sm-10 col-md-10">
+                    <hr style="border:1px dashed  #666666" />
+                    <div class="row">
+                        <div class="col-sm-1 col-md-1"></div>
+                        <div class="col-xs-12 col-sm-9 col-md-9 getAllPostComment">
+
+                            @foreach (CommentNews p in Model.FindAllComment)
+                            {
+                                <div class="row hudesdezsdea">
+                                    <div class="col-xs-4 col-sm-3 col-md-3 videocommend-img">
+                                        <img src="@p.Users.UserImage" />
+                                    </div>
+                                    <div class="col-xs-8 col-sm-9 col-md-9 videocommend-content">
+                                        <div class="row">
+                                            <div class="col-xs-3 col-sm-3 col-md-3">@p.Users.UserName</div>
+                                            <div class="col-xs-9 col-sm-9 col-md-9 videocommend-tag">
+                                                <label class="commmmilitaryvideo">@p.CommentNews_id</label>
+                                               
+                                                <span class="commvideopaise"><i class="glyphicon glyphicon-thumbs-up"></i></span>
+                                                @if (Session["UserName"] != null)
+                                                {
+                                                    if (p.Users.UserName == Session["UserName"].ToString())
+                                                    {
+                                                        @Ajax.ActionLink("删除", "DeleteCommentNews", new { id = p.CommentNews_id }, new AjaxOptions
+                                                   {
+                                                       UpdateTargetId = "shanchupujlu",
+                                                       InsertionMode = InsertionMode.Replace,
+                                                       HttpMethod = "Post"
+                                                   });
+                                                    }
+
+                                                }
+                                                else
+                                                {
+
+                                                }
+                                                <span class="huifu_xianxian">回复</span>
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            @if (Int64.Parse(DateTime.Now.ToString("yyyyMMddhhmm")) - Int64.Parse(p.CommentTime.ToString("yyyyMMddhhmm")) < 60)
+                                            {
+                                                <label> @(Int64.Parse(DateTime.Now.ToString("yyyyMMddhhmm")) - Int64.Parse(p.CommentTime.ToString("yyyyMMddhhmm")))分钟前  </label>
+                                            }
+                                            else
+                                            {
+                                                if (Int64.Parse(DateTime.Now.ToString("yyyyMMddhh")) - Int64.Parse(p.CommentTime.ToString("yyyyMMddhh")) < 24)
+                                                {
+                                                    <label>  @(Int64.Parse(DateTime.Now.ToString("yyyyMMddhh")) - Int64.Parse(p.CommentTime.ToString("yyyyMMddhh")))小时前  </label>
+                                                }
+                                                else if (Int64.Parse(DateTime.Now.ToString("yyyyMMdd")) - Int64.Parse(p.CommentTime.ToString("yyyyMMdd")) < 30)
+                                                {
+                                                    <label>  @(Int64.Parse(DateTime.Now.ToString("yyyyMMdd")) - Int64.Parse(p.CommentTime.ToString("yyyyMMdd")))天前   </label>
+                                                }
+                                                else
+                                                {
+                                                    <label>  @(Int64.Parse(DateTime.Now.ToString("yyyyMM")) - Int64.Parse(p.CommentTime.ToString("yyyyMM")))月前   </label>
+                                                }
+                                            }
+
+                                        </div>
+
+                                        <div class="row contezhuanhuan" style="color:black;font-weight:800;margin-left:3%; ">
+                                            @Html.Raw(p.Content)
+                                        </div>
+                                        <div class="row video-huifu">
+                                            <div class="row">
+                                                <textarea name="comment_replay" class="reply-detailcontent" placeholder="回复 @p.Users.UserName :"></textarea>
+                                                <input type="hidden" value="@p.CommentNews_id" class="hufu_commid" />
+                                                <input type="hidden" value="@p.Users.UserName" class="hufu_ccommuserid" />
+                                            </div>
+                                            <div class="row">
+                                                
+                                                <div class="col-xs-8 col-sm-8 col-md-8 detail-replyanniu">
+                                                    @if (Session["UserName"] != null)
+                                                    {
+                                                        <input type="button" name="content_reply" class="content_replyvideo btn btn-success" value="回复" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="button" class="woyadengruaheahe btn" value="回复" />
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row reply-detail-commentt">
+
+                                        </div>
+                                        <div class="row reply-detail-reply">
+                                            @Ajax.ActionLink("查看回复", "SelectNewsReply", new { commvideoid = p.CommentNews_id }, new AjaxOptions
+                                       {
+                                           UpdateTargetId = "chakangeng",
+                                           InsertionMode = InsertionMode.Replace,
+                                           HttpMethod = "GET"
+                                       })
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr style="border:1px dashed  #666666" />
+                            }
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="sdsjdhew" style="width:100%"></div>
+            <div id="sjdbskshdiw" style="height:30px;"></div>
+            <div class="contentBottom">
+                <h2><a href="@Url.Action("Detail", "NewsShow", new { id = Model.FindPreNews.News_id })">上一篇:@Model.FindPreNews.NewsTitle</a></h2>
+                <h2><a href="@Url.Action("Detail", "NewsShow", new { id = Model.FindNextNews.News_id })">下一篇:@Model.FindNextNews.NewsTitle</a></h2>
+            </div>
+        </div>
+        <div class="detail-right">
+            
+                @using (Ajax.BeginForm("Details", "NewsShow", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "dfdferwerer" }))
+                {
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="search_internal_input" name="search_internal_input" placeholder="搜新闻">
+                    </div>
+                    <input class="btn btn-default success" type="submit" value="搜索" />
+
+                }                  
+             <div id="dfdferwerer">
+             
+             </div>
+        </div>
+       
+    </div>
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    @*评论提交*@
+    <script>
+    $("#content_fabiao").click(function () {
+        var sdferf = $(this).closest(".dealsjdjwwq").siblings(".sjdjawdjqwq2").find("#video_content");
+        var content = $(this).closest(".dealsjdjwwq").siblings(".sjdjawdjqwq2").find("#video_content").val();
+        var newid = $(this).closest(".dealsjdjwwq").siblings(".sjdjawdjqwq2").find("#milivideo_id").val();
+        if (content != null) {
+            $.ajax({
+                type: "post",
+                url: "/NewsShow/AddCommentNews",
+                data: { newcontent: content, id: newid},
+                success: function (data) {
+                    if (data == "success") {
+                        sdferf.val("");
+                        location.reload();
+                        $('html, body').animate({
+                            scrollTop: $("#sjdbskshdiw").offset().top * 2
+                                        }, 100);
+                    }
+
+
+
+                }
+            })
+        }
+       
+       
+    })
+    </script>
+    <script>
+
+    //删除事件
+    $(".videocommend-tag").children('a').click(function () {
+        setTimeout(function () {
+            var shanbc = $("#shanchupujlu").text();
+            if (shanbc == "success") {
+                location.reload();
+            }
+            else {
+
+            }
+        }, 1000);
+    })
+
+    </script>
+
+
+    @*回复*@
+    <script>
+    //评论提交
+
+
+
+    //alert($(this).closest(".video-huifu").children(':eq(0)').children());
+    //回复框变焦
+    $('.reply-detailcontent').focusin(function () {
+        $(this).addClass('inputbian');
+    });
+    $('.reply-detailcontent').focusout(function () {
+        $(this).removeClass('inputbian');
+        var inputText = $(this).val();
+        $(this).val(AnalyticEmotion(inputText));
+
+    })
+    //回复框隐藏
+    $('.huifu_xianxian').click(function () {
+        $(this).closest(".videocommend-content").children(".video-huifu").slideToggle();
+    })
+    //获取回复内容
+    $('.content_replyvideo').click(function () {
+        var replaysdsde = $(this).closest(".video-huifu").children(':eq(0)').children(".reply-detailcontent");
+        var replyconten = $(this).closest(".video-huifu").children(':eq(0)').children(".reply-detailcontent").val();
+        var commvideoid = $(this).closest(".video-huifu").children(':eq(0)').children(".hufu_commid").val();
+        var username = $(this).closest(".video-huifu").children(':eq(0)').children(".hufu_ccommuserid").val();
+        if (replyconten != null) {
+            $.ajax({
+                type: "post",
+                url: "/NewsShow/AddReplyNews",
+                data: { conntent: replyconten, id: commvideoid, commuser: username },
+                success: function (data) {
+                    if (data == "success") {
+                        replaysdsde.val("");
+                       alert("回复成功！")
+                    }
+
+
+
+                }
+            })
+        }
+        else {
+            alert("内容不能为空！")
+        }
+    })
+
+
+    //获取回复
+    $(".reply-detail-reply").children("a").click(function () {
+        $(this).closest(".videocommend-content").children(".reply-detail-commentt").append('<div class="row" id="chakangeng"></div>');
+        $(this).closest(".hudesdezsdea").siblings().find(".reply-detail-commentt").children().remove();
+        $(this).closest(".videocommend-content").children(".reply-detail-commentt").slideToggle();
+    })
+    </script>
+</body>
+</html>

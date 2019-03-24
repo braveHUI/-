@@ -1,0 +1,285 @@
+﻿@model ViewModels.CommuMessage
+@using Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage3.cshtml";
+
+}
+
+<link href="~/Content/Communication.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+
+<link href="~/Content/Face/nanoscroller.css" rel="stylesheet" />
+<link href="~/Content/Face/emoji.css" rel="stylesheet" />
+<style type="text/css">
+    .emoji-picker-icon {
+        position: absolute;
+        right: 20px;
+        top: 84%;
+        font-size: 20px;
+        opacity: 0.7;
+        z-index: 100;
+        transition: none;
+        color: black;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+</style>
+
+
+
+
+
+<div class="container-fluid communicaall">
+    <div class="row weizhdsdw"></div>
+    <div class="row">
+        <div class="col-sm-2 col-md-2"></div>
+        <div class="col-xs-12 col-sm-9 col-md-9 communica_mes">
+            <div class="row">
+                <div class="col-xs-4 col-sm-3 col-md-3 commun_ren">
+                    <div class="row">
+                        <div class="sixing_mes">
+                            <div class="sixin423-left-title">
+                                <i class="tupianmes"></i><span>私信消息</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row all_select_ren">
+                        <div class="sixin423-switch">
+                            <i></i>
+                            <a class="sixin423-switch-msg onaction"></a>
+                            <a class="sixin423-switch-friend">
+
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row all_mesagg_ren">
+                        @foreach (Communication p in Model.Communication1)
+                        {
+                            <div class="sixin423-users-row" title="@p.Users.UserName">
+                                <img src="@p.Users.UserImage" />
+                                @if (p.Flag == false)
+                                {
+                                    <span>
+                                        @Ajax.ActionLink(p.Users.UserName, "SelectMessagecomm", "Communication", new { ruserid = @p.User_id }, new AjaxOptions()
+                                   {
+
+                                       UpdateTargetId = "conteny_sdhshdwq",
+                                       InsertionMode = InsertionMode.Replace,
+                                       HttpMethod = "GET"
+                                   })
+                                    </span>
+                                    <span style="color:#FF7744;">(新)</span>
+                                }
+                                else
+                                {
+                                    <span>
+                                        @Ajax.ActionLink(p.Users.UserName, "SelectMessagecomm", "Communication", new { ruserid = @p.User_id }, new AjaxOptions()
+                                     {
+
+                                         UpdateTargetId = "conteny_sdhshdwq",
+                                         InsertionMode = InsertionMode.Replace,
+                                         HttpMethod = "GET"
+                                     })
+                                </span>
+                                }
+
+                                <input type="hidden" class="dangqiasdsd_id" value="@p.User_id" />
+                                <input type="hidden" class="content_message" value="@p.Content" />
+                                <input type="hidden" class="sixin_shijian" value="@p.CommunicationTime.ToString("MM-dd hh:mm")" />
+                                <input type="hidden" class="sixin_communicaid" value="@p.Communication_id" />
+                            </div>
+                        }
+
+
+
+
+
+
+                    </div>
+                    <div class="row all_mesagg_ren" style="display:none">
+                        @foreach (Attention p in Model.Attention1)
+                        {
+                            <div class="sixin423-users-row" title="@p.Users1.UserName">
+                                <img src="@p.Users1.UserImage" />
+
+                                <span>
+                                    @Ajax.ActionLink(p.Users1.UserName, "SelectContent", "Communication", new { ruserid = @p.BUser_id }, new AjaxOptions()
+                             {
+
+                                 UpdateTargetId = "contant_loatiande",
+                                 InsertionMode = InsertionMode.Replace,
+                                 HttpMethod = "GET"
+                             })
+                            </span>
+                            <input type="hidden" class="dangqiasdsd_id" value="@p.BUser_id" />
+
+
+                        </div>
+                        }
+
+
+
+
+
+                    </div>
+                </div>
+                <div class="col-xs-8 col-sm-9 col-md-9">
+                    <div class="col-sm-1 col-md-1 danqian_alluser">
+
+                    </div>
+                    <div class="col-xs-12 col-sm-9 col-md-9 mesage_sixin">
+                        <div class="row sixing_pople">
+                            <label></label>
+                        </div>
+                        <div class="row">
+                            <div class="row lian_content">
+                                <div class="row lian_content_liaotian"></div>
+                                <div class="row" id="conteny_sdhshdwq">
+                                    <div id="contant_loatiande"></div>
+                                </div>
+
+                            </div>
+                            <hr style="border-bottom:1px solid  #cfcfcf;" />
+                            <div class="row">
+                                <input type="hidden" id="message_user_id" value="" />
+                                <div class="row">
+                                    <input type="hidden" class="contemnt_time" value="@DateTime.Now.ToString("MM-dd hh:mm")" />
+                                    <textarea class="message_kuang" data-emojiable="true"></textarea>
+                                </div>
+
+                                <div class="row fasong_kuang">
+                                    <input type="button" class="xiaoxi_tijiao" value="发送" />
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-1 col-md-1">
+                            <img src="@Session["Image"]" class="all_zaixian" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1 col-md-1"></div>
+        </div>
+    </div>
+
+</div>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/js/nanoscroller.min.js"></script>
+<script src="~/Scripts/js/tether.min.js"></script>
+<script src="~/Scripts/js/config.js"></script>
+<script src="~/Scripts/js/emoji-picker.js"></script>
+<script src="~/Scripts/js/util.js"></script>
+<script src="~/Scripts/js/jquery.emojiarea.js"></script>
+<script src="~/Scripts/Communication.js"></script>
+
+@*表情*@
+<script>
+    $(function () {
+        // Initializes and creates emoji set from sprite sheet
+        window.emojiPicker = new EmojiPicker({
+            emojiable_selector: '[data-emojiable=true]',
+            assetsPath: '/Images/img/',
+            popupButtonClasses: 'fa fa-smile-o'
+        });
+
+        window.emojiPicker.discover();
+    });
+
+</script>
+@*发送消息*@
+<script>
+    $(".xiaoxi_tijiao").bind('click', function () {
+        var ruser = $("#message_user_id").val();
+        var content = $(".message_kuang").val();
+        var cleael = $(".message_kuang");
+        var time = $(".contemnt_time").val();
+
+        if (content != null && content.length > 0) {
+            if (ruser > 0) {
+                $.ajax({
+                    type: "post",
+                    url: "/Communication/Addmessage",
+                    data: { content: content, ruserid: ruser },
+                    success: function (data) {
+                        if (data == "ok") {
+                            $(".message_kuang").text("");
+                            $(".message_kuang").val("");
+                            $(".lian_content").append(' <div class="row sdsdjewqqq"><div class="yonghu_content"> <div class="content_time">' + time + '</div>  <span class="user_conteng">' + content + '   </span><img src="@Session["Image"]"/></div>  </div>')
+
+
+                        }
+                        else {
+                            alert("数据有误！")
+                        }
+                    }
+                });
+            }
+        }
+        else {
+            alert("请输入内容！")
+        }
+
+    })
+
+
+</script>
+
+@*联系人*@
+<script>
+    $(".sixin423-switch-msg").click(function () {
+        $(this).closest(".commun_ren").children(":eq(2)").show(500);
+        $(this).addClass('onaction').siblings().removeClass('onaction');
+        $(this).closest(".commun_ren").children(":eq(3)").hide(500);
+        var panren = $(this).closest(".commun_ren").children(":eq(2)").children(".sixin423-users-row-active").children(":eq(1)").text();
+        var panrenid = $(this).closest(".commun_ren").children(":eq(2)").children(".sixin423-users-row-active").children(".dangqiasdsd_id").val();
+        var messcontent = $(this).closest(".commun_ren").children(":eq(2)").children(".sixin423-users-row-active").children(".content_message").val();
+        var time = $(this).closest(".commun_ren").children(":eq(2)").children(".sixin423-users-row-active").children(".sixin_shijian").val();
+        var img = $(this).closest(".commun_ren").children(":eq(2)").children(".sixin423-users-row-active").children('img').attr('src');
+
+        $(".sixing_pople").children().text("正在与 " + panren + " 聊天")
+        $("#message_user_id").val(panrenid);
+        $(".sdadweqdasdsdvqq").children().remove();
+        $(".yonghu_content").remove();
+        $("#contant_loatiande").remove();
+        $(".lian_content").append('  <div class="row lian_content_liaotian"></div>').append(' <div class="row" id="conteny_sdhshdwq"></div>');
+
+        $(".lian_content_liaotian").append('<div class="row sdadweqdasdsdvqq"><div class="mesaage_user_conhjtent"> <div class="sixin_content_time">' + time + '</div> <img src=' + img + ' /> <span class="sixin_user_contekjkng"> ' + messcontent + ' </span> </div> </div>');
+        //获取回复内容
+        if (panrenid > 0) {
+            $.ajax({
+                type: "get",
+                url: "/Communication/Index",
+                data: { ruserid: panrenid },
+                success: function (data) {
+
+                    setTimeout(function () {
+                        var count = $(".danqian_alluser").children().length;
+                        var xzimg = $(".all_zaixian").attr('src');
+                        if (count > 0) {
+                            for (var i = 0; i < count; i++) {
+                                var xzcontent = $(".danqian_alluser").children(":eq(" + i + ")").children(".danqian_user_comment").val();
+                                var xztime = $(".danqian_alluser").children(":eq(" + i + ")").children(".danqian_user_time").val();
+
+                                $(".lian_content").append(' <div class="row"><div class="yonghu_content"> <div class="content_time">' + xztime + '</div>  <span class="user_conteng">' + xzcontent + '   </span><img src="@Session["Image"]"/></div>  </div>')
+                            }
+                        }
+
+
+                    }, 500);
+
+
+
+
+                }
+            });
+        }
+
+
+    })
+
+</script>

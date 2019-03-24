@@ -1,0 +1,131 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    //Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+    Layout = null;
+
+}
+
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+<script src="~/signalr/hubs"></script>
+
+
+<script>
+   
+
+</script>
+
+
+<style type="text/css">
+    .dakuan {
+        margin: 100px auto;
+        height: 600px;
+        width: 500px;
+        border: 1px solid #808080;
+    }
+
+    .xingxi_show {
+        border: 1px solid #fe1256;
+        height: 400px;
+        overflow: scroll;
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    .shuru {
+        height: 200px;
+        width: 100%;
+        border: 1px solid #000000;
+    }
+
+    #MessageBox {
+        border: 1px solid #808080;
+        height: 50px;
+        width: 80%;
+        margin-left: 5%;
+    }
+</style>
+
+<div class="dakuan">
+    <div class="xingxi_show" id="chatContent">
+
+    </div>
+    <div class="shuru">
+        <input type="text" name="shuru_kuang" id="MessageBox" />
+
+        <input type="button" class="sendBtn" id="sendBtn" value="发送" />
+    </div>
+    <input type="hidden" id="groupid" value="32" />
+    <input type="hidden" id="Juser-login" value="力达康" />
+    <img src="@Session["Image"]" id="Juser-faceimg" height="100" width="100" />
+    <input type="hidden" id="Juser-userid" value="3" />
+
+</div>
+<script>
+
+    var chat = $.connection.chathsdw;
+    //接收服务器信息
+    chat.client.addNewMessageToPage = function (message) {
+        //#chatContent就是一个div层 我们把服务器返回的信息追加到这个层上 跟QQ聊天相反，新的信息我们追加顶部
+        $('#chatContent').prepend(message);
+    };
+    //服务器端调用的LoginUser方法，根据返回的用户列表 输出用户列表到页面上
+    chat.client.LoginUser = function (UserList) {
+        //在下一篇介绍的持久连接类中 是可以直接返回Json的 这里不知道怎么回事 接收的Json总是被接收成字符串 所以这里我们解析一下
+        var data = eval("(" + UserList + ")");
+        var html = "";
+        for (var i = 0; i < data.length; i++) {
+            //这里我们做了一个判断 就是 解析用户列表Json时 如果用户的ID 就是当前用户的ID 那么就不添加 这跟QQ不一样啊 QQ中好友列表中是有自己的
+            if (data[i].UserId != $("#Juser-userid").val()) {
+                //如果用户的在线状态是在线呢 我们就添加onclick方法 实现 点击用户的用户 可以私聊 如果不在线 就不添加了 因为我们这个是没有存数据库的 所以没有做离线消息
+                if (data[i].UserStates == "True") {
+                    html += "<dl onclick=\"javascript:sendPerMessage('" + data[i].ConnectionId + "','" + data[i].UserNickName + "')\" class=\"clearfix tab-item-1\"><dt><img src=\"" + data[i].UserFaceImg + "\"></dt><dd>" + data[i].UserNickName + "</dd></dl>";
+                }
+                else {
+                    html += "<dl onclick=\"javascript:void(0)\" class=\"clearfix tab-item-1 liveout\"><dt><img src=\"" + data[i].UserFaceImg + "\"></dt><dd>" + data[i].UserNickName + "</dd></dl>";
+                }
+            }
+        }
+        //更新页面用户列表
+        $("#OnlineUsers").html(html);
+    };
+
+
+    $.connection.hub.start().done(function () {
+        //用户连接时 注册一下群组和个人信息哦 这个的服务器代码 我们上面贴出来了
+        //这个Demo是为了让大家理解SigalR所以没有做多复杂的流程 个人信息 我是直接传递的
+        //$("#groupid").val()这个是要注册的群组，可以自己定义 组播的时候 只要是在这一个组里的都会收到
+        //$("#Juser-login").val()这个是发送方也就是我的昵称
+        //$("#Juser-faceimg").val()这个是我的头像
+        //$("#Juser-userid").val()这个是我在网站中的唯一标识ID，用户连接的ID（Context.ConnectionId）也是唯一的，那么为什么还要我在这个网站中的ID呢？
+        //解释一下子：单页面的聊天室是没有多大必要的，但是比如我们这个功能是放到公用里的，就像网站的在线客服一样，你总不能每个页面都写一套吧 既然是引用的这一个页面
+        //那么用户打开其他页面的时候 这个Context.ConnectionId是会变的，那我怎么知道这又是谁呢 我们就用用户在网站中的唯一标识ID作为参照，当新的连接进来时 我们看下是不是ID一样
+        //一样的话我们就更新用户列表中这个唯一标识ID用户的Context.ConnectionId和在线状态 不一样的话就添加新用户
+        chat.server.group($("#groupid").val(), $("#Juser-login").val(), $("#Juser-faceimg").val(), $("#Juser-userid").val());
+        $('#sendBtn').click(function () {
+            //这里做一下判断 如果没有输入消息就发送 那么提示一下
+            if ($('#MessageBox').val().length <= 0) {
+                $('#chatContent').prepend("<dl  class=\"messageTip clearfix\"><dt></dt><dd>系统消息：请输入信息<dd></dl>");
+            }
+            else {
+                //sendToConnectId 是我们自定义的一个字段 如果你点击了某一个用户 那么就把他的ConnectionId赋给sendToConnectId 我们知道是私聊
+                //当然，用户点击退出私聊的时候 这个字段会被赋为空 表示是群聊 这个大家在Demo中一看就明白了
+                if (sendToConnectId != "" && sendToConnectId.length > 0) {
+                    //调用服务器私聊方法 ！！！注意啊！！！服务器的私聊方法是 public void SendSingle(string clientId, string userfaceimg, string usernickname, string message)
+                    //这里是chat.server.sendSingle 首字母小写啊 客户端调用的服务器方法首字母要小写  服务器调用的客户端方法 大小写一致
+                    chat.server.sendSingle(sendToConnectId, $("#Juser-faceimg").val(), $("#Juser-login").val(), $('#MessageBox').val());
+                    $('#MessageBox').val("").focus();
+                }
+                else {
+                    //这里是群聊 我们演示的没有做群组聊天 所以这里传递的是"All"表示 全部，会发送给全部用户
+                    //说明一下方便理解：比如我们有这么一个情景，这个聊天是一个讨论，对某一篇文章或产品的讨论，那么是不是应该只在这篇文章或这个产品页面的用户才能收发属于这篇文章或产品消息呢，在其他页面
+                    //的用户不应该能收发这里的消息呀 那么我们上面的代码chat.server.group中传递的groupid就应该是某篇文章或产品的标识，把他们划分到一个组里比如chat.server.group("A123")一个自定义字符串加上文章或产品ID，
+                    //或直接用文章或产品的IDchat.server.group("123") 这里就chat.server.send("123", ...);就实现了 只有在这个页面中的用户才能收到此消息 就跟QQ的群是一样的
+                    chat.server.send("All", $("#Juser-faceimg").val(), $("#Juser-login").val(), $('#MessageBox').val());
+                    $('#MessageBox').val("").focus();
+                }
+            }
+        });
+    });
+</script>

@@ -1,0 +1,370 @@
+﻿@model ViewModels.ForumPost
+@using Models
+
+@{
+    ViewBag.Title = "JunBa";
+    Layout = "~/Views/Shared/_LayoutPage3.cshtml";
+}
+@Styles.Render("~/Content/Fourm.css")
+<script src="~/ueditor/ueditor.config.js"></script>
+<script src="~/ueditor/ueditor.all.js"></script>
+<script type="text/javascript">
+    var editorOption = {
+        initialFrameWidth: 700,
+        initialFrameHeight: 200
+    };
+    var editor = new baidu.editor.ui.Editor(editorOption);
+    editor.render('ForumSEC1_Post');
+</script>
+
+<div class="container-fluid junbeiall">
+    <div class="row junba_img">
+        <img src="@Model.ForumSEC1.FsectionbackImg" />
+    </div>
+    <div class="row" id="junba_allsdewq">
+        <div class="col-sm-1 col-md-1"></div>
+        <div class="col-xs-12 col-sm-10 col-md-10 junba_names">
+            <div class="row junba_contebsgdw">
+                <div class="row junba_cpontent">
+                    <div class="col-xs-4 col-sm-3 col-md-3 jinba_posimg">
+                        <img src="@Model.ForumSEC1.FsectionImg" />
+                    </div>
+                    <div class="col-xs-4 col-sm-6 col-md-6">
+                        <div class="row">
+                            <div class="col-xs-2 col-sm-2 col-md-2 junba_name">
+                                <span>@Model.ForumSEC1.ForumSectionName</span>
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-4 ">
+                                <div class="junba_guanzhu">
+                                    <input type="hidden" class="atttenttionid" value="@ViewBag.attentionid" />
+                                    <input type="hidden" class="forumsection_id" value="@Model.ForumSEC1.ForumSection_id" />
+                                    @if (Session["User_id"] != null)
+                                    {
+                                        if (@ViewBag.atten > 0)
+                                        {
+                                            <img src="~/Images/forum/frs_cancel_02_90791d8.png" class="junba_quxiaoguan" />
+                                        }
+                                        else
+                                        {
+                                            <img src="~/Images/forum/frs_islike_a450e55.png" class="junba_guangzhu_img" />
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Images/forum/frs_islike_a450e55.png" class="woyadengruaheahe fa-share-square" />
+                                        
+                                    }
+                                  
+                                   
+                                </div>
+                              
+                                
+                              
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 junba_tiezishu">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    关注：
+                                    <span>
+                                        @ViewBag.allcontgun
+                                    </span>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    帖子：  <span>@ViewBag.postcount</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            @Html.Raw(Model.ForumSEC1.FSectionDes)
+                        </div>
+                    </div>
+                  @if (Session["User_id"] != null)
+                  {
+                      if (@ViewBag.signid > 0)
+                      {
+                          if (Int64.Parse(DateTime.Now.ToString("yyMMdd")) - Int64.Parse(@ViewBag.signtime.ToString("yyMMdd")) < 1)
+                          {
+                            <div class="col-xs-4 col-sm-3 col-md-3 junba_qiaodao sign_box_bright_signed">
+
+                                <a class="sign_btn_bright" title="已签到">
+                                    <span class="sign_today_date">@DateTime.Now.ToString("MM" + "月" + "dd" + "日") </span>
+                                    <span class="sign_keep_span">连续一天</span>
+                                </a>
+
+
+                            </div>
+                          }
+                          else
+                          {
+                            <div class="col-xs-4 col-sm-3 col-md-3 junba_qiaodao woyao_sign">
+                                <input type="hidden" class="qiapodao_forumid" value="@Model.ForumSEC1.ForumSection_id" />
+                                <a class="sign_btn_bright" title="签到">
+                                    <span class="sign_today_date">@DateTime.Now.ToString("MM" + "月" + "dd" + "日") </span>
+                                </a>
+
+
+                            </div>
+                          }
+
+                      }
+                      else
+                      {
+                        <div class="col-xs-4 col-sm-3 col-md-3 junba_qiaodao woyao_sign">
+                            <input type="hidden" class="qiapodao_forumid" value="@Model.ForumSEC1.ForumSection_id" />
+                            <a class="sign_btn_bright" title="签到">
+                                <span class="sign_today_date">@DateTime.Now.ToString("MM" + "月" + "dd" + "日") </span>
+                            </a>
+
+
+                        </div>
+                      }
+
+
+                  }
+                  else
+                  {
+                    <div class="col-xs-4 col-sm-3 col-md-3 junba_qiaodao woyadengruaheahe">
+
+                        <a class="sign_btn_bright" title="签到">
+                            <span class="sign_today_date">@DateTime.Now.ToString("MM" + "月" + "dd" + "日") </span>
+                        </a>
+
+
+                    </div>
+                  }
+
+
+
+
+                </div>
+
+            </div>
+
+            <div class="row kantie">
+                <div class="col-xs-8 col-sm-8 col-md-8 ">
+                    <div class="kantie_post">
+                        <span>看帖</span>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 post_soisuo">
+                  @using (Ajax.BeginForm("JunBa", "Forum", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "genxichazhao" }))
+                  {
+
+                    <input type="hidden" id="forunsecaweid" value="@Model.ForumSEC1.ForumSection_id" />
+                    <input type="text" id="search_internal_input" name="search_internal_input" placeholder="吧内搜索" />
+                        <input type="submit" class="junba_tijiao" id="tijiaosousuo" value="" />
+
+                  }
+                       
+                   
+                   
+                </div>
+            </div>
+            <div class="row sjdewqedqwedq">
+                <div class="col-xs-12 col-sm-9 col-md-9">
+                    <div class="row junba_poat" >
+                     @foreach(Post p in Model.Post1)
+                     {
+                         <div class="row">
+                             <div class="col-xs-1 col-sm-1 col-md-1">
+
+                             </div>
+                             <div class="col-xs-10 col-sm-10 col-md-10">
+                                 <div class="row">
+                                     <div class="col-xs-1 col-sm-1 col-md-1">
+                                         @if (p.Post_id> 100)
+                                         {
+                                            <input type="button" value="30" />
+                                         }
+                                         else
+                                         {
+                                            <input type="button" value="@p.Post_id" />
+                                         }
+
+                                     </div>
+                                     <div class="col-xs-8 col-sm-8 col-md-8 junba_post_name">
+                                         <a href="@Url.Action("PostDetail","Forum", new { id =p.Post_id})">@p.PostName</a>
+                                     </div>
+                                     <div class="col-xs-3 col-sm-3 col-md-3 post_usering">
+                                         <img src="@p.Users.UserImage"/>
+                                         <span>@p.Users.UserName</span>
+                                         <span>@p.PostTime.ToString("MM-dd")</span>
+                                     </div>
+
+                                 </div>
+                             </div>
+                             <div class="col-xs-1 col-sm-1 col-md-1">
+
+                             </div>
+                            
+                         </div>
+                        <hr style="border:1px dashed  #666666" />
+                     }
+                    </div>
+
+                </div>
+                <div class="col-sm-3 col-md-3 sdsadeqwq">
+                    <div class="row ">
+                        @if (Session["User_id"] != null)
+                        {
+                            <div class="col-xs-12 col-sm-11 col-md-11 post_userinfo">
+                                <p>我在论坛</p>
+
+                                <div class="row">
+
+                                    <div class="col-xs-7 col-sm-7 col-md-7 userinfo_imgh">
+                                        <img src="@Model.Userinfo1.UserImage" />
+                                    </div>
+                                    <div class="col-xs-5 col-sm-5 col-md-5 userinfo-xinxi">
+                                        <div class="row"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span>@Model.Userinfo1.UserName </span></div>
+                                        <div class="row"><span class="glyphicon glyphicon-education"></span><span>@Model.Userinfo1.Rank </span> </div>
+                                        <div class="row"><span class="glyphicon glyphicon-fire"></span><span>@Model.Userinfo1.Integral </span> </div>
+                                    </div>
+                                </div>
+                                <div class="row user_chaungjain ">
+                                    <div class="chungjiangba">
+                                        <input type="hidden" class="huo_jifejns" value="@Model.Userinfo1.Integral" />
+                                        <a href="@Url.Action("Post","Essay", new { id = @Model.ForumSEC1.ForumSection_id })">我要发帖</a>
+                                      
+                                    </div>
+
+                                </div>
+                                <div class="row post_wozaigfuanba">
+                                    <p>热帖<i class="glyphicon glyphicon-cog"></i></p>
+                                </div>
+                                <div class="row">
+                                  
+                                    <div class="col-xs-12 col-sm-11 col-md-11">
+                                       
+                                            <div class="woyao_junba">
+                                                @foreach(Post p in Model.Post2)
+                                                {
+                                                    
+                                                    <div class="row">
+                                                        <div class="reitie_post">
+                                                            <a href="@Url.Action("PostDetail","Forum", new { id =@p.Post_id })">@(p.PostName.Length > 12 ? p.PostName.Substring(0, 11) + ".." : p.PostName)</a>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                }
+                                            </div>
+                                       
+                                    </div>
+                                    <div class="col-sm-1 col-md-1"></div>
+                                </div>
+                            </div>
+                        }
+                      
+                    </div>
+                </div>
+            </div>
+
+        
+
+
+        </div>
+        <div class="col-sm-1 col-md-1"></div>
+    </div>
+</div>
+@{ Html.RenderAction("Index", "Login"); }
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+@*关注*@
+<script>
+
+    $(".junba_guangzhu_img").click(function () {
+        var foruid = $(this).siblings(".forumsection_id").val();
+        if (foruid > 0) {
+            $.ajax({
+                type: "post",
+                url: "/Forum/Addattentionpost",
+                data: { id: foruid },
+                success: function (data) {
+                    if (data == "success") {
+                        alert("关注成功!");
+                        location.reload();
+                    }
+                  
+                }
+            });
+        }
+        else {
+            alert("请先登入!")
+        }
+
+    })
+
+    $(".junba_quxiaoguan").click(function () {
+        var attentionid = $(this).siblings(".atttenttionid").val();
+        if (attentionid > 0) {
+            alert("你确定要取消关注吗")
+            $.ajax({
+                type: "post",
+                url: "/Forum/DeleteGuan",
+                data: { id: attentionid },
+                success: function (data) {
+                    if (data == "success") {
+                        alert("取消成功!");
+                        location.reload();
+                    }
+
+                }
+            });
+        }
+        else {
+            alert("请先登入!")
+        
+        }
+    })
+</script>
+@*签到*@
+<script>
+    $(".woyao_sign").click(function () {
+        var foruid = $(this).children(".qiapodao_forumid").val();
+       
+        if (foruid > 0) {
+            $.ajax({
+                type: "post",
+                url: "/Forum/AddSign",
+                data: { id: foruid },
+                success: function (data) {
+                    if (data == "success") {
+                       
+                        location.reload();
+                      
+                    }
+
+                }
+            });
+        }
+        else {
+            alert("请先登入!");
+        }
+
+
+    }
+    )
+</script>
+@*搜索*@
+@*<script>
+    $("#tijiaosousuo").click(function () {
+        var content = $(this).siblings("#search_internal_input").val();
+        var fordseunid = $(this).siblings("#forunsecaweid").val();
+      
+        if (content != null) {
+            $.ajax({
+                type: "get",
+                url: "/Forum/JunBa",
+                data: { id: fordseunid, searchString: content },
+                success: function (data) {
+                  
+
+                    top.location.reload(true);
+                       
+                  
+
+                }
+            });
+        }
+    })
+</script>*@
+

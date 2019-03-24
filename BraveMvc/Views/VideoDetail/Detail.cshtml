@@ -1,0 +1,217 @@
+﻿@model ViewModels.ForumVideo
+@using Models
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+<link href="~/Content/forumvideo/detail.css" rel="stylesheet" />
+<link href="~/Content/Face/nanoscroller.css" rel="stylesheet" />
+<link href="~/Content/Face/emoji.css" rel="stylesheet" />
+<style type="text/css">
+    .emoji-picker-icon {
+        position: absolute;
+        right: 20px;
+        top: 8%;
+        font-size: 20px;
+        opacity: 0.7;
+        z-index: 100;
+        transition: none;
+        color: black;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+</style>
+
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+<script src="Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+<!--这里要注意,这是虚拟目录,也就是你在OWIN Startup中注册的地址-->
+<script src="~/signalr/hubs"></script>
+
+<script>
+
+
+
+    // 声明一个代理引用该集线器,记得$.connection.后面的方法首字母必须要小写,这也是我为什么使用别名的原因
+    var chat = $.connection.getMessage;
+    // 这里是注册集线器调用的方法,和1.0不同的是需要chat.client后注册,1.0则不需要
+    chat.client.broadcastMessage = function (name) {
+        // HTML编码的显示名称和消息。
+        //var encodedMsg = $('<div />').text(name).html();
+        // 将消息添加到该页。
+        $('#messsagebox').append('<li>' +name + '</li>');
+    };
+    chat.client.findMesage = function (messages) {
+        $(".yincang_content").append('<div>' + messages + '</div>');
+    };
+    // 获取用户名称。
+    //$('#username').html(prompt('请输入您的名称:', ''));
+    // 设置初始焦点到消息输入框。
+    $('#message').focus();
+
+    // 启动连接,这里和1.0也有区别
+    $.connection.hub.start().done(function () {
+        $('#send').click(function () {
+            var conten = $('.message_kuang').val();
+            var name = $('#User_namesd').val();
+            if (conten != null && conten.length > 0) {
+
+                var message = conten
+                // 这里是调用服务器的方法,同样,首字母小写
+
+                chat.server.sendMessage(message, name);
+                // 清空输入框的文字并给焦点.
+                $('.message_kuang').text("").focus();
+
+            }
+            else {
+                alert("内容不能为空")
+            }
+
+        });
+    });
+   
+  
+
+
+</script>
+<script>
+    $(function () {
+        $("input").checkboxradio();
+    });
+</script>
+
+
+
+
+<div class="container-fluid">
+    <div class="row video-weizhi">
+        当前位置>>虎贲>>网上谈兵>>视屏>>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-1 col-md-1"></div>
+        <div class="col-xs-12 col-sm-7 col-md-7 detail_video">
+           
+            <div id="site">
+                <div id="videoBox">
+                 
+                    <video id="shipingdaxiao" controls>
+
+                       
+                        <source src="@Model.MiliVideo2.MilitaryVideo_Ways" type="video/mp4">
+
+                    </video>
+                </div>
+                <div class="gun_danmu"></div>
+
+            </div>
+           
+        </div>
+       
+        <div class="col-xs-12 col-sm-3 col-md-3 detail_chat">
+          
+            <div class="row detail_chat_ming">
+                <p>聊天室</p>
+                @if (Session["User_id"] != null)
+                {
+                    <input type="hidden" id="User_namesd" value="@Session["UserName"]" />
+                }
+            </div>
+            <div class="row chat_content" >
+               <ul class="text_content" id="messsagebox">
+                   @foreach (CommendMilitaryVideo p in Model.CommMiliVideo)
+                   {
+                       <li>
+                           <span>@p.Users.UserName</span>:<a>@Html.Raw(p.Content)</a> 
+                       </li>
+                      
+                   }
+               </ul>
+                  
+               
+              
+                
+
+
+            </div>
+            
+            <div class="row chat_content_fashi">
+                <div class="row chat_contesdq">
+                    <div class="col-xs-1 col-sm-1 col-md-1">
+                        <input type="checkbox" id="xuanze" />
+
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-8">
+                        <textarea class="message_kuang" data-emojiable="true"></textarea>
+                       
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3">
+                        @if (Session["User_id"] != null)
+                        {
+                            <input type="button" id="send" class="chat_fabiao" value="说几句" />
+                        }
+                        else
+                        {
+                            <input type="button"  class="woyadengruaheahe sdnsakjd2qw" value="说几句" />
+                        }
+
+
+                    </div>
+                </div>
+               
+               
+            </div>
+          
+        </div>
+       
+        <div class="col-sm-1 col-md-1"></div>
+       <div class="yincang_content">
+           @foreach (CommendMilitaryVideo p in Model.CommMiliVideo)
+           {
+              
+                 <div>@Html.Raw(p.Content)</div>
+               
+
+           }
+       </div>
+        <div class="content_show">
+            @foreach (CommendMilitaryVideo p in Model.CommMiliVideo)
+            {
+
+                <div>@Html.Raw(p.Content)</div>
+
+
+            }
+        </div>
+    </div>
+    @{ Html.RenderAction("Index", "Login");}
+</div>
+<script src="~/Scripts/Froum/index.js"></script>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/js/nanoscroller.min.js"></script>
+<script src="~/Scripts/js/tether.min.js"></script>
+<script src="~/Scripts/js/config.js"></script>
+<script src="~/Scripts/js/emoji-picker.js"></script>
+<script src="~/Scripts/js/util.js"></script>
+<script src="~/Scripts/js/jquery.emojiarea.js"></script>
+<script src="~/Scripts/DanMu.js"></script>
+@*表情*@
+<script>
+    $(function () {
+        // Initializes and creates emoji set from sprite sheet
+        window.emojiPicker = new EmojiPicker({
+            emojiable_selector: '[data-emojiable=true]',
+            assetsPath: '/Images/img/',
+            popupButtonClasses: 'fa fa-smile-o'
+        });
+
+        window.emojiPicker.discover();
+    });
+
+</script>
+
+

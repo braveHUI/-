@@ -1,0 +1,53 @@
+﻿@using Models
+@model ViewModels.Armss
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+   
+</head>
+<body>
+
+    <div class="picList" id="gengduo4">
+        <div class="row">
+
+            @foreach (var f in Model.arms)
+            {
+                <div class="col-sm-4">
+                    <div class="imagebox wuqiqq">
+                        <div class="box-wrapper">
+                            <div class="box-image">
+                                <img src="@f.ArmsPicture" alt="images" style="height:200px">
+                            </div>
+                            <div class="box-header">
+                                <h5 class="box-title">
+                                    <a href="ArmsDetails.html">@f.ArmsName）</a>
+                                </h5>
+                            </div>
+                            <div class="box-content">
+                                <div class="box-desc">
+                                    <p>产地：@f.Manu</p>
+                                    <p>所属：@f.ArmsSection.ArmsSectionName</p>
+                                    <p>诞生期：@f.Stime</p>
+
+                                </div>
+                                <div class="box-button">
+                                    <a class="button bg-scheme3" href="@Url.Action("Details","AllArms", new { id = f.Arms_id})">查看详情 <i class="fa fa-chevron-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.imagebox -->
+                </div>
+            }
+            </div>
+        </div>
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
+    <script src="~/js/jquery.unobtrusive-ajax.js"></script>
+</body>
+
+</html>

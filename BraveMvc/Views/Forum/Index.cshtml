@@ -1,0 +1,467 @@
+﻿@model ViewModels.ForumEssay
+@using Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+
+
+}
+@Styles.Render("~/Content/forum/style.css")
+@Styles.Render("~/Content/forum/icomoon.css")
+@Styles.Render("~/Content/forum/animate.css")
+
+<link rel="stylesheet" href="~/Content/forum/icomoon.css" />
+<link rel="stylesheet" href="~/Content/forum/style.css" />
+<link rel="stylesheet" href="~/Content/forum/animate.css" />
+<link rel="stylesheet" id="theme-switch" href="~/Content/forum/style.css" />
+<style>
+    /* For demo purpose only */
+
+    /* For Demo Purposes Only ( You can delete this anytime :-) */
+    #colour-variations {
+        padding: 10px;
+        -webkit-transition: 0.5s;
+        -o-transition: 0.5s;
+        transition: 0.5s;
+        width: 140px;
+        position: fixed;
+        left: 0;
+        top: 100px;
+        z-index: 999999;
+        background: #fff;
+        /*border-radius: 4px;*/
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+        -webkit-box-shadow: 0 0 9px 0 rgba(0,0,0,.1);
+        -moz-box-shadow: 0 0 9px 0 rgba(0,0,0,.1);
+      
+        box-shadow: 0 0 9px 0 rgba(0,0,0,.1);
+    }
+
+        #colour-variations.sleep {
+            margin-left: -140px;
+        }
+
+        #colour-variations h3 {
+            text-align: center;
+            
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #777;
+            margin: 0 0 10px 0;
+            padding: 0;
+            
+        }
+
+        #colour-variations ul,
+        #colour-variations ul li {
+            padding: 0;
+            margin: 0;
+        }
+
+        #colour-variations li {
+            list-style: none;
+            display: block;
+            margin-bottom: 5px !important;
+            float: left;
+            width: 100%;
+        }
+
+            #colour-variations li a {
+                width: 100%;
+                position: relative;
+                display: block;
+                overflow: hidden;
+                -webkit-border-radius: 4px;
+                -moz-border-radius: 4px;
+              
+                border-radius: 4px;
+                -webkit-transition: 0.4s;
+                -o-transition: 0.4s;
+                transition: 0.4s;
+            }
+
+                #colour-variations li a:hover {
+                    opacity: .9;
+                }
+
+                #colour-variations li a > span {
+                    width: 33.33%;
+                    height: 20px;
+                    float: left;
+                    display: -moz-inline-stack;
+                    display: inline-block;
+                    zoom: 1;
+                    *display: inline;
+                }
+
+
+
+    .option-toggle {
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin-top: 5px;
+        margin-right: -30px;
+        width: 30px;
+        height: 30px;
+        background: #f64662;
+        text-align: center;
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+        color: #fff;
+        cursor: pointer;
+        -webkit-box-shadow: 0 0 9px 0 rgba(0,0,0,.1);
+        -moz-box-shadow: 0 0 9px 0 rgba(0,0,0,.1);
+      
+        box-shadow: 0 0 9px 0 rgba(0,0,0,.1);
+    }
+
+        .option-toggle i {
+            top: 2px;
+            position: relative;
+        }
+
+        .option-toggle:hover, .option-toggle:focus, .option-toggle:active {
+            color: #fff;
+            text-decoration: none;
+            outline: none;
+        }
+    div {
+    display: block;
+}
+    .fh5co-service{
+        height:300px;
+    }
+    .fh5co-service a{
+        color:white;
+    }
+</style>
+
+<script src="~/Scripts/Froum/modernizr-2.6.2.min.js"></script>
+<script src="~/Scripts/Froum/respond.min.js"></script>
+<section id="fh5co-home" data-section="home" style="background-image: url(/Images/forum/full_image_2.jpg);" data-stellar-background-ratio="0.5">
+    <div class="gradient"></div>
+    <div class="container">
+        <div class="text-wrap">
+            <div class="text-inner">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                   
+                        <h1 class="to-animate">Do something you love.</h1>
+                        <h2 class="to-animate">以严谨、专业、互动为原则,以 <a href="#" target="_blank" title="Free HTML5 Bootstrap Templates">超然物外,有容乃大</a>为发展精神,提供国防教育、爱国主义科普、军事装备、战争历史、时事热点、战略等功能的军事论坛 </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slant"></div>
+</section>
+<section id="fh5co-intro">
+    <div class="container">
+        <div class="row row-bottom-padded-lg">
+            <div class="fh5co-block to-animate" style="background-image: url(/Images/forum/img_7.jpg);">
+                <div class="overlay-darker"></div>
+                <div class="overlay"></div>
+                <div class="fh5co-text">
+                  
+                        <i class="fh5co-intro-icon icon-video-camera"></i>
+                        <h2>视屏</h2>
+                        <p>以军事领域的高清直击、防务科技为发展趋势和自制高清防务评论视频为主要内容。不做主流军事媒体的传声筒,不是通常的军事视屏</p>
+                        <p><a href="@Url.Content("~/Forum/ClassifyVideo")" class="btn btn-primary">Get Into</a></p>
+                    
+                    
+                </div>
+            </div>
+            <div class="fh5co-block to-animate" style="background-image: url(/Images/forum/img_8.jpg);">
+                <div class="overlay-darker"></div>
+                <div class="overlay"></div>
+                <div class="fh5co-text">
+                   
+                        <i class="fh5co-intro-icon icon-list-alt"></i>
+                        <h2>文章</h2>
+                        <p>军事写作是指用户以及与用户交流所使用的行文的写作，包括两个方面，一是军事文学创作及文学批评，一是军事应用写作及写作研究</p>
+                        <p><a href="@Url.Content("~/Forum/ClassifyEssay")" class="btn btn-primary">Get Into</a></p>
+
+                 
+                   
+                </div>
+            </div>
+            <div class="fh5co-block to-animate" style="background-image: url(/Images/forum/img_10.jpg);">
+                <div class="overlay-darker"></div>
+                <div class="overlay"></div>
+                <div class="fh5co-text">
+                    <i class="fh5co-intro-icon icon-pencil"></i>
+                    <h2>帖子</h2>
+                    <p>军事评论,战役战术研究。各国军事情报刺探,这里是军事迷的大舞台。欢迎讨论国防政策和事件.关注国际军事动态</p>
+                    <p><a href="@Url.Content("~/Forum/ClassifyPost")" class="btn btn-primary">Get Into</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="row watch-video text-center to-animate">
+            <span>Watch the video</span>
+
+            <a  class="popup-vimeo btn-video"><i class="icon-play2"></i></a>
+        </div>
+    </div>
+</section>
+<section id="fh5co-work" data-section="work">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 section-heading text-center">
+                <h2 class="to-animate">视屏</h2>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 subtext to-animate">
+                        <h3>以军事领域的高清直击、防务科技为发展趋势和自制高清防务评论视频为主要内容。不做主流军事媒体的传声筒,不是通常的军事视屏</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row-bottom-padded-sm">
+            @foreach (MilitaryVideo p in Model.MiliVideo9)
+            {
+                <div class="col-md-4 col-sm-6 col-xxs-12">
+                    <a href="@Url.Action("Index","VideoDetail", new { id = p.MilitaryVideo_id,seectionid=p.ForumSection_id})" class="fh5co-project-item image-popup to-animate">
+                        <img src="@p.MilitaryVideoImg" alt="Image" class="img-responsive" style="height:300px">
+                        <div class="fh5co-text">
+                            <h2>@(p.MilitaryVideoName.Length > 15 ? p.MilitaryVideoName.Substring(0, 14) + ".." : p.MilitaryVideoName)</h2>
+                            <span>@p.MilitaryVideoTime.ToString("MM-dd")</span>
+                        </div>
+                    </a>
+                </div>
+            }
+          
+         
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center to-animate">
+                <p></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="fh5co-testimonials" data-section="testimonials">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 section-heading text-center">
+                <h2 class="to-animate">文章</h2>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 subtext to-animate">
+                        <h3>军事写作是指用户以及与用户交流所使用的行文的写作，包括两个方面，一是军事文学创作及文学批评，一是军事应用写作及写作研究</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="box-testimony">
+                    <blockquote class="to-animate-2">
+                        <a href="@Url.Action("EssayDetail","Forum", new { id = Model.Forum5.Forum_id})">
+                            <p>
+                                @Model.Forum5.ForumDec
+
+                            </p>
+                        </a>
+                    </blockquote>
+                    <div class="author to-animate">
+                        <figure><img src="@Model.Forum5.Users.UserImage" alt="Person"></figure>
+                        <p>
+                            @Model.Forum5.Users.UserName <a>@Model.Forum5.Users.Rank</a> <span class="subtext">虽然过去不能改变，未来可以</span>
+                        </p>
+                    </div>
+                  
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="box-testimony">
+                    <blockquote class="to-animate-2">
+                        <a href="@Url.Action("EssayDetail","Forum", new { id = Model.Forum6.Forum_id})">
+                            <p>&ldquo;@Model.Forum6.ForumDec&rdquo;</p>
+                        </a>
+                       
+                    </blockquote>
+                    <div class="author to-animate">
+                        <figure><img src="@Model.Forum6.Users.UserImage" alt="Person"></figure>
+                        <p>
+                           @Model.Forum6.Users.UserName <a>@Model.Forum6.Users.Rank</a> <span class="subtext">幸福就像香水，洒给别人也一定会感染自己。</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="box-testimony">
+                    <blockquote class="to-animate-2">
+                        <a href="@Url.Action("EssayDetail","Forum", new { id = Model.Forum6.Forum_id})">
+                            <p>&ldquo;@Model.Forum7.ForumDec &rdquo;</p>
+                        </a>
+                      
+                    </blockquote>
+                    <div class="author to-animate">
+                        <figure><img src="@Model.Forum7.Users.UserImage" alt="Person"></figure>
+                        <p>
+                           @Model.Forum7.Users.UserName <a >@Model.Forum7.Users.Rank</a> <span class="subtext">有智者立长志，无志者长立志</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+
+<section id="fh5co-services" data-section="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 section-heading text-left">
+                <h2 class="left-border to-animate">帖子</h2>
+                <div class="row">
+                    <div class="col-md-8 subtext to-animate">
+                        <h3>军事评论,战役战术研究。各国军事情报刺探,这里是军事迷的大舞台。欢迎讨论国防政策和事件.关注国际军事动态</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 fh5co-service to-animate">
+                <i class="icon to-animate-2 icon-anchor"></i>
+                <h3>@Model.ForumSection6.ForumSectionName</h3>
+                <p><a href="@Url.Action("JunBa","Forum", new { id = Model.ForumSection6.ForumSection_id})">@Html.Raw(Model.ForumSection6.FSectionDes)</a> </p>
+            </div>
+            <div class="col-md-6 col-sm-6 fh5co-service to-animate">
+                <i class="icon to-animate-2 icon-layers2"></i>
+                <h3>@Model.ForumSection7.ForumSectionName</h3>
+                <p><a href="@Url.Action("JunBa","Forum", new { id = Model.ForumSection7.ForumSection_id})">@Html.Raw(Model.ForumSection7.FSectionDes)</a> </p>
+            </div>
+
+            <div class="clearfix visible-sm-block"></div>
+
+            <div class="col-md-6 col-sm-6 fh5co-service to-animate">
+                <i class="icon to-animate-2 icon-video2"></i>
+                <h3>@Model.ForumSection8.ForumSectionName</h3>
+                <p><a href="@Url.Action("JunBa","Forum", new { id = Model.ForumSection8.ForumSection_id})">@Html.Raw(Model.ForumSection8.FSectionDes)</a> </p>
+            </div>
+            <div class="col-md-6 col-sm-6 fh5co-service to-animate">
+                <i class="icon to-animate-2 icon-monitor"></i>
+                <h3>@Model.ForumSection9.ForumSectionName</h3>
+                <p><a href="@Url.Action("JunBa","Forum", new { id = Model.ForumSection9.ForumSection_id})">@Html.Raw(Model.ForumSection9.FSectionDes)</a> </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<section id="fh5co-counters" style="background-image: url(/Images//forum/full_image_1.jpg);" data-stellar-background-ratio="0.5">
+    <div class="fh5co-overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 section-heading text-center to-animate">
+                <h2>Fun Facts</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="fh5co-counter to-animate">
+                    <i class="fh5co-counter-icon icon-briefcase to-animate-2"></i>
+                    <span class="fh5co-counter-number js-counter" data-from="0" data-to="89" data-speed="5000" data-refresh-interval="50">89</span>
+                    <span class="fh5co-counter-label">Finished projects</span>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="fh5co-counter to-animate">
+                    <i class="fh5co-counter-icon icon-code to-animate-2"></i>
+                    <span class="fh5co-counter-number js-counter" data-from="0" data-to="2343409" data-speed="5000" data-refresh-interval="50">2343409</span>
+                    <span class="fh5co-counter-label">Line of codes</span>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="fh5co-counter to-animate">
+                    <i class="fh5co-counter-icon icon-cup to-animate-2"></i>
+                    <span class="fh5co-counter-number js-counter" data-from="0" data-to="1302" data-speed="5000" data-refresh-interval="50">1302</span>
+                    <span class="fh5co-counter-label">Cup of coffees</span>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="fh5co-counter to-animate">
+                    <i class="fh5co-counter-icon icon-people to-animate-2"></i>
+                    <span class="fh5co-counter-number js-counter" data-from="0" data-to="52" data-speed="5000" data-refresh-interval="50">52</span>
+                    <span class="fh5co-counter-label">Happy clients</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div id="colour-variations">
+    <a class="option-toggle"><i class="icon-gear"></i></a>
+    <h3>选择一种心情</h3>
+    <ul>
+        <li>
+            <a href="javascript: void(0);" data-theme="style">
+                <span style="background: #3f95ea;"></span>
+                <span style="background: #52d3aa;"></span>
+                <span style="background: #f2f2f2;"></span>
+            </a>
+        </li>
+        <li>
+            <a href="javascript: void(0);" data-theme="style2">
+                <span style="background: #329998;"></span>
+                <span style="background: #6cc99c;"></span>
+                <span style="background: #f2f2f2;"></span>
+            </a>
+        </li>
+        <li>
+            <a href="javascript: void(0);" data-theme="style3">
+                <span style="background: #9f466e;"></span>
+                <span style="background: #c24d67;"></span>
+                <span style="background: #f2f2f2;"></span>
+            </a>
+        </li>
+        <li>
+            <a href="javascript: void(0);" data-theme="style4">
+                <span style="background: #21825C;"></span>
+                <span style="background: #A4D792;"></span>
+                <span style="background: #f2f2f2;"></span>
+            </a>
+        </li>
+
+    </ul>
+</div>
+
+
+
+
+
+<script src="~/Scripts/Froum/jquery.min.js"></script>
+<script src="~/Scripts/Froum/jquery.easing.1.3.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/Froum/jquery.waypoints.min.js"></script>
+<script src="~/Scripts/Froum/jquery.stellar.min.js"></script>
+<script src="~/Scripts/Froum/jquery.countTo.js"></script>
+
+
+<script src="~/Scripts/Froum/jquery.style.switcher.js"></script>
+<script>
+		$(function(){
+			$('#colour-variations ul').styleSwitcher({
+				defaultThemeId: 'theme-switch',
+				hasPreview: false,
+				cookie: {
+		          	expires: 30,
+		          	isManagingLoad: true
+		      	}
+			});
+			$('.option-toggle').click(function() {
+			    $('#colour-variations').toggleClass('sleep');
+			    
+			});
+		});
+</script>
+<script src="~/Scripts/Froum/main.js"></script>

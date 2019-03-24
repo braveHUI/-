@@ -1,0 +1,1019 @@
+﻿.video-weizhi{
+    margin-top:7%;
+    margin-left:7%;
+    color:#808080;
+}
+.video-content{
+    margin-top:2%;
+}
+.video-menu{
+    height:600px;
+    background-color:#272c2e;
+    position:fixed;
+    top:20%;
+  
+  
+}
+.video-title{
+   margin-top:2%;
+    height:7%;
+    text-align:center;
+    line-height:40px;
+    background-color:#232323;
+}
+.video-title span{
+    text-align:right;
+    color:#21DEEF;
+}
+
+.video-title a{
+   
+    width:20%;
+    color:#21DEEF;
+    
+}
+.video-title-diffec{
+    text-align:center;
+    height:50px;
+    line-height:50px;
+   
+
+}
+
+.video-title-diffec:hover{
+   cursor:pointer;
+    background-color:black;
+}
+.video-title-diffec:hover a{
+     color:#21DEEF;
+}
+.video-title-diffec a{
+     color:white;
+}
+.active_diffyion{
+    background-color:black;
+   
+}
+.active_diffyion a{
+    color:#21DEEF;
+}
+
+
+
+
+
+
+/*帖子*/
+.contain-post{
+    background-color: rgba(229,229,229,95); 
+ 
+   background-size: cover;
+   background-attachment: fixed;
+      
+     
+}
+.post_userinfo{
+   
+   
+    margin:auto;
+    background-color:#e4e6eb;
+   border:1px solid #dcdcdc ;
+
+   
+  
+}
+.post_userinfo p{
+    color:black;
+    font-size:small;
+    margin-top:4%;
+    margin-left:4%;
+}
+.userinfo_imgh img{
+    width:100px;
+    height:100px;
+    border-radius:100px;
+
+}
+.userinfo-xinxi div span{
+    margin-right:10%;
+    margin-top:8%;
+}
+.post_wozaigfuanba{
+    margin-top:10%;
+    background-color:#dcdcdc;
+    line-height:30px;
+    border-radius:10px;
+}
+.post_wozaigfuanba p{
+    text-align:center;
+}
+.chungjiangba{
+   
+   height:30px;
+   width:80px;
+   border:1px solid #808080;
+    margin-left:30%;
+    margin-top:10%;
+    border-radius:10px 10px 10px 10px;
+    background-color:#e4e6eb;
+    text-align: center;
+
+}
+    .chungjiangba a {
+        text-align: center;
+    }
+     .chungjiangba a:hover{
+         color:black;
+         cursor:pointer;
+     }
+.post-content{
+   
+    background-color:white;
+
+    
+   
+}
+.post-ontentsde{
+    color:#039;
+    font-size:x-large;
+}
+.post-ontentsde:hover{
+    color:red;
+}
+.post-img img{
+    width:50px;
+    height:50px;
+}
+#dkskdjeljlaksjde32{
+    margin-top:3%;
+    background-color:white;
+}
+.paging{
+    text-align:right;
+}
+.kuan_ssdw{
+    border:1px solid rgb(220, 220, 220);
+    margin-top:2%;
+    border-radius:20px;
+    overflow:hidden;
+    height:110px
+}
+.kuan_ssdw img{
+    height:100px;
+}
+.kuan_ssdw a:hover{
+    color:black;
+}
+.posetba_dec div span{
+    margin-top:5%;
+     color:#005196;
+}
+.posetba_dec div p{
+    width:90%;
+     color:black;
+} 
+.all_attentionp{
+    margin-top:3%;
+    margin-bottom:5%;
+}
+.woyao_junba_atten{
+    height: 40px;
+border: 1px solid #444;
+background-color: white;
+line-height: 40px;
+text-align: center;
+width: 92%;
+margin-left: 5%;
+margin-top: 5%;
+border-radius: 10px;
+color:black;
+cursor:pointer;
+font-size:14px;
+}
+.woyao_junba_atten a:hover{
+    color:black;
+}
+.woyao_junba_atten:hover{
+    background-color:transparent;
+    color:black;
+}
+
+/*帖子*/
+/*军吧*/
+.junbeiall{
+      background-color:rgba(229,229,229,95);
+     
+}
+.junba_img{
+    margin-top:10%;
+    height:260px;
+    transform:skewY(-5deg);
+    background-color:white;
+    overflow:hidden;
+}
+.junba_img img{
+    width:100%;
+    height:200%;
+    position:absolute;
+    
+}
+.junba_names{
+
+     transform:skewY(-5deg);
+    background-color:white;
+    overflow:hidden;
+    
+    margin-top:5%;
+}
+.junba_contebsgdw{
+     transform:skewY(5deg);
+     margin-top:5%;
+}
+.junba_cpontent{
+    border:1px solid #E9EBF0;
+    background-color:#F2F4F7;
+    height:120px;
+}
+.jinba_posimg img{
+      width:50%;
+    height:110px;
+    margin-left:30%;
+}
+.junba_name{
+    margin-top:2%;
+    font-size:large;
+    color:black;
+}
+.junba_guanzhu{
+    width:120px;
+    height:30px;
+    overflow:hidden;
+    margin-top:5%;
+    cursor:pointer;
+}
+.junba_quxiaoguan{
+    height:150px;
+    overflow:hidden;
+  
+}
+.junba_guangzhu_img{
+    width:80px;
+    
+}
+.fa-share-square{
+       width:80px;
+}
+.junba_tiezishu{
+    margin-top:4%;
+}
+.junba_tiezishu div span{
+    color:#ff7f3e;
+    font-family: Arial
+}
+.junba_qiaodao{
+   
+}
+.junba_qiaodao{
+    background:url(/Images/forum/sign_btn_6de7b5e.png);
+    background-repeat: no-repeat;
+    width: 181px;
+height: 50px;
+display: block;
+position: relative;
+margin-top:1%;
+cursor:pointer;
+}
+.sign_box_bright_signed {
+    background-position: 0 -100px;
+}
+.sign_btn_bright{
+    height: 50px;
+display: block;
+outline: 0;
+}
+.sign_today_date{
+    position: absolute;
+right: 0;
+top: 10px;
+font-size: 15px;
+color: #737373;
+line-height: 30px;
+width: 75px;
+cursor:pointer;
+}
+.sign_keep_span{
+    margin: 25px 0 0 0px;
+text-align: left;
+width: 85px;
+position: absolute;
+font-size:12px;
+color: #EAF2FE;
+cursor: pointer;
+}
+.kantie{
+  
+height: 46px;
+position: relative;
+background-image: -webkit-linear-gradient(top,#eeeff3 0,#eaeef1 100%);
+background-image: linear-gradient(to bottom,#eeeff3 0,#eaeef1 100%);
+background-repeat: repeat-x;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffeeeff3', endColorstr='#ffeaeef1', GradientType=1);
+border-top: 1px solid #DBDCE0;
+border-bottom: 1px solid #DBDCE0;
+ transform:skewY(5deg);
+}
+.kantie_post{
+    height:46px;
+    width:60px;
+    background-color:#e0e1e5;
+    /*background-image: linear-gradient(to bottom,#e0e1e5 0,#dbdfe2 100%);*/
+  text-align:center;
+line-height: 46px;
+
+}
+.kantie_post span{
+    width:46px;
+}
+.search_internal_input{
+    margin-top:10px;
+    width: 146px;
+height: 23px;
+overflow: hidden;
+padding: 0 10px;
+color: #333;
+float: left;
+border: solid 1px #d9dbde;
+border-right: 0;
+background-color:white;
+}#search_internal_input{
+    margin-top:10px;
+    width: 146px;
+height: 23px;
+overflow: hidden;
+padding: 0 10px;
+color: #333;
+float: left;
+border: solid 1px #d9dbde;
+border-right: 0;
+background-color:white;
+}
+.junba_tijiao{
+      margin-top:10px;
+    width: 33px;
+height: 25px;
+padding: 0;
+background: url(/Images/forum/nav_search_internal_bright_6950208.png) no-repeat 0 0;
+border: 0;
+cursor:pointer
+}
+.sjdewqedqwedq{
+    transform:skewY(5deg);
+      margin-bottom:100px;
+}
+.sdsadeqwq{
+     
+     margin-top:0.1%;
+   
+}
+.junba_poat{
+   margin-top:3%;
+   
+     
+}
+.junba_post_name a{
+    color:#2d64b3
+}
+.post_usering{
+  
+}
+.post_usering img{
+    height:35px;
+    width:35px;
+  
+}
+
+.post_usering span{
+    color:black;
+    font-size:12px;
+    margin-right:15px;
+    margin-top:10px;
+}
+.post_fabiaop{
+  transform:skewY(5deg);
+  margin-bottom:100px;
+}
+.postfecstion-fabiao{
+    text-align:center;
+    margin-top:2%;
+}
+.postfecstion-fabiao input{
+    text-align:center;
+    height:40px;
+    width:100px;
+    background-color:blue;
+    color:white;
+    border:none;
+    margin-left:53%;
+}
+.reitie_post{
+    height:50px;
+    margin-left:6%;
+    border:1px solid #dcdcdc;
+    margin-top:3%;
+    border-radius:30px;
+    text-align:center;
+    line-height:50px;
+    color:white;
+}
+
+
+/*军吧*/
+
+
+/*文章详情*/
+.Detail-essay-weizhi{
+    margin-top:7%;
+    margin-left:7%;
+    color:#50545c;
+}
+.essay{
+    background-color:rgba(229,229,229,95);
+}
+.essay-detail{
+    margin-top:10%;
+    background-color:white;
+    transform:skewY(-5deg);
+    
+}
+.herad_beijing{
+    margin-top:5%;
+    transform:skewY(-5deg);
+    height:400px;
+}
+.brave-essay{
+      height:100%;
+    width:100%;
+    
+}
+.herad_beijing img{
+    height:100%;
+    width:100%;
+   
+}
+.detail-neilong{
+    margin-top:5%;
+    transform:skewY(5deg);
+    width:100%;
+}
+.essay-name{
+    text-align:center;
+}
+.essat-zuozhe{
+    background-color:#f4f4f4;
+    height:120px;
+    margin-left:1%;
+}
+.essat-zuozhe_guna{
+    width:100%;
+    height:50%;
+    line-height:60px;
+}
+.essat-zuozhe_guna span{
+    margin-left:10%;
+}
+.essat-zuozhe_guna span input{
+    border:none;
+    background-color:#f4f4f4;
+    text-align:left;
+}
+.fabiaoyu{
+    float:right;
+}
+.essay-content{
+    margin-bottom:10%;
+}
+.essay_collection{
+    text-align:left;
+    height:100px;
+}
+.essay_collection img{
+    height:90%;
+    width:60%;
+    cursor:pointer;
+}
+.detail-content_pinglun{
+    text-align:center;
+}
+.essay_commdend{
+    text-align:right;
+}
+.detail-neilong_dall{
+      margin-top:5%;
+    transform:skewY(5deg);
+    width:100%;
+    margin-bottom:100px;
+}
+.essay_commdend{
+    margin-top:1%;
+}
+.essay_commdend img{
+   
+     text-align:right;
+    width:80px;
+    height:80px;
+   
+
+}
+.essay_content-content{
+    margin-top:1%;
+}
+.essay_content-content textarea{
+    height:100px;
+    width:100%;
+    border-radius:20px;
+}
+.essay-biaoqing img{
+    height:40px;
+    width:40%;
+    cursor:pointer;
+}
+.esay-fabiao{
+    margin-top:1%;
+    text-align:right;
+    
+}
+.esay-fabiao input{
+    width:20%;
+    height:40px;
+    border:none;
+    border-radius:5px;
+    background-color:rgb(0, 51, 119);
+    color:white;
+    cursor:pointer;
+}
+
+.commend_prise_after{
+    display:none;
+      
+}
+
+#sdeasdepariseressa img{
+     width:15px;
+    height:15px;
+       cursor:pointer;
+}
+
+/*文章详情*/
+
+/*文章发表*/
+.publish-forum{
+    margin-top:2%;
+}
+.publish-forum div input{
+   width:100%;
+   height:40px;
+   color:#555;
+   border:1px solid #ccc;
+   border-radius:5px;
+   box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+   line-height: 1.42857143;
+}
+.publish-forum-name{
+    text-align:right;
+    color:black;
+    height:40px;
+    line-height:40px;
+}
+.Essay-fabiao{
+    text-align:right;
+    margin-top:2%;
+    margin-right:5%;
+}
+.Essay-fabiao input{
+    height:40px;
+    width:30%;
+    text-align:center;
+    border:1px solid #003377;
+    background-color:#003377;
+    color:white;
+}
+
+
+/*文章发表*/
+/*帖子发表*/
+.post{
+    height:800px;
+}
+.post-fabiao{
+     text-align:center;
+      margin-top:2%;
+    margin-right:5%;
+}
+.post-fabiao input{
+   height:50px;
+   width:100%;
+  
+   border:1px solid #003377;
+   background-color:#003377;
+    color:white;
+}
+
+/*帖子发表*/
+
+
+/*视屏详情*/
+.video-detail-all{
+    background-color:#232323;
+    margin-top:4.12%;
+    overflow:scroll;
+    overflow-x:hidden;
+    height:470px;
+
+}
+.video-detail-video{
+    height:90.3px;
+    margin-top:1%;
+    
+
+}
+.video-detail-video a div{
+    color:white;
+}
+.video-detail-video a div img{
+    width:100%;
+    height:85px;
+
+}
+.detail-video-img{
+    height:70px;
+    text-align:right;
+}
+.detail-video-img img{
+    height:70px;
+    width:50%;
+}
+.detail-video-content textarea{
+    height:70px;
+    width:100%;
+}
+.video-comment-biaoqing{
+  
+    margin-top:1%;
+    height:50px;
+}
+.video-biaoqing img{
+    height:30px;
+    width:50%;
+}
+.video-fabiao
+{
+    height:40px;
+     text-align:right;
+    
+}
+.video-fabiao input{
+    width:40%;
+   height:100%;
+   background-color:#003377;
+   color:white;
+   border:none;
+}
+#videocomm{
+    display:none;
+}
+.videocommend-img{
+    height:80px;
+    text-align:right;
+   
+}
+.videocommend-img img{
+    height:40px;
+    width:27%;
+    cursor:pointer;
+}
+.videocommend-content img{
+   width:20px;
+   height:20px;
+   cursor:pointer;
+   
+}
+.prasebian{
+    color:red;
+}
+.videocommend-tag{
+    text-align:right
+}
+.videocommend-tag span{
+    margin-right:3%;
+    cursor:pointer;
+}
+
+.videocommend-tag a{
+    margin-right:3%;
+     cursor:pointer;
+}
+#shanchupujlu{
+    display:none;
+}
+.commmmilitaryvideo{
+    display:none;
+}
+.video-huifu{
+    margin-top:3%;
+    display:none;
+}
+.reply-comment-biaoq{
+     height:60px;
+    text-align:left;
+}
+.reply-comment-biaoq img{
+     width:40px;
+   height:30px;
+}
+.reply-detailcontent{
+    height:50px;
+    width:100%;
+}
+.detail-replyanniu{
+    text-align:right;
+    margin-top:2%;
+}
+.detail-replyanniu input{
+     width:35%;
+   height:35px;
+   background-color:#003377;
+   color:white;
+   border:none;
+}
+.inputbian{
+    border:1px solid #000000;
+    height:70px;
+}
+.reply-detail-commentt{
+    display:none;
+}
+
+.reply_commed_huifu{
+    margin-top:3%;
+    display:none;
+}
+.reply-comment-biaoqreply{
+     height:60px;
+    text-align:left;
+}
+.reply-comment-biaoqreply img{
+     width:40px;
+   height:30px;
+}
+.reply-detailcontentreply{
+    height:50px;
+    width:100%;
+}
+.detail_replyanniu_reply{
+    text-align:right;
+    margin-top:2%;
+}
+.detail_replyanniu_reply input{
+     width:35%;
+   height:35px;
+   background-color:#003377;
+   color:white;
+   border:none;
+}
+.videoreplay-tag{
+    text-align:right;
+}
+.videoreplay-tag span{
+    margin-right:10%;
+    cursor:pointer;
+}
+
+.videoreplay-tag a{
+    margin-right:3%;
+     cursor:pointer;
+}
+.videocommend-img-reply{
+      height:80px;
+    text-align:right;
+}
+
+.videocommend-img-reply img{
+    height:30px;
+    width:30px;
+    cursor:pointer;
+   
+}
+/*视屏详情*/
+
+
+/*帖子详情*/
+.post-beijing{
+    background-color:rgba(229,229,229,95);
+}
+.detail-post{
+    margin-top:10%;
+   
+    background-color:white;
+    transform:skewY(-5deg);
+}
+.post_geren{
+     transform:skewY(5deg);
+     margin-top:5%;
+     height:100px;
+     border: 1px solid #E9EBF0;
+   background-color: #F2F4F7;
+    height: 100px;
+}
+.post_user_ing{
+    line-height:100px;
+     text-align:right;
+}
+.post_user_ing img{
+    height:90px;
+    width:80%;
+    text-align:right;
+}
+.louzhubiaoshi{
+    background: url(/Images//forum/pb_css_pic_a630a08.png) no-repeat -172px -120px;
+    position: absolute;
+width: 36px;
+height: 36px;
+left:107px;
+top: 2px;
+right: 1px;
+border: 0 solid red;
+z-index:100;
+}
+.post_user_name{
+    margin-top:6%;
+}
+.post_user_name span{
+    color:black;
+    font-size:16px;
+}
+.post_jifesdjsdqw{
+    margin-top:3%;
+    margin-bottom:2%;
+}
+.publish-button{
+    width: 27px;
+height: 26px;
+cursor: pointer;
+background-image: url(/Images/forum/nav-icons-new2.png);
+background-repeat: no-repeat;
+background-position: 0 -32px;
+margin-left:3px;
+
+}
+.woyaosixing{
+    width:50%;
+    height:27px;
+    background-color:#347cb9;
+    margin-top:6%;
+    cursor:pointer;
+}
+.sdwqqsd{
+    color:white;
+    font-size:15px;
+    height:26px;
+    width:30px;
+    text-align:right;
+    top: 28%;
+    position: absolute;
+    margin-left:39px;
+    line-height:26px;
+    
+}
+.post_contendsde{
+     transform:skewY(5deg);
+     margin-bottom:100px;
+}
+.post_ren{
+   
+
+}
+
+.post_usering_re{
+     margin-top:20%;
+     text-align:center;
+}
+.post_usering_re img{
+    width:60%;
+    height:90px;
+}
+.iconde_dsdweq{
+    color:red;
+    font-size:20px;
+    font-weight:800;
+   
+}
+.comendep_post{
+    border: 1px solid #E1E4E6;
+  
+}
+.user_biaoqian{
+    display: block;
+background: #fff;
+border: solid 1px #e6e6e6;
+width: 98px;
+height: 28px;
+line-height: 24px;
+cursor: pointer;
+position: relative;
+margin: 0 auto;
+color:black;
+margin-bottom:50px;
+}
+.huifi_commend{
+    text-align:right;
+    margin-right:3%;
+    color:black;
+}
+.fabiao_cksdsdwq{
+    margin-bottom:30px;
+    text-align:right;
+    
+    margin-top:2%;
+}
+.huifu_post{
+    cursor:pointer;
+    margin-right:5%;
+}
+.huifu_post a{
+    text-decoration:none;
+    outline:none;
+}
+.click_commend{
+    background-color:#398bfc;
+    color:white;
+    border:none;
+    width:60px;
+   border-bottom-color: #3782f0;
+   margin-right:2%;
+}
+.pinglunkuang{
+    display:none;
+}
+.dhskhdshdoqwuoqiwejqwe{
+    color:black;
+}
+.dhskhdshdoqwuoqiwejqwe img{
+    width:30px;
+    height:30px;
+}
+.post_daoti{
+   margin-top:30%;
+}
+.click_reply_commend {
+    background-color: #398bfc;
+    color: white;
+    border: none;
+    width: 60px;
+    border-bottom-color: #3782f0;
+    margin-right: 5%;
+}
+.dsdeshijian label{
+    font-weight:100 ;
+}
+.huifu_replyhuoqu{
+     cursor:pointer;
+    margin-right:5%;
+}
+.huifu_replyhuoqu a{
+     text-decoration:none;
+    outline:none;
+}
+.huifu_replyhuoqu a:hover{
+      text-decoration:none;
+    outline:none;
+}
+.huifu_postdsd_sdjsdw{
+    width:90%;
+}
+.fabiao_cksdsdwq input{
+     background-color: rgb(57, 139, 252);
+color: white;
+border-width: medium;
+border-style: none;
+width: 60px;
+margin-right: 5%;
+}
+.post_replyanniu_reply{
+    text-align:center;
+    
+  
+}
+.post_replyanniu_reply input{
+    background-color: rgb(57, 139, 252);
+color: white;
+border-width: medium;
+border-style: none;
+
+
+
+width: 60px;
+
+}
+
+
+/*帖子详情*/

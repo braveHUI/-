@@ -1,0 +1,403 @@
+﻿
+@using Models
+@model ViewModels.Armss
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Styles.Render("~/css/flexslider.css")
+@Styles.Render("~/css/magnific-popup.css")
+
+
+<!-- Page title -->
+<div class="page-title parallax parallax2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-title-heading">
+                    <h2>大国利器</h2>
+                </div><!-- /.page-title-heading -->
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.page-title -->
+
+<div class="page-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="flat-wrapper">
+                <div class="breadcrumbs">
+                    <h2 class="trail-browse">你现在在:</h2>
+                    <ul class="trail-items">
+                        <li class="trail-item"><a href="@Url.Action("index","Brave")">虎贲网</a></li>
+                        <li class="trail-item"><a href="@Url.Action("index","AllArms")">大国利器</a></li>
+                        <li>兵器库</li>
+                    </ul>
+                </div><!-- /.breadcrumbs -->
+            </div><!-- /.flat-wrapper -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.page-breadcrumbs -->
+
+
+<div class="flat-row flat-general sidebar-right pad-bottom75px">
+    <div class="container">
+        <div class="row">
+            <div class="general">
+                <div class="general-slider about-slider">
+                    <div class="flexslider">
+                        <ul class="slides">
+
+                            <li>
+                                <a class="popup-gallery" href="~/img/about/5.jpg"><img src="~/img/about/5.jpg" alt="images"></a>
+                            </li>
+                            <li>
+                                <a class="popup-gallery" href="~/img/about/4.jpg"><img src="~/img/about/4.jpg" alt="images"></a>
+                            </li>
+                            
+                            <li>
+                                <a class="popup-gallery" href="~/img/about/6.jpg"><img src="~/img/about/6.jpg" alt="images"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div><!-- /.about-slider -->
+
+
+
+
+            </div><!-- /.general -->
+
+            <div class="general-sidebars">
+                <div class="sidebar-wrap">
+                    <div class="sidebar">
+                        <div class="widget widget_nav_menu">
+                            <ul class="nav_menu">
+                               
+                                 @foreach (var a in Model.armSection)
+                                {
+
+                                    <li class="menu-item " >
+                                        @Ajax.ActionLink(a.ArmsSectionName, "Armsid","AllArms", new { id = a.ArmsSection_id }, new AjaxOptions()
+                                   {
+                                       UpdateTargetId = "gengduo5",
+                                       HttpMethod="post"
+                                       
+                                   })
+                                            
+                                          
+                                        @*<a href="AllArms/Index/?id=1">飞机</a>*@
+                                    </li>
+
+                                }
+
+                                 
+                                   
+                                
+                               @*<li class="menu-item">
+                                    <a href="2">舰船舰艇</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="3">枪械与单兵</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="4">坦克装甲车辆</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="5">火炮</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="6">导弹武器</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="7">太空装备</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="8">爆炸物</a>
+                                </li>*@
+                            </ul>
+                        </div><!-- /.widget_nav_menu -->
+
+
+
+
+                    </div><!-- /.sidebar -->
+                </div><!-- /.sidebar-wrap -->
+            </div><!-- /.general-sidebars -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.blog -->
+
+
+<!--end 全屏滚动-->
+<div class="page-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="flat-wrapper">
+               
+                <div class="sidebar-wrap">
+                    <div class="search d7" style="padding-bottom:25px;padding-top:0;">
+                        <div class="block-title form1">
+                            @using (Ajax.BeginForm("select", "AllArms", new AjaxOptions() { UpdateTargetId = "gengduo4", HttpMethod = "Get" }))
+                            {
+
+
+                                @Html.TextBox("search")
+                                <input type="submit" value="搜索" style="width:auto" />
+                            }
+                            @*<input type="text" placeholder="搜索从这里开始...">
+                                <button type="submit"></button>*@
+                        </div>
+                    </div>
+
+
+
+
+
+
+                </div><!-- /.sidebar-wrap -->
+            </div><!-- /.flat-wrapper -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.page-breadcrumbs -->
+
+
+
+<div class="flat-row flat-general sidebar-right " id="gengduo5">
+    <div class="container">
+        <div class="row">
+            <div class="general">
+                <div class="general-slider about-slider">
+                    <div class="conMain">
+                        <div class="module">
+                            <h3 class="title"><span><i>@Model.armsectionid.ArmsSectionName</i> - 筛选</span><a href="@Url.Action("Index","AllArms")" class="resetSelect">重置筛选条件</a></h3>
+                            @*@{Html.RenderAction("Armsid", "AllArms");}*@
+                            <div class="select" id="gengduo1">
+                                <!-- 大分类 -->
+                              <ul class="ul1" >
+              <li >大分类：</li>
+              @foreach (var b in Model.aFilterSection)
+              {
+
+                  <li>
+                      @Ajax.ActionLink(b.AFilterSectionName, "select", "AllArms", new { id = b.AFilterSection_id }, new AjaxOptions()
+     {
+
+         HttpMethod = "Get",
+         UpdateTargetId = "gengduo4"
+
+     })
+
+                  </li>
+              }
+
+              <span class="more" style="display: block;">
+                  <a href="javascript:;" class="down">更多</a>
+              </span>
+          </ul>
+          <!-- 原产国 -->
+          <ul class="ul2">
+              <li>原产国：</li>
+              @foreach (var c in Model.aFilterSection2)
+
+              {
+                  <li>
+                      @Ajax.ActionLink(c.AFilterSectionName, "select", "AllArms", new { id2 = c.AFilterSection_id }, new AjaxOptions()
+                  {
+
+                      HttpMethod = "Get",
+                      UpdateTargetId = "gengduo4"
+
+                  })
+                  </li>
+              }
+
+              <span class="more" style="display: block;"><a href="javascript:;" class="down">更多</a></span>
+          </ul>
+          <!-- 诞生期 -->
+          <ul class="ul3">
+              <li>诞生期：</li>
+              @foreach (var d in Model.aFilterSection3)
+
+              {
+                  <li>
+                      @Ajax.ActionLink(d.AFilterSectionName, "select", "AllArms", new { id3= d.AFilterSection_id }, new AjaxOptions()
+                  {
+
+                      HttpMethod = "Get",
+                      UpdateTargetId = "gengduo4"
+
+                  })</li>
+              }
+
+
+              <span class="more" style="display: block;"><a href="javascript:;" class="down">更多</a></span>
+          </ul>
+
+          <div class="picList" id="gengduo4">
+              <div class="row">
+
+                  @foreach(var f in Model.arms)
+                  {
+                  <div class="col-sm-4">
+                      <div class="imagebox wuqiqq">
+                          <div class="box-wrapper">
+                              <div class="box-image">
+                                  <img src="@f.ArmsPicture" alt="images" style="height:200px">
+                              </div>
+                              <div class="box-header">
+                                  <h5 class="box-title">
+                                      <a href="ArmsDetails.html">@f.ArmsName）</a>
+                                  </h5>
+                              </div>
+                              <div class="box-content">
+                                  <div class="box-desc">
+                                      <p>产地：@f.Manu</p>
+                                      <p>所属：@f.ArmsSection.ArmsSectionName</p>
+                                      <p>诞生期：@f.Stime</p>
+
+                                  </div>
+                                  <div class="box-button">
+                                      <a class="button bg-scheme3" href="@Url.Action("Details","AllArms", new { id = f.Arms_id})">查看详情 <i class="fa fa-chevron-right"></i></a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div><!-- /.imagebox -->
+                  </div>
+
+                  }
+
+
+              </div>
+          </div>
+          <div class="pages">
+             
+          </div>
+      </div>
+
+
+
+
+
+
+                        </div>
+                    </div><!-- /.about-slider -->
+
+
+
+
+                </div><!-- /.general -->
+            </div><!-- /.general -->
+
+
+            <div class="general-sidebars bianbian">
+                <div class="sidebar-wrap">
+
+                    <div class="block-title">
+                        <h2 class="block-title__h2"><i class="fa fa-file"></i> @Model.armsectionid.ArmsSectionName  排行<a class="block-title__view-all" href=#>获取更多</a></h2>
+                    </div>
+                    <div class="wrap-redaction  wrap-redaction_white">
+                        <div class="content" id="newscontent">
+
+                            <div class="ranks-tab" id="ranks-tab">
+                                <ul>
+                                    @foreach(var h in Model.arms1)
+                                    { 
+                                    <li>
+                                        <a href="@Url.Action("Details","AllArms", new { id =h.Arms_id})">
+                                            <div class="imghidden">
+                                                <img src="@h.ArmsPicture">
+                                            </div>
+                                            <b></b>
+                                            <i>@h.Arms_id</i>
+                                            <span>@h.ArmsName</span>
+                                            <p>@h.Stime</p>
+                                        </a>
+                                    </li>
+                                    }
+
+                                </ul>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div><!-- /.sidebar-wrap -->
+            </div><!-- /.general-sidebars -->
+        </div><!-- /.row -->
+
+
+
+    </div><!-- /.container -->
+</div><!-- /.blog -->
+<script type="text/javascript">
+        var _recommend=$('.select .more a');//获取span a
+        _recommend.click(function (e) {
+            
+var _r=$(this).parent().parent('ul');//获取该span父类ul
+            if($(this).hasClass("down")){//判断是否含有DOwn
+              $(this).removeClass('down');
+               _r.stop(true,false).animate({height:"100px"},"slow");
+             $(this).addClass('up');
+               $(this).text("收起");//值变为收起
+
+            }else{
+                $(this).addClass('down');
+                 $(this).removeClass('up')
+                $(this).text("更多");
+                  _r.stop(true,false).animate({height:"60px"},"slow");
+
+            }
+        });
+</script>
+<script type="text/javascript">
+    $(".widget_nav_menu ul li ").click(function () {
+        $(this).addClass("current ");
+        $(this).siblings().removeClass("current");
+
+       
+        
+    });
+    </script>
+<script type="text/javascript">
+    $("#gengduo1 .ul1 li ").click(function () {
+        $(this).addClass("current ");
+        $(this).siblings().removeClass("current");
+
+
+
+    });
+    $("#gengduo1 .ul2 li").click(function () {
+        $(this).addClass("current ");
+        $(this).siblings().removeClass("current");
+
+
+
+    });
+    $("#gengduo1 .ul3 li ").click(function () {
+        $(this).addClass("current ");
+        $(this).siblings().removeClass("current");
+
+
+
+    });
+    //$("#ranks-tab li").mouseover(function () {
+    //    $(this).addClass("lego-type ");
+    //    $(this).siblings().removeClass("lego-type");
+       
+    //});
+   
+
+</script>
+<script type="text/javascript" src="~/js/main.js"></script>
+<script type="text/javascript" src="~/js/jquery.flexslider-min.js"></script>
+<script type="text/javascript" src="~/js/jquery.magnific-popup.min.js"></script>
+
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+<script src="~/js/jquery.unobtrusive-ajax.js"></script>
+
+
+

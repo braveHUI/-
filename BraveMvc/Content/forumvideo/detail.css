@@ -1,0 +1,162 @@
+﻿body {
+    margin:0;
+    padding:0;
+}
+.video-weizhi{
+   margin-top:5%;
+   margin-left:7%;
+   margin-bottom:3%;
+}
+.detail_video{
+    height:460px;
+    background-color:#212223;
+}
+.detail_chat{
+    height:460px;
+    background-color:#212223;
+}
+.detail_chat_ming{
+    height:50px;
+    line-height:50px;
+    text-align:center;
+   
+}
+.detail_chat_ming p{
+     color:white;
+}
+.chat_content{
+    height:300px;
+    background-color:white;
+    border:5px solid #212223;
+    overflow:hidden;
+}
+.text_content li{
+    margin-left:10%;
+    height:40px;
+    line-height:40px;
+   
+
+}
+.text_content li a{
+     color:black;
+}
+.text_content li span{
+    color:#808080;
+}
+.text_content li img{
+    width:30px;
+    height:30px;
+}
+.chat_content_fashi{
+      background-color:white;
+    border:5px solid #212223;
+    height:100px;
+   
+}
+.chat_contesdq{
+    margin-top:2%;
+}
+.message_kuang{
+    width:100%;
+    border-radius:10px;
+}
+.content_show{
+    overflow:hidden;
+    width:855px;
+    left:9%;
+    top:-460px;
+    height:600px;
+    float:left;
+    position:relative;
+  
+    z-index:99;
+}
+.yincang_content{
+    display:none;
+}
+.content_show div{
+     position:absolute;
+     font-size:20px;
+}
+.content_show div img{
+    width:30px;
+    height:30px;
+}
+#send{
+    text-align:left;
+    border-radius:10px;
+    border:none;
+    background-color:#ff6a00;
+    color:white;
+}
+.sdnsakjd2qw{
+     text-align:left;
+    border-radius:10px;
+    border:none;
+    background-color:#ff6a00;
+    color:white;
+}
+.wenzhiw_chat{
+    width:80%;
+    margin-left:5%;
+    height:40px;
+    line-height:40px;
+
+}
+.wenzhiw_chat img{
+    width:30px;
+    height:30px;
+}
+.gun_danmu{
+    width:100%;
+    height:460px;
+    background-color:azure;
+}
+
+
+#site {
+  
+  
+  height:460px;
+}
+
+
+
+
+
+#videoBox {
+  border: 1px solid #212223;
+  transition: 0.5s;
+
+}
+
+
+
+
+video {
+  width: 100%;
+
+  vertical-align: bottom;
+}
+
+#videoBox.in {
+  animation: ac 1s;
+ 
+}
+dsjds{
+  
+}
+
+#videoBox.out {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 430px;
+  z-index: 999;
+  animation: an 0.5s;
+}
+#shipingdaxiao{
+    height:460px;
+}
+
+

@@ -1,0 +1,81 @@
+﻿@model Models.ForumSection
+@{
+    ViewBag.Title = "AddForumsection";
+    Layout = "~/Views/Shared/_LayoutPage2.cshtml";
+}
+@Styles.Render("~/Content/css/jquery.sinaEmotion.css")
+@Styles.Render("~/Content/Fourm.css")
+<script src="~/ueditor/ueditor.config.js"></script>
+<script src="~/ueditor/ueditor.all.js"></script>
+<script type="text/javascript">
+    var editorOption = {
+        initialFrameWidth: 784,
+        initialFrameHeight: 400
+    };
+    var editor = new baidu.editor.ui.Editor(editorOption);
+    editor.render('FSectionDes');
+</script>
+<div class="container post">
+    <div class="row Detail-essay-weizhi">
+        当前位置>>虎贲>>网上谈兵>>军吧创建
+    </div>
+    @using (Html.BeginForm("AddJunba", "Essay", FormMethod.Post, new { id = "tijiao", enctype = "multipart/form-data" }))
+    {
+
+        <div class="row publish-forum">
+            <div class="col-xs-4 col-sm-3  col-md-3 publish-forum-name">
+                <label>军吧名</label>
+            </div>
+            <div class="col-xs-8 col-sm-9  col-md-9 ">
+                <input type="text" name="post_nume" id="post_nume" placeholder="请输入军吧名" />
+
+            </div>
+
+        </div>
+        <div class="row publish-forum">
+            <div class="col-xs-4 col-sm-3  col-md-3 publish-forum-name">
+                @Html.LabelFor(model => model.FsectionImg, "图片", htmlAttributes: new { })
+            </div>
+            <div class="col-xs-4 col-sm-5  col-md-5">
+
+                @Html.TextBoxFor(model => model.FsectionImg, new { @class = "textouy", placeholder = "上传图片", id = "copyFile" })
+
+            </div>
+            <div class="col-xs-4 col-sm-4  col-md-4">
+                <input type="file" name="file" class="uploadFile" onchange="document.getElementById('copyFile').value = this.value" />
+
+            </div>
+
+        </div>
+        <div class="row publish-forum">
+            <div class="col-xs-4 col-sm-3  col-md-3 publish-forum-name">
+                @Html.LabelFor(model => model.FsectionbackImg, "军吧背景图", htmlAttributes: new { })
+            </div>
+            <div class="col-xs-4 col-sm-5  col-md-5">
+
+                @Html.TextBoxFor(model => model.FsectionbackImg, new { @class = "textouy", placeholder = "上传图片", id = "backFile" })
+
+            </div>
+            <div class="col-xs-4 col-sm-4  col-md-4">
+                <input type="file" name="file_beijing" class="uploadFile" onchange="document.getElementById('backFile').value = this.value" />
+
+            </div>
+
+        </div>
+      
+        <div class="row publish-forum">
+            <div class="col-xs-4 col-sm-3  col-md-3 publish-forum-name">
+                @Html.LabelFor(model => model.FSectionDes, "军吧描述", htmlAttributes: new { })
+            </div>
+            <div class="col-xs-8 col-sm-9  col-md-9 ">
+                @Html.TextAreaFor(model => model.FSectionDes, "FSectionDes")
+                @Html.ValidationMessageFor(model => model.FSectionDes, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row Essay-fabiao">
+            <input type="submit" value="发表" />
+        </div>
+    }
+
+</div>
+

@@ -1,0 +1,23 @@
+﻿
+@using PagedList.Mvc;
+@using Models
+@{
+    Layout = null;
+}
+<link href="~/Content/ClassifyNews.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ClassifyNews</title>
+</head>
+<body>
+   
+   @{Html.RenderAction("Index", "AllNews");
+   }
+
+
+</body>
+</html>

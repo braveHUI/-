@@ -1,0 +1,157 @@
+﻿@using Models
+@model ViewModels.Armss
+@{
+    ViewBag.Title = "Details";
+}
+
+ <!-- Page title -->
+<div class="page-title parallax parallax2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-title-heading">
+                    <h2>大国利器</h2>
+                </div><!-- /.page-title-heading -->
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.page-title -->
+
+<div class="page-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="flat-wrapper">
+                <div class="breadcrumbs">
+                    <h2 class="trail-browse">你现在在:</h2>
+                    <ul class="trail-items">
+                        <li class="trail-item"><a href="@Url.Action("index","Brave")">虎贲网</a></li>
+                        <li class="trail-item"><a href="@Url.Action("index","AllArms")">大国利器</a></li>
+                        <li class="trail-item">兵器库</li>
+                        <li>@Model.armsde.ArmsName</li>
+                    </ul>
+                </div><!-- /.breadcrumbs -->
+            </div><!-- /.flat-wrapper -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.page-breadcrumbs -->
+
+
+
+<div class="flat-row flat-general sidebar-right pad-bottom75px">
+    <div class="container">
+        <div class="row">
+            <div class="general">
+
+
+                <div class="general-slider about-slider maxPic " style="position: relative;">
+
+
+                    <a class="" href="img/about/1.jpg"><img src="@Model.armsde.ArmsPicture" alt="images"></a>
+                    <span class="name" style="display :block; position :absolute;"><i class="tank"></i>@Model.armsde.ArmsName</span>
+                    <span class="country" style="display :block; position :absolute;">
+                        <b>苏/俄</b>
+                    </span>
+
+
+
+                </div><!-- /.about-slider -->
+
+
+                <div class="intron">
+
+                    <div class="module">
+                      @Model.armsde.ArmsTechnical
+                    </div>
+                </div><!-- /intron -->
+
+
+                <div class="infooo">
+                    <div class="module">
+                        <div class="ii">
+                            <a class="current">结构特点</a>
+                            <a>使用情况</a>
+                        </div>
+                        <div class="otherList">
+                            <p>@Model.armsde.ArmsDes</p>
+
+                        </div>
+                    </div>
+                </div><!-- /infooo -->
+                <!-- /loadComment -->
+                @*<div class="loadComment">
+                    <div id="HQ_5365386dfd0a">
+                        <div id="huanqiu-tieInner" data-newtienum="1">
+                            <div id="huanqiu-tiePost" class="posting-panel-inner">
+                                <div class="tit-inner">
+                                    <span class="participate"><var>3</var>&nbsp;人参与，<var>1</var>&nbsp;条跟帖</span> <strong>网友跟帖</strong> <a href="#" target="_blank">请遵守《用户条款及隐私协议》</a>
+                                </div>
+                                <div class="post-textarea-inner clearfix">
+                                    <div class="avatar">
+                                        <img class="my-avatar no-login" src="https://himg2.huanqiu.cn/images/avatar.png">
+                                    </div>
+                                    <div class="post-textarea">
+                                        <div class="post-textarea-inner">
+                                            <textarea onkeyup="TIE.chackTextarea(this,500)" onblur="TIE.clearChackTextarea()" autocomplete="off" name="postTextarea" id="tieTextareaMax" class="tie-textarea-box"></textarea>
+                                            <div class="tips">
+                                                理性思考&nbsp;文明跟帖
+                                            </div>
+                                        </div>
+                                        <div class="operating-inner clearfix">
+                                            <div class="login"><a class="user-login" href="javascript:void(0);">登录虎贲网</a><span class="sx"> | </span><span>社交账号登录：</span><span class="social-login"><a href="javascript:void(0);" class="qq-login"></a><a href="javascript:void(0);" class="weibo-login"></a></span></div>
+                                            <div class="logined"></div>
+                                            <a href="javascript:void(0);" data-type="disabled" class="release-tie disabled">发表</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <iframe style="display:none;" id="HQ_dataPedal" name="HQ_dataPedal" src="http://commentn.huanqiu.com/assets/HQ_dataPedal.v2.html"></iframe>
+                    </div>
+
+
+                </div>*@ <!-- /loadComment -->
+
+            </div><!-- /.general -->
+
+            <div class="general-sidebars">
+                <div class="sidebar-wrap">
+                    <div class="sidebar">
+
+                        <div class="side">
+                            <div class="dataInfo">
+                                <ul>
+                                    <li><span>名称：</span>@Model.armsde.ArmsName</li>
+                                    <li><span>研发厂商：</span>@Model.armsde.Manu</li>
+                                    <li><span>诞生时间：</span>@Model.armsde.Stime</li>
+                                    <li><span>服役时间：</span>@Model.armsde.Ctime</li>
+
+                                    <li>
+                                        <span>关注度：</span><b class="numscore num_5"></b>(5分)
+                                    </li>
+                                </ul>
+                                <h4>性能数据</h4>
+                                <p>
+                                    @Model.armsde.ArmsTechnical
+                                    @*乘员与载员：10人<br>
+                                    车长：7.65米<br>
+                                    宽度：2.9米<br>
+                                    高度：100<br>
+                                    战斗全重：13,600千克<br>
+
+                                    最大速度：80公里/小时   <br>                                   最大行程：600公里<br>*@
+                                </p>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div><!-- /.sidebar -->
+                </div><!-- /.sidebar-wrap -->
+            </div><!-- /.general-sidebars -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.blog -->
+

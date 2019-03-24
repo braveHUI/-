@@ -1,0 +1,49 @@
+﻿@*@model ViewModels.MallsCart
+@using Models*@
+@model IEnumerable<Models.Cart>
+@{
+    ViewBag.Title = "SelectCarts";
+    Layout = null;
+}
+
+<div>
+    @foreach (var  i in Model)
+    {
+
+        <div class="row Cart-goods">
+            <div class="col-xs-4 col-sm-4 col-md-4">
+                <div class="col-xs-3 col-sm-2 col-md-2">
+                    <input type="checkbox" name="checked_goods" class="son" />
+                    <input type="hidden" class="sdedwgoods_carud" value="@i.Cart_id" />
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-4 Cart-goods-img">
+                    <img src="@i.Goods.GoodsImage1" />
+                </div>
+                <div class="col-xs-3 col-sm-4 col-md-4"><label>@i.Goods.GoodsName</label></div>
+                <div class="col-sm-2 col-md-2"></div>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2 jisuanparice">￥<label class="price">@i.Price</label></div>
+            <div class="col-xs-2 col-sm-2 col-md-2 Cart-goods-num" >
+
+                <input type="button" class="min" value="-" style="width:20%;height:35px;border:1px solid rgba(0,0,0,0.1);background-color:white" />
+                <input type="hidden" class="goods_kucun" value="@i.Goods.Numbers" />
+                <input type="hidden" class="cart-id" value="@i.Cart_id" />
+                <input type="text" class="text_box" id="text_box" name="text_box" value="@i.CartCount" />
+                <input type="button" class="add" value="+" style="width:20%;height:35px;border:1px solid rgba(0,0,0,0.1);background-color:white" />
+                <label class="tishi_message" style="margin-top:0"></label>
+
+
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2 dsdhesadepicesf">￥<label class="total_price" id="total_price">@i.Total</label></div>
+            <div class="col-xs-2 col-sm-2 col-md-2 cart-detele">
+
+               
+                <input type="hidden" class="goods_cartid" value="@i.Cart_id" />
+                <span class="shangchu_goods"><i class="glyphicon glyphicon-trash" style="margin-top:20%;"></i></span>
+
+
+            </div>
+        </div>
+    }
+</div>
+

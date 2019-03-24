@@ -1,0 +1,55 @@
+﻿@model ViewModels.CommuMessage
+@using Models
+@{
+    ViewBag.Title = "SelectContent";
+    Layout = null;
+}
+
+<div>
+    @if (ViewBag.cohtenk < 1)
+    {
+        foreach (Communication p in Model.Communication4)
+        {
+            if (Int64.Parse(DateTime.Now.ToString("yyyyMMdd")) - Int64.Parse(p.CommunicationTime.ToString("yyyyMMdd")) < 1)
+            {
+                <div class="row content_user_all">
+                    <div class="content_user_time">@p.CommunicationTime.ToString("MM-dd hh:mm")</div>
+                    <span class="content_user_content">@p.Content  </span>
+                    <img src="@Session["Image"]" />
+
+                </div>
+                foreach (Communication n in Model.Communication3)
+                {
+                    if (Int64.Parse(DateTime.Now.ToString("yyyyMMdd")) - Int64.Parse(n.CommunicationTime.ToString("yyyyMMdd")) < 1)
+                    {
+                        <div class="row danqian_user">
+                            <div class="danqian_user_time">@n.CommunicationTime.ToString("MM-dd hh:mm") </div>
+                            <span class="danqian_user_content">@n.Content  </span>
+                            <img src="@Session["Image"]" />
+                        </div>
+
+                    }
+                }
+            }
+        }
+    }
+    else
+    {
+        foreach (Communication n in Model.Communication3)
+        {
+            if (Int64.Parse(DateTime.Now.ToString("yyyyMMdd")) - Int64.Parse(n.CommunicationTime.ToString("yyyyMMdd")) < 1)
+            {
+                <div class="row danqian_user">
+                    <div class="danqian_user_time">@n.CommunicationTime.ToString("MM-dd hh:mm") </div>
+                    <span class="danqian_user_content">@n.Content  </span>
+                    <img src="@Session["Image"]" />
+                </div>
+
+            }
+        }
+    }
+
+</div>
+
+
+
